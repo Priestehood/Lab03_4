@@ -390,6 +390,9 @@
   <ItemGroup>
     <None Include="Resources\up.png" />
     <None Include="Resources\down.png" />
+    <None Include="Resources\Lab03_newFClass.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <Content Include="Resources\overview.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
