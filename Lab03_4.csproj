@@ -393,6 +393,8 @@
     <None Include="Resources\Lab03_newFClass.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Resources\Lab03_manageField.png" />
+    <None Include="Resources\Lab03_deleteFC.png" />
     <Content Include="Resources\overview.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

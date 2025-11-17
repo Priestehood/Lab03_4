@@ -39,9 +39,7 @@ namespace Lab03_4
             this.toolSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.toolSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.menuFeatureClass = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuFeatureClassEdit = new System.Windows.Forms.ToolStripMenuItem();
             this.toolSeparator7 = new System.Windows.Forms.ToolStripSeparator();
-            this.menuFeatureClassDelete = new System.Windows.Forms.ToolStripMenuItem();
             this.menuFeature = new System.Windows.Forms.ToolStripMenuItem();
             this.menuFeatureNew = new System.Windows.Forms.ToolStripMenuItem();
             this.menuFeatureEdit = new System.Windows.Forms.ToolStripMenuItem();
@@ -113,6 +111,8 @@ namespace Lab03_4
             this.menuLayerVisible = new System.Windows.Forms.ToolStripMenuItem();
             this.menuLayerThum = new System.Windows.Forms.ToolStripMenuItem();
             this.menuFeatureClassNew = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuFeatureClassEdit = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuFeatureClassDelete = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmUp = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmDown = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmRemove = new System.Windows.Forms.ToolStripMenuItem();
@@ -217,26 +217,10 @@ namespace Lab03_4
             this.menuFeatureClass.Text = "要素类管理";
             this.menuFeatureClass.ToolTipText = "操作要素类";
             // 
-            // menuFeatureClassEdit
-            // 
-            this.menuFeatureClassEdit.AutoToolTip = true;
-            this.menuFeatureClassEdit.Name = "menuFeatureClassEdit";
-            this.menuFeatureClassEdit.Size = new System.Drawing.Size(224, 26);
-            this.menuFeatureClassEdit.Text = "管理字段";
-            this.menuFeatureClassEdit.ToolTipText = "编辑选中要素类的字段";
-            // 
             // toolSeparator7
             // 
             this.toolSeparator7.Name = "toolSeparator7";
             this.toolSeparator7.Size = new System.Drawing.Size(221, 6);
-            // 
-            // menuFeatureClassDelete
-            // 
-            this.menuFeatureClassDelete.AutoToolTip = true;
-            this.menuFeatureClassDelete.Name = "menuFeatureClassDelete";
-            this.menuFeatureClassDelete.Size = new System.Drawing.Size(224, 26);
-            this.menuFeatureClassDelete.Text = "删除要素类";
-            this.menuFeatureClassDelete.ToolTipText = "删除当前选中的要素类";
             // 
             // menuFeature
             // 
@@ -258,7 +242,7 @@ namespace Lab03_4
             // 
             this.menuFeatureNew.AutoToolTip = true;
             this.menuFeatureNew.Name = "menuFeatureNew";
-            this.menuFeatureNew.Size = new System.Drawing.Size(122, 26);
+            this.menuFeatureNew.Size = new System.Drawing.Size(224, 26);
             this.menuFeatureNew.Text = "添加";
             this.menuFeatureNew.ToolTipText = "添加新要素，并设置要素属性";
             // 
@@ -270,7 +254,7 @@ namespace Lab03_4
             this.menuFeatureEditByRectangle,
             this.menuFeatureEditByPolygon});
             this.menuFeatureEdit.Name = "menuFeatureEdit";
-            this.menuFeatureEdit.Size = new System.Drawing.Size(122, 26);
+            this.menuFeatureEdit.Size = new System.Drawing.Size(224, 26);
             this.menuFeatureEdit.Text = "编辑";
             this.menuFeatureEdit.ToolTipText = "编辑当前选中图层的要素[几何与属性](老师只要求属性？";
             // 
@@ -301,7 +285,7 @@ namespace Lab03_4
             // toolSeparator8
             // 
             this.toolSeparator8.Name = "toolSeparator8";
-            this.toolSeparator8.Size = new System.Drawing.Size(119, 6);
+            this.toolSeparator8.Size = new System.Drawing.Size(221, 6);
             // 
             // menuFeatureDelete
             // 
@@ -311,7 +295,7 @@ namespace Lab03_4
             this.menuFeatureDeleteByRectangle,
             this.menuFeatureDeleteByPolygon});
             this.menuFeatureDelete.Name = "menuFeatureDelete";
-            this.menuFeatureDelete.Size = new System.Drawing.Size(122, 26);
+            this.menuFeatureDelete.Size = new System.Drawing.Size(224, 26);
             this.menuFeatureDelete.Text = "删除";
             this.menuFeatureDelete.ToolTipText = "删除当前选中图层中的要素";
             // 
@@ -342,13 +326,13 @@ namespace Lab03_4
             // toolSeparator9
             // 
             this.toolSeparator9.Name = "toolSeparator9";
-            this.toolSeparator9.Size = new System.Drawing.Size(119, 6);
+            this.toolSeparator9.Size = new System.Drawing.Size(221, 6);
             // 
             // menuFeatureBrowse
             // 
             this.menuFeatureBrowse.AutoToolTip = true;
             this.menuFeatureBrowse.Name = "menuFeatureBrowse";
-            this.menuFeatureBrowse.Size = new System.Drawing.Size(122, 26);
+            this.menuFeatureBrowse.Size = new System.Drawing.Size(224, 26);
             this.menuFeatureBrowse.Text = "浏览";
             this.menuFeatureBrowse.ToolTipText = "浏览当前选中图层的全部要素";
             // 
@@ -356,7 +340,7 @@ namespace Lab03_4
             // 
             this.menuFeatureIdentify.AutoToolTip = true;
             this.menuFeatureIdentify.Name = "menuFeatureIdentify";
-            this.menuFeatureIdentify.Size = new System.Drawing.Size(122, 26);
+            this.menuFeatureIdentify.Size = new System.Drawing.Size(224, 26);
             this.menuFeatureIdentify.Text = "属性";
             this.menuFeatureIdentify.ToolTipText = "查看所选要素的属性信息";
             // 
@@ -926,6 +910,24 @@ namespace Lab03_4
             this.menuFeatureClassNew.Size = new System.Drawing.Size(224, 26);
             this.menuFeatureClassNew.Text = "创建要素类";
             this.menuFeatureClassNew.ToolTipText = "创建新要素类并设置名称与字段";
+            // 
+            // menuFeatureClassEdit
+            // 
+            this.menuFeatureClassEdit.AutoToolTip = true;
+            this.menuFeatureClassEdit.Image = ((System.Drawing.Image)(resources.GetObject("menuFeatureClassEdit.Image")));
+            this.menuFeatureClassEdit.Name = "menuFeatureClassEdit";
+            this.menuFeatureClassEdit.Size = new System.Drawing.Size(224, 26);
+            this.menuFeatureClassEdit.Text = "管理字段";
+            this.menuFeatureClassEdit.ToolTipText = "编辑选中要素类的字段";
+            // 
+            // menuFeatureClassDelete
+            // 
+            this.menuFeatureClassDelete.AutoToolTip = true;
+            this.menuFeatureClassDelete.Image = ((System.Drawing.Image)(resources.GetObject("menuFeatureClassDelete.Image")));
+            this.menuFeatureClassDelete.Name = "menuFeatureClassDelete";
+            this.menuFeatureClassDelete.Size = new System.Drawing.Size(224, 26);
+            this.menuFeatureClassDelete.Text = "删除要素类";
+            this.menuFeatureClassDelete.ToolTipText = "删除当前选中的要素类";
             // 
             // tsmUp
             // 
