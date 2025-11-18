@@ -31,6 +31,9 @@ namespace Lab03_4.MyForms
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormNewFeatureClass));
             this.formNewGroupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtFileName = new System.Windows.Forms.TextBox();
+            this.labelFileName = new System.Windows.Forms.Label();
+            this.cmbSR = new System.Windows.Forms.ComboBox();
             this.labelSR = new System.Windows.Forms.Label();
             this.cmbGeometryType = new System.Windows.Forms.ComboBox();
             this.labelGeometryType = new System.Windows.Forms.Label();
@@ -38,7 +41,6 @@ namespace Lab03_4.MyForms
             this.txtFormNewPath = new System.Windows.Forms.TextBox();
             this.labelFormNewPath = new System.Windows.Forms.Label();
             this.formNewGroupBox2 = new System.Windows.Forms.GroupBox();
-            this.cmbSR = new System.Windows.Forms.ComboBox();
             this.dataGridViewField = new System.Windows.Forms.DataGridView();
             this.colFieldName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colFieldAlias = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -49,8 +51,6 @@ namespace Lab03_4.MyForms
             this.btnConfirmNew = new System.Windows.Forms.Button();
             this.btnAddField = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
-            this.labelFileName = new System.Windows.Forms.Label();
-            this.txtFileName = new System.Windows.Forms.TextBox();
             this.formNewGroupBox1.SuspendLayout();
             this.formNewGroupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewField)).BeginInit();
@@ -73,6 +73,36 @@ namespace Lab03_4.MyForms
             this.formNewGroupBox1.TabIndex = 0;
             this.formNewGroupBox1.TabStop = false;
             this.formNewGroupBox1.Text = "  文件属性  ";
+            // 
+            // txtFileName
+            // 
+            this.txtFileName.Location = new System.Drawing.Point(93, 81);
+            this.txtFileName.Name = "txtFileName";
+            this.txtFileName.Size = new System.Drawing.Size(122, 25);
+            this.txtFileName.TabIndex = 8;
+            // 
+            // labelFileName
+            // 
+            this.labelFileName.AutoSize = true;
+            this.labelFileName.Location = new System.Drawing.Point(22, 86);
+            this.labelFileName.Name = "labelFileName";
+            this.labelFileName.Size = new System.Drawing.Size(67, 15);
+            this.labelFileName.TabIndex = 7;
+            this.labelFileName.Text = "文件名称";
+            // 
+            // cmbSR
+            // 
+            this.cmbSR.FormattingEnabled = true;
+            this.cmbSR.Items.AddRange(new object[] {
+            "EPSG:4326 (WGS84)",
+            "EPSG:3857 (Web Mercator)",
+            "EPSG:4490 (CGCS2000)",
+            "EPSG:4547 (CGCS2000/3-degree Gauss-Kruger CM 114E)",
+            "更多..."});
+            this.cmbSR.Location = new System.Drawing.Point(519, 82);
+            this.cmbSR.Name = "cmbSR";
+            this.cmbSR.Size = new System.Drawing.Size(139, 23);
+            this.cmbSR.TabIndex = 6;
             // 
             // labelSR
             // 
@@ -140,20 +170,6 @@ namespace Lab03_4.MyForms
             this.formNewGroupBox2.TabIndex = 1;
             this.formNewGroupBox2.TabStop = false;
             this.formNewGroupBox2.Text = "  字段列表  ";
-            // 
-            // cmbSR
-            // 
-            this.cmbSR.FormattingEnabled = true;
-            this.cmbSR.Items.AddRange(new object[] {
-            "EPSG:4326 (WGS84)",
-            "EPSG:3857 (Web Mercator)",
-            "EPSG:4490 (CGCS2000)",
-            "EPSG:4547 (CGCS2000/3-degree Gauss-Kruger CM 114E)",
-            "更多..."});
-            this.cmbSR.Location = new System.Drawing.Point(519, 82);
-            this.cmbSR.Name = "cmbSR";
-            this.cmbSR.Size = new System.Drawing.Size(139, 23);
-            this.cmbSR.TabIndex = 6;
             // 
             // dataGridViewField
             // 
@@ -257,22 +273,6 @@ namespace Lab03_4.MyForms
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
-            // labelFileName
-            // 
-            this.labelFileName.AutoSize = true;
-            this.labelFileName.Location = new System.Drawing.Point(22, 86);
-            this.labelFileName.Name = "labelFileName";
-            this.labelFileName.Size = new System.Drawing.Size(67, 15);
-            this.labelFileName.TabIndex = 7;
-            this.labelFileName.Text = "文件名称";
-            // 
-            // txtFileName
-            // 
-            this.txtFileName.Location = new System.Drawing.Point(93, 81);
-            this.txtFileName.Name = "txtFileName";
-            this.txtFileName.Size = new System.Drawing.Size(122, 25);
-            this.txtFileName.TabIndex = 8;
-            // 
             // FormNewFeatureClass
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -289,6 +289,7 @@ namespace Lab03_4.MyForms
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormNewFeatureClass";
             this.Text = "创建SHP文件";
+            this.Load += new System.EventHandler(this.FormNewFeatureClass_Load_1);
             this.formNewGroupBox1.ResumeLayout(false);
             this.formNewGroupBox1.PerformLayout();
             this.formNewGroupBox2.ResumeLayout(false);
