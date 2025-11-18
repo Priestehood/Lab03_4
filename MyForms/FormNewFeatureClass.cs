@@ -16,7 +16,7 @@ namespace Lab03_4.MyForms
 {
     public partial class FormNewFeatureClass : Form
     {
-        public FormNewFeatureClass(IFeatureClass featureClass)
+        public FormNewFeatureClass()
         {
             InitializeComponent();
         }
