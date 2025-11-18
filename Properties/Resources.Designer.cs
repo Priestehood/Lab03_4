@@ -123,6 +123,26 @@ namespace Lab03_4.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap Lab03_deleteFC {
+            get {
+                object obj = ResourceManager.GetObject("Lab03_deleteFC", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap Lab03_manageField {
+            get {
+                object obj = ResourceManager.GetObject("Lab03_manageField", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap Lab03_newFClass {
             get {
                 object obj = ResourceManager.GetObject("Lab03_newFClass", resourceCulture);
