@@ -93,28 +93,28 @@ namespace Lab03_4.MyForms.FeatureClassManagement.Services
             IFieldEdit field = new FieldClass() as IFieldEdit;
 
             // 设置字段名称
-            string fieldName = row.Cells["FieldName"].Value?.ToString();
+            string fieldName = row.Cells["colFieldName"].Value?.ToString();
             if (string.IsNullOrWhiteSpace(fieldName))
                 throw new ArgumentException("字段名称不能为空");
 
             field.Name_2 = fieldName.Trim() ;
 
             // 设置字段别名
-            string fieldAlias = row.Cells["FieldAlias"].Value?.ToString();
+            string fieldAlias = row.Cells["colFieldAlias"].Value?.ToString();
             field.AliasName_2 = string.IsNullOrWhiteSpace(fieldAlias) ? fieldName.Trim() : fieldAlias.Trim();
 
             // 设置字段类型
-            string fieldTypeStr = row.Cells["FieldType"].Value?.ToString();
+            string fieldTypeStr = row.Cells["colFieldType"].Value?.ToString();
             if (string.IsNullOrWhiteSpace(fieldTypeStr))
                 throw new ArgumentException($"字段 '{fieldName.Trim()}' 的类型不能为空");
 
             esriFieldType fieldType = FieldTypeHelper.ConvertToFieldType(fieldTypeStr);
             field.Type_2 = fieldType;
 
-            // 设置字段长度（仅文本类型）
+            // 设置字段长度（仅文本类型?）
             if (FieldTypeHelper.RequiresLength(fieldType))
             {
-                string lengthStr = row.Cells["FieldLength"].Value?.ToString();
+                string lengthStr = row.Cells["colFieldLength"].Value?.ToString();
                 if (string.IsNullOrWhiteSpace(lengthStr))
                 {
                     field.Length_2 = FieldTypeHelper.GetDefaultLength(fieldType);

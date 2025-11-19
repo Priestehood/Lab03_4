@@ -48,12 +48,5 @@ namespace Lab03_4.MyForms.FeatureClassManagement.Helpers
             }
         }
 
-        /// <summary>
-        /// 获取所有支持的几何类型
-        /// </summary>
-        public static string[] GetSupportedGeometryTypes()
-        {
-            return new string[] { "点", "线", "面" };
-        }
     }
 }

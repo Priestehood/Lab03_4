@@ -51,19 +51,8 @@ namespace Lab03_4.MyForms
         /// </summary>
         private void InitializeControls()
         {
-            InitializeGeometryTypeComboBox();
             InitializeSpatialReferenceComboBox();
             InitializeDataGridView();
-        }
-
-        /// <summary>
-        /// 初始化几何类型下拉框
-        /// </summary>
-        private void InitializeGeometryTypeComboBox()
-        {
-            cmbGeometryType.Items.Clear();
-            cmbGeometryType.Items.AddRange(GeometryTypeHelper.GetSupportedGeometryTypes());
-            cmbGeometryType.SelectedIndex = 0;
         }
 
         /// <summary>
@@ -81,25 +70,14 @@ namespace Lab03_4.MyForms
         /// </summary>
         private void InitializeDataGridView()
         {
-            dataGridViewField.Columns.Clear();
-
-            // 添加列
-            dataGridViewField.Columns.Add("FieldName", "字段名称");
-            dataGridViewField.Columns.Add("FieldAlias", "字段别名");
-
-            DataGridViewComboBoxColumn typeColumn = new DataGridViewComboBoxColumn();
-            typeColumn.HeaderText = "字段类型";
-            typeColumn.Items.AddRange("整数", "数字", "日期", "文本");
-            dataGridViewField.Columns.Add(typeColumn);
-
-            dataGridViewField.Columns.Add("FieldLength", "字段长度");
-            // dataGridViewField.Columns["FieldLength"].Visible = false;
+            // 仅文本类型设置字段长度
+            dataGridViewField.Columns["colFieldLength"].Visible = false; 
         }
         #endregion
 
         #region 主窗口菜单-要素类管理-弹窗-按钮事件处理
         /// <summary>
-        /// 创建要素类
+        /// 选择存储目录
         /// </summary>
         private void btnFormNewSelectPath_Click(object sender, EventArgs e)
         {
@@ -107,7 +85,7 @@ namespace Lab03_4.MyForms
         }
 
         /// <summary>
-        /// 创建要素类
+        /// 添加字段
         /// </summary>
         private void btnAddField_Click(object sender, EventArgs e)
         {
@@ -115,7 +93,7 @@ namespace Lab03_4.MyForms
         }
 
         /// <summary>
-        /// 创建要素类
+        /// 删除选中字段
         /// </summary>
         private void btnDeleteField_Click(object sender, EventArgs e)
         {
@@ -123,7 +101,7 @@ namespace Lab03_4.MyForms
         }
 
         /// <summary>
-        /// 创建要素类
+        /// 清空所有字段
         /// </summary>
         private void btnClearField_Click(object sender, EventArgs e)
         {
@@ -131,7 +109,7 @@ namespace Lab03_4.MyForms
         }
 
         /// <summary>
-        /// 创建要素类
+        /// 取消创建
         /// </summary>
         private void btnCancel_Click(object sender, EventArgs e)
         {
@@ -139,7 +117,7 @@ namespace Lab03_4.MyForms
         }
 
         /// <summary>
-        /// 创建要素类
+        /// 确定创建
         /// </summary>
         private void btnConfirmNew_Click(object sender, EventArgs e)
         {
@@ -170,11 +148,11 @@ namespace Lab03_4.MyForms
         private void AddField()
         {
             int newRowIndex = dataGridViewField.Rows.Add();
-            dataGridViewField.Rows[newRowIndex].Cells["FieldLength"].Value = "50";
+            dataGridViewField.Rows[newRowIndex].Cells["colFieldLength"].Value = "50";
         }
 
         /// <summary>
-        /// 删除选中的字段
+        /// 删除选中字段
         /// </summary>
         private void DeleteSelectedFields()
         {
@@ -261,7 +239,7 @@ namespace Lab03_4.MyForms
 
         #region 验证和数据处理方法
         /// <summary>
-        /// 验证用户输入
+        /// 验证用户输入非空
         /// </summary>
         private bool ValidateInputs()
         {
@@ -271,7 +249,10 @@ namespace Lab03_4.MyForms
                    ValidateSpatialReference() &&
                    ValidateFields();
         }
-
+        
+        /// <summary>
+        /// 存储目录输入非空
+        /// </summary>
         private bool ValidateFolder()
         {
             if (string.IsNullOrWhiteSpace(txtFormNewPath.Text))
@@ -281,7 +262,10 @@ namespace Lab03_4.MyForms
             }
             return true;
         }
-
+       
+        /// <summary>
+        /// 文件名称输入非空
+        /// </summary>
         private bool ValidateFileName()
         {
             if (string.IsNullOrWhiteSpace(txtFileName.Text))
@@ -291,7 +275,10 @@ namespace Lab03_4.MyForms
             }
             return true;
         }
-
+       
+        /// <summary>
+        /// 几何类型输入非空
+        /// </summary>
         private bool ValidateGeometryType()
         {
             if (cmbGeometryType.SelectedIndex == -1)
@@ -301,7 +288,10 @@ namespace Lab03_4.MyForms
             }
             return true;
         }
-
+        
+        /// <summary>
+        /// 空间参考输入非空
+        /// </summary>
         private bool ValidateSpatialReference()
         {
             if (cmbSR.SelectedIndex == -1)
@@ -311,7 +301,10 @@ namespace Lab03_4.MyForms
             }
             return true;
         }
-
+        
+        /// <summary>
+        /// 字段集合输入非空
+        /// </summary>
         private bool ValidateFields()
         {
             if (dataGridViewField.Rows.Count == 0 ||
@@ -334,29 +327,32 @@ namespace Lab03_4.MyForms
             return true;
         }
 
+        /// <summary>
+        /// 辅助：验证单个字段输入非空
+        /// </summary>
         private bool ValidateFieldRow(DataGridViewRow row)
         {
             // 验证字段名称
-            if (row.Cells["FieldName"].Value == null ||
-                string.IsNullOrWhiteSpace(row.Cells["FieldName"].Value.ToString()))
+            if (row.Cells["colFieldName"].Value == null ||
+                string.IsNullOrWhiteSpace(row.Cells["colFieldName"].Value.ToString()))
             {
                 ShowWarning("字段名称不能为空");
                 return false;
             }
 
             // 验证字段类型
-            if (row.Cells["FieldType"].Value == null)
+            if (row.Cells["colFieldType"].Value == null)
             {
                 ShowWarning("请选择字段类型");
                 return false;
             }
 
             // 验证文本字段长度
-            string fieldType = row.Cells["FieldType"].Value.ToString();
+            string fieldType = row.Cells["colFieldType"].Value.ToString();
             if (fieldType == "文本")
             {
-                if (row.Cells["FieldLength"].Value == null ||
-                    string.IsNullOrWhiteSpace(row.Cells["FieldLength"].Value.ToString()))
+                if (row.Cells["colFieldLength"].Value == null ||
+                    string.IsNullOrWhiteSpace(row.Cells["colFieldLength"].Value.ToString()))
                 {
                     ShowWarning("文本字段必须指定长度");
                     return false;
@@ -482,7 +478,7 @@ namespace Lab03_4.MyForms
         #endregion
 
         #region 数据网格事件
-        private void dgvFields_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        private void dataGridViewField_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0 || e.ColumnIndex != 2) return;
 
@@ -495,17 +491,17 @@ namespace Lab03_4.MyForms
         private void UpdateFieldLengthVisibility(int rowIndex)
         {
             DataGridViewRow row = dataGridViewField.Rows[rowIndex];
-            if (row.Cells["FieldType"].Value == null) return;
+            if (row.Cells["colFieldType"].Value == null) return;
 
-            string fieldType = row.Cells["FieldType"].Value.ToString();
+            string fieldType = row.Cells["colFieldType"].Value.ToString();
             bool isTextType = (fieldType == "文本");
 
-            dataGridViewField.Columns["FieldLength"].Visible = isTextType;
+            dataGridViewField.Columns["colFieldLength"].Visible = isTextType;
 
-            if (isTextType && (row.Cells["FieldLength"].Value == null ||
-                string.IsNullOrWhiteSpace(row.Cells["FieldLength"].Value.ToString())))
+            if (isTextType && (row.Cells["colFieldLength"].Value == null ||
+                string.IsNullOrWhiteSpace(row.Cells["colFieldLength"].Value.ToString())))
             {
-                row.Cells["FieldLength"].Value = "50";
+                row.Cells["colFieldLength"].Value = "50";
             }
         }
         #endregion

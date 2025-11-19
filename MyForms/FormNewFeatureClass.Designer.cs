@@ -186,6 +186,7 @@ namespace Lab03_4.MyForms
             this.dataGridViewField.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dataGridViewField.Size = new System.Drawing.Size(636, 350);
             this.dataGridViewField.TabIndex = 0;
+            this.dataGridViewField.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewField_CellValueChanged);
             // 
             // colFieldName
             // 
