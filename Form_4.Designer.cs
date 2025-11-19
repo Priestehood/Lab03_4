@@ -50,10 +50,8 @@ namespace Lab03_4
             this.menuLayerVisible = new System.Windows.Forms.ToolStripMenuItem();
             this.menuLayerThum = new System.Windows.Forms.ToolStripMenuItem();
             this.menuFeatureClass = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuFeatureClassNew = new System.Windows.Forms.ToolStripMenuItem();
             this.menuFeatureClassEdit = new System.Windows.Forms.ToolStripMenuItem();
             this.toolSeparator7 = new System.Windows.Forms.ToolStripSeparator();
-            this.menuFeatureClassDelete = new System.Windows.Forms.ToolStripMenuItem();
             this.menuFeature = new System.Windows.Forms.ToolStripMenuItem();
             this.menuFeatureNew = new System.Windows.Forms.ToolStripMenuItem();
             this.menuFeatureEdit = new System.Windows.Forms.ToolStripMenuItem();
@@ -111,6 +109,40 @@ namespace Lab03_4
             this.axMap = new ESRI.ArcGIS.Controls.AxMapControl();
             this.axToolbar = new ESRI.ArcGIS.Controls.AxToolbarControl();
             this.cmTOC = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolSeparator6 = new System.Windows.Forms.ToolStripSeparator();
+            this.tlbLayerAllShp = new System.Windows.Forms.ToolStripButton();
+            this.tlbLayerAddShp = new System.Windows.Forms.ToolStripButton();
+            this.tlbLayerRemove = new System.Windows.Forms.ToolStripButton();
+            this.tlbLayerSelectable = new System.Windows.Forms.ToolStripButton();
+            this.tlbLayerVisible = new System.Windows.Forms.ToolStripButton();
+            this.tlbLayerThum = new System.Windows.Forms.ToolStripButton();
+            this.tlbFeatureClassNew = new System.Windows.Forms.ToolStripButton();
+            this.tlbFeatureClassEdit = new System.Windows.Forms.ToolStripButton();
+            this.tlbFeatureClassDelete = new System.Windows.Forms.ToolStripButton();
+            this.tlbFeatureNew = new System.Windows.Forms.ToolStripButton();
+            this.tlbFeatureEdit = new System.Windows.Forms.ToolStripSplitButton();
+            this.tlbFeatureEditByLocation = new System.Windows.Forms.ToolStripMenuItem();
+            this.tlbFeatureEditByRectangle = new System.Windows.Forms.ToolStripMenuItem();
+            this.tlbFeatureEditByPolygon = new System.Windows.Forms.ToolStripMenuItem();
+            this.tlbFeatureDelete = new System.Windows.Forms.ToolStripSplitButton();
+            this.tlbFeatureDeleteByLocation = new System.Windows.Forms.ToolStripMenuItem();
+            this.tlbFeatureDeleteByRectangle = new System.Windows.Forms.ToolStripMenuItem();
+            this.tlbFeatureDeleteByPolygon = new System.Windows.Forms.ToolStripMenuItem();
+            this.tlbFeatureBrowse = new System.Windows.Forms.ToolStripButton();
+            this.tlbFeatureIdentify = new System.Windows.Forms.ToolStripButton();
+            this.menuFileNew = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuFileOpen = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuFileSave = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuFileCloseAll = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuFileExit = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuLayerAllShp = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuLayerAddShp = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuLayerRemove = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuLayerSelectable = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuLayerVisible = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuLayerThum = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuFeatureClassNew = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmUp = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmDown = new System.Windows.Forms.ToolStripMenuItem();
             this.toolSeparator5 = new System.Windows.Forms.ToolStripSeparator();
@@ -147,7 +179,7 @@ namespace Lab03_4
             this.menu.Location = new System.Drawing.Point(0, 0);
             this.menu.Name = "menu";
             this.menu.ShowItemToolTips = true;
-            this.menu.Size = new System.Drawing.Size(1400, 28);
+            this.menu.Size = new System.Drawing.Size(1400, 30);
             this.menu.TabIndex = 0;
             this.menu.Text = "菜单";
             // 
@@ -163,7 +195,7 @@ namespace Lab03_4
             this.menuFileCloseAll,
             this.menuFileExit});
             this.menuFile.Name = "menuFile";
-            this.menuFile.Size = new System.Drawing.Size(71, 24);
+            this.menuFile.Size = new System.Drawing.Size(71, 26);
             this.menuFile.Text = "文件(&F)";
             this.menuFile.ToolTipText = "文件操作";
             // 
@@ -239,7 +271,7 @@ namespace Lab03_4
             this.menuLayerVisible,
             this.menuLayerThum});
             this.menuLayers.Name = "menuLayers";
-            this.menuLayers.Size = new System.Drawing.Size(71, 24);
+            this.menuLayers.Size = new System.Drawing.Size(71, 26);
             this.menuLayers.Text = "图层(&L)";
             this.menuLayers.ToolTipText = "图层操作";
             // 
@@ -319,25 +351,15 @@ namespace Lab03_4
             this.toolSeparator7,
             this.menuFeatureClassDelete});
             this.menuFeatureClass.Name = "menuFeatureClass";
-            this.menuFeatureClass.Size = new System.Drawing.Size(98, 24);
+            this.menuFeatureClass.Size = new System.Drawing.Size(98, 26);
             this.menuFeatureClass.Text = "要素类管理";
             this.menuFeatureClass.ToolTipText = "操作要素类";
-            // 
-            // menuFeatureClassNew
-            // 
-            this.menuFeatureClassNew.AutoToolTip = true;
-            this.menuFeatureClassNew.Image = ((System.Drawing.Image)(resources.GetObject("menuFeatureClassNew.Image")));
-            this.menuFeatureClassNew.Name = "menuFeatureClassNew";
-            this.menuFeatureClassNew.Size = new System.Drawing.Size(167, 26);
-            this.menuFeatureClassNew.Text = "创建要素类";
-            this.menuFeatureClassNew.ToolTipText = "创建新要素类并设置名称与字段";
-            this.menuFeatureClassNew.Click += new System.EventHandler(this.menuFeatureClassNew_Click);
             // 
             // menuFeatureClassEdit
             // 
             this.menuFeatureClassEdit.AutoToolTip = true;
             this.menuFeatureClassEdit.Name = "menuFeatureClassEdit";
-            this.menuFeatureClassEdit.Size = new System.Drawing.Size(167, 26);
+            this.menuFeatureClassEdit.Size = new System.Drawing.Size(224, 26);
             this.menuFeatureClassEdit.Text = "管理字段";
             this.menuFeatureClassEdit.ToolTipText = "编辑选中要素类的字段";
             // 
@@ -350,7 +372,7 @@ namespace Lab03_4
             // 
             this.menuFeatureClassDelete.AutoToolTip = true;
             this.menuFeatureClassDelete.Name = "menuFeatureClassDelete";
-            this.menuFeatureClassDelete.Size = new System.Drawing.Size(167, 26);
+            this.menuFeatureClassDelete.Size = new System.Drawing.Size(224, 26);
             this.menuFeatureClassDelete.Text = "删除要素类";
             this.menuFeatureClassDelete.ToolTipText = "删除当前选中的要素类";
             // 
@@ -366,7 +388,7 @@ namespace Lab03_4
             this.menuFeatureBrowse,
             this.menuFeatureIdentify});
             this.menuFeature.Name = "menuFeature";
-            this.menuFeature.Size = new System.Drawing.Size(83, 24);
+            this.menuFeature.Size = new System.Drawing.Size(83, 26);
             this.menuFeature.Text = "要素管理";
             this.menuFeature.ToolTipText = "管理当前图层的要素，包括添加、编辑、删除、浏览与属性查看";
             // 
@@ -374,7 +396,7 @@ namespace Lab03_4
             // 
             this.menuFeatureNew.AutoToolTip = true;
             this.menuFeatureNew.Name = "menuFeatureNew";
-            this.menuFeatureNew.Size = new System.Drawing.Size(122, 26);
+            this.menuFeatureNew.Size = new System.Drawing.Size(224, 26);
             this.menuFeatureNew.Text = "添加";
             this.menuFeatureNew.ToolTipText = "添加新要素，并设置要素属性";
             // 
@@ -386,7 +408,7 @@ namespace Lab03_4
             this.menuFeatureEditByRectangle,
             this.menuFeatureEditByPolygon});
             this.menuFeatureEdit.Name = "menuFeatureEdit";
-            this.menuFeatureEdit.Size = new System.Drawing.Size(122, 26);
+            this.menuFeatureEdit.Size = new System.Drawing.Size(224, 26);
             this.menuFeatureEdit.Text = "编辑";
             this.menuFeatureEdit.ToolTipText = "编辑当前选中图层的要素[几何与属性](老师只要求属性？";
             // 
@@ -417,7 +439,7 @@ namespace Lab03_4
             // toolSeparator8
             // 
             this.toolSeparator8.Name = "toolSeparator8";
-            this.toolSeparator8.Size = new System.Drawing.Size(119, 6);
+            this.toolSeparator8.Size = new System.Drawing.Size(221, 6);
             // 
             // menuFeatureDelete
             // 
@@ -427,7 +449,7 @@ namespace Lab03_4
             this.menuFeatureDeleteByRectangle,
             this.menuFeatureDeleteByPolygon});
             this.menuFeatureDelete.Name = "menuFeatureDelete";
-            this.menuFeatureDelete.Size = new System.Drawing.Size(122, 26);
+            this.menuFeatureDelete.Size = new System.Drawing.Size(224, 26);
             this.menuFeatureDelete.Text = "删除";
             this.menuFeatureDelete.ToolTipText = "删除当前选中图层中的要素";
             // 
@@ -458,13 +480,13 @@ namespace Lab03_4
             // toolSeparator9
             // 
             this.toolSeparator9.Name = "toolSeparator9";
-            this.toolSeparator9.Size = new System.Drawing.Size(119, 6);
+            this.toolSeparator9.Size = new System.Drawing.Size(221, 6);
             // 
             // menuFeatureBrowse
             // 
             this.menuFeatureBrowse.AutoToolTip = true;
             this.menuFeatureBrowse.Name = "menuFeatureBrowse";
-            this.menuFeatureBrowse.Size = new System.Drawing.Size(122, 26);
+            this.menuFeatureBrowse.Size = new System.Drawing.Size(224, 26);
             this.menuFeatureBrowse.Text = "浏览";
             this.menuFeatureBrowse.ToolTipText = "浏览当前选中图层的全部要素";
             // 
@@ -472,7 +494,7 @@ namespace Lab03_4
             // 
             this.menuFeatureIdentify.AutoToolTip = true;
             this.menuFeatureIdentify.Name = "menuFeatureIdentify";
-            this.menuFeatureIdentify.Size = new System.Drawing.Size(122, 26);
+            this.menuFeatureIdentify.Size = new System.Drawing.Size(224, 26);
             this.menuFeatureIdentify.Text = "属性";
             this.menuFeatureIdentify.ToolTipText = "查看所选要素的属性信息";
             // 
@@ -499,17 +521,17 @@ namespace Lab03_4
             this.tlbFeatureDelete,
             this.tlbFeatureBrowse,
             this.tlbFeatureIdentify});
-            this.tool.Location = new System.Drawing.Point(0, 28);
+            this.tool.Location = new System.Drawing.Point(0, 30);
             this.tool.Name = "tool";
             this.tool.Padding = new System.Windows.Forms.Padding(0, 0, 2, 0);
-            this.tool.Size = new System.Drawing.Size(1400, 27);
+            this.tool.Size = new System.Drawing.Size(1400, 31);
             this.tool.TabIndex = 1;
             this.tool.Text = "工具";
             // 
             // tslLayers
             // 
             this.tslLayers.Name = "tslLayers";
-            this.tslLayers.Size = new System.Drawing.Size(39, 24);
+            this.tslLayers.Size = new System.Drawing.Size(39, 28);
             this.tslLayers.Text = "图层";
             // 
             // tlbLayerAllShp
@@ -518,7 +540,7 @@ namespace Lab03_4
             this.tlbLayerAllShp.Image = ((System.Drawing.Image)(resources.GetObject("tlbLayerAllShp.Image")));
             this.tlbLayerAllShp.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tlbLayerAllShp.Name = "tlbLayerAllShp";
-            this.tlbLayerAllShp.Size = new System.Drawing.Size(29, 24);
+            this.tlbLayerAllShp.Size = new System.Drawing.Size(29, 28);
             this.tlbLayerAllShp.Text = "打开SHP文件夹";
             this.tlbLayerAllShp.ToolTipText = "加载所选目录下的所有SHP文件";
             this.tlbLayerAllShp.Click += new System.EventHandler(this.tlbLayerAllShp_Click);
@@ -529,7 +551,7 @@ namespace Lab03_4
             this.tlbLayerAddShp.Image = ((System.Drawing.Image)(resources.GetObject("tlbLayerAddShp.Image")));
             this.tlbLayerAddShp.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tlbLayerAddShp.Name = "tlbLayerAddShp";
-            this.tlbLayerAddShp.Size = new System.Drawing.Size(29, 24);
+            this.tlbLayerAddShp.Size = new System.Drawing.Size(29, 28);
             this.tlbLayerAddShp.Text = "加载SHP文件";
             this.tlbLayerAddShp.ToolTipText = "加载选定的SHP文件";
             this.tlbLayerAddShp.Click += new System.EventHandler(this.tlbLayerAddShp_Click);
@@ -540,7 +562,7 @@ namespace Lab03_4
             this.tlbLayerRemove.Image = ((System.Drawing.Image)(resources.GetObject("tlbLayerRemove.Image")));
             this.tlbLayerRemove.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tlbLayerRemove.Name = "tlbLayerRemove";
-            this.tlbLayerRemove.Size = new System.Drawing.Size(29, 24);
+            this.tlbLayerRemove.Size = new System.Drawing.Size(29, 28);
             this.tlbLayerRemove.Text = "移除";
             this.tlbLayerRemove.ToolTipText = "移除当前选中的图层";
             this.tlbLayerRemove.Click += new System.EventHandler(this.tlbLayerRemove_Click);
@@ -551,7 +573,7 @@ namespace Lab03_4
             this.tlbLayerSelectable.Image = ((System.Drawing.Image)(resources.GetObject("tlbLayerSelectable.Image")));
             this.tlbLayerSelectable.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tlbLayerSelectable.Name = "tlbLayerSelectable";
-            this.tlbLayerSelectable.Size = new System.Drawing.Size(29, 24);
+            this.tlbLayerSelectable.Size = new System.Drawing.Size(29, 28);
             this.tlbLayerSelectable.Text = "设置为唯一可选图层";
             this.tlbLayerSelectable.ToolTipText = "仅当前选中的图层可选";
             this.tlbLayerSelectable.Click += new System.EventHandler(this.tlbLayerSelectable_Click);
@@ -562,7 +584,7 @@ namespace Lab03_4
             this.tlbLayerVisible.Image = ((System.Drawing.Image)(resources.GetObject("tlbLayerVisible.Image")));
             this.tlbLayerVisible.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tlbLayerVisible.Name = "tlbLayerVisible";
-            this.tlbLayerVisible.Size = new System.Drawing.Size(29, 24);
+            this.tlbLayerVisible.Size = new System.Drawing.Size(29, 28);
             this.tlbLayerVisible.Text = "显示/隐藏";
             this.tlbLayerVisible.ToolTipText = "切换图层显示/隐藏状态";
             this.tlbLayerVisible.Click += new System.EventHandler(this.tlbLayerVisible_Click);
@@ -573,7 +595,7 @@ namespace Lab03_4
             this.tlbLayerThum.Image = ((System.Drawing.Image)(resources.GetObject("tlbLayerThum.Image")));
             this.tlbLayerThum.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tlbLayerThum.Name = "tlbLayerThum";
-            this.tlbLayerThum.Size = new System.Drawing.Size(29, 24);
+            this.tlbLayerThum.Size = new System.Drawing.Size(29, 28);
             this.tlbLayerThum.Text = "添加到鹰眼";
             this.tlbLayerThum.ToolTipText = "添加当前选中的图层至鹰眼图";
             this.tlbLayerThum.Click += new System.EventHandler(this.tlbLayerThum_Click);
@@ -581,12 +603,12 @@ namespace Lab03_4
             // tls1
             // 
             this.tls1.Name = "tls1";
-            this.tls1.Size = new System.Drawing.Size(6, 27);
+            this.tls1.Size = new System.Drawing.Size(6, 31);
             // 
             // tslFeatureClass
             // 
             this.tslFeatureClass.Name = "tslFeatureClass";
-            this.tslFeatureClass.Size = new System.Drawing.Size(54, 24);
+            this.tslFeatureClass.Size = new System.Drawing.Size(54, 28);
             this.tslFeatureClass.Text = "要素类";
             // 
             // tlbFeatureClassNew
@@ -595,10 +617,9 @@ namespace Lab03_4
             this.tlbFeatureClassNew.Image = ((System.Drawing.Image)(resources.GetObject("tlbFeatureClassNew.Image")));
             this.tlbFeatureClassNew.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tlbFeatureClassNew.Name = "tlbFeatureClassNew";
-            this.tlbFeatureClassNew.Size = new System.Drawing.Size(29, 24);
+            this.tlbFeatureClassNew.Size = new System.Drawing.Size(29, 28);
             this.tlbFeatureClassNew.Text = "创建要素类";
             this.tlbFeatureClassNew.ToolTipText = "创建新要素类并设置名称与字段";
-            this.tlbFeatureClassNew.Click += new System.EventHandler(this.tlbFeatureClassNew_Click);
             // 
             // tlbFeatureClassEdit
             // 
@@ -606,7 +627,7 @@ namespace Lab03_4
             this.tlbFeatureClassEdit.Image = ((System.Drawing.Image)(resources.GetObject("tlbFeatureClassEdit.Image")));
             this.tlbFeatureClassEdit.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tlbFeatureClassEdit.Name = "tlbFeatureClassEdit";
-            this.tlbFeatureClassEdit.Size = new System.Drawing.Size(29, 24);
+            this.tlbFeatureClassEdit.Size = new System.Drawing.Size(29, 28);
             this.tlbFeatureClassEdit.Text = "管理字段";
             this.tlbFeatureClassEdit.ToolTipText = "编辑选中要素类的字段";
             // 
@@ -616,19 +637,19 @@ namespace Lab03_4
             this.tlbFeatureClassDelete.Image = ((System.Drawing.Image)(resources.GetObject("tlbFeatureClassDelete.Image")));
             this.tlbFeatureClassDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tlbFeatureClassDelete.Name = "tlbFeatureClassDelete";
-            this.tlbFeatureClassDelete.Size = new System.Drawing.Size(29, 24);
+            this.tlbFeatureClassDelete.Size = new System.Drawing.Size(29, 28);
             this.tlbFeatureClassDelete.Text = "删除要素类";
             this.tlbFeatureClassDelete.ToolTipText = "删除当前选中的要素类";
             // 
             // tls2
             // 
             this.tls2.Name = "tls2";
-            this.tls2.Size = new System.Drawing.Size(6, 27);
+            this.tls2.Size = new System.Drawing.Size(6, 31);
             // 
             // tslFeature
             // 
             this.tslFeature.Name = "tslFeature";
-            this.tslFeature.Size = new System.Drawing.Size(39, 24);
+            this.tslFeature.Size = new System.Drawing.Size(39, 28);
             this.tslFeature.Text = "要素";
             // 
             // tlbFeatureNew
@@ -637,7 +658,7 @@ namespace Lab03_4
             this.tlbFeatureNew.Image = ((System.Drawing.Image)(resources.GetObject("tlbFeatureNew.Image")));
             this.tlbFeatureNew.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tlbFeatureNew.Name = "tlbFeatureNew";
-            this.tlbFeatureNew.Size = new System.Drawing.Size(29, 24);
+            this.tlbFeatureNew.Size = new System.Drawing.Size(29, 28);
             this.tlbFeatureNew.Text = "要素添加";
             this.tlbFeatureNew.ToolTipText = "添加新要素，并设置要素属性";
             // 
@@ -651,7 +672,7 @@ namespace Lab03_4
             this.tlbFeatureEdit.Image = ((System.Drawing.Image)(resources.GetObject("tlbFeatureEdit.Image")));
             this.tlbFeatureEdit.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tlbFeatureEdit.Name = "tlbFeatureEdit";
-            this.tlbFeatureEdit.Size = new System.Drawing.Size(39, 24);
+            this.tlbFeatureEdit.Size = new System.Drawing.Size(39, 28);
             this.tlbFeatureEdit.Text = "要素编辑";
             this.tlbFeatureEdit.ToolTipText = "编辑当前选中图层的要素";
             // 
@@ -689,7 +710,7 @@ namespace Lab03_4
             this.tlbFeatureDelete.Image = ((System.Drawing.Image)(resources.GetObject("tlbFeatureDelete.Image")));
             this.tlbFeatureDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tlbFeatureDelete.Name = "tlbFeatureDelete";
-            this.tlbFeatureDelete.Size = new System.Drawing.Size(39, 24);
+            this.tlbFeatureDelete.Size = new System.Drawing.Size(39, 28);
             this.tlbFeatureDelete.Text = "要素删除";
             this.tlbFeatureDelete.ToolTipText = "删除当前选中图层中的要素";
             // 
@@ -723,7 +744,7 @@ namespace Lab03_4
             this.tlbFeatureBrowse.Image = ((System.Drawing.Image)(resources.GetObject("tlbFeatureBrowse.Image")));
             this.tlbFeatureBrowse.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tlbFeatureBrowse.Name = "tlbFeatureBrowse";
-            this.tlbFeatureBrowse.Size = new System.Drawing.Size(29, 24);
+            this.tlbFeatureBrowse.Size = new System.Drawing.Size(29, 28);
             this.tlbFeatureBrowse.Text = "要素浏览";
             this.tlbFeatureBrowse.ToolTipText = "浏览当前选中图层的全部要素";
             // 
@@ -733,7 +754,7 @@ namespace Lab03_4
             this.tlbFeatureIdentify.Image = ((System.Drawing.Image)(resources.GetObject("tlbFeatureIdentify.Image")));
             this.tlbFeatureIdentify.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tlbFeatureIdentify.Name = "tlbFeatureIdentify";
-            this.tlbFeatureIdentify.Size = new System.Drawing.Size(29, 24);
+            this.tlbFeatureIdentify.Size = new System.Drawing.Size(29, 28);
             this.tlbFeatureIdentify.Text = "要素属性";
             this.tlbFeatureIdentify.ToolTipText = "查看所选要素的属性信息";
             // 
@@ -806,7 +827,7 @@ namespace Lab03_4
             // splitContainer
             // 
             this.splitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer.Location = new System.Drawing.Point(0, 55);
+            this.splitContainer.Location = new System.Drawing.Point(0, 61);
             this.splitContainer.Name = "splitContainer";
             // 
             // splitContainer.Panel1
@@ -819,7 +840,7 @@ namespace Lab03_4
             // 
             this.splitContainer.Panel2.Controls.Add(this.axMap);
             this.splitContainer.Panel2.Controls.Add(this.axToolbar);
-            this.splitContainer.Size = new System.Drawing.Size(1400, 1019);
+            this.splitContainer.Size = new System.Drawing.Size(1400, 1013);
             this.splitContainer.SplitterDistance = 352;
             this.splitContainer.TabIndex = 3;
             this.splitContainer.TabStop = false;
@@ -832,7 +853,7 @@ namespace Lab03_4
             this.panel2.Location = new System.Drawing.Point(0, 432);
             this.panel2.MinimumSize = new System.Drawing.Size(0, 143);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(352, 587);
+            this.panel2.Size = new System.Drawing.Size(352, 581);
             this.panel2.TabIndex = 2;
             // 
             // axThum
@@ -841,7 +862,7 @@ namespace Lab03_4
             this.axThum.Location = new System.Drawing.Point(0, 0);
             this.axThum.Name = "axThum";
             this.axThum.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axThum.OcxState")));
-            this.axThum.Size = new System.Drawing.Size(352, 587);
+            this.axThum.Size = new System.Drawing.Size(352, 581);
             this.axThum.TabIndex = 0;
             this.axThum.TabStop = false;
             this.axThum.OnExtentUpdated += new ESRI.ArcGIS.Controls.IMapControlEvents2_Ax_OnExtentUpdatedEventHandler(this.axThum_OnExtentUpdated);
@@ -889,7 +910,7 @@ namespace Lab03_4
             this.axMap.Location = new System.Drawing.Point(0, 28);
             this.axMap.Name = "axMap";
             this.axMap.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axMap.OcxState")));
-            this.axMap.Size = new System.Drawing.Size(1044, 991);
+            this.axMap.Size = new System.Drawing.Size(1044, 985);
             this.axMap.TabIndex = 1;
             this.axMap.TabStop = false;
             this.axMap.OnMouseMove += new ESRI.ArcGIS.Controls.IMapControlEvents2_Ax_OnMouseMoveEventHandler(this.axMap_OnMouseMove);
@@ -918,6 +939,24 @@ namespace Lab03_4
             this.tsmThum});
             this.cmTOC.Name = "contextMenuStrip1";
             this.cmTOC.Size = new System.Drawing.Size(268, 172);
+            // 
+            // menuFeatureClassEdit
+            // 
+            this.menuFeatureClassEdit.AutoToolTip = true;
+            this.menuFeatureClassEdit.Image = ((System.Drawing.Image)(resources.GetObject("menuFeatureClassEdit.Image")));
+            this.menuFeatureClassEdit.Name = "menuFeatureClassEdit";
+            this.menuFeatureClassEdit.Size = new System.Drawing.Size(224, 26);
+            this.menuFeatureClassEdit.Text = "管理字段";
+            this.menuFeatureClassEdit.ToolTipText = "编辑选中要素类的字段";
+            // 
+            // menuFeatureClassDelete
+            // 
+            this.menuFeatureClassDelete.AutoToolTip = true;
+            this.menuFeatureClassDelete.Image = ((System.Drawing.Image)(resources.GetObject("menuFeatureClassDelete.Image")));
+            this.menuFeatureClassDelete.Name = "menuFeatureClassDelete";
+            this.menuFeatureClassDelete.Size = new System.Drawing.Size(224, 26);
+            this.menuFeatureClassDelete.Text = "删除要素类";
+            this.menuFeatureClassDelete.ToolTipText = "删除当前选中的要素类";
             // 
             // tsmUp
             // 
@@ -1051,25 +1090,6 @@ namespace Lab03_4
         private System.Windows.Forms.ToolStripMenuItem menuLayerThum;
         private System.Windows.Forms.ToolStripSeparator toolSeparator3;
         private System.Windows.Forms.ToolStripSeparator toolSeparator4;
-        private System.Windows.Forms.ToolStripMenuItem menuFeatureClass;
-        private System.Windows.Forms.ToolStripMenuItem menuFeatureClassNew;
-        private System.Windows.Forms.ToolStripMenuItem menuFeatureClassEdit;
-        private System.Windows.Forms.ToolStripMenuItem menuFeatureClassDelete;
-        private System.Windows.Forms.ToolStripSeparator toolSeparator7;
-        private System.Windows.Forms.ToolStripMenuItem menuFeature;
-        private System.Windows.Forms.ToolStripMenuItem menuFeatureNew;
-        private System.Windows.Forms.ToolStripMenuItem menuFeatureEdit;
-        private System.Windows.Forms.ToolStripMenuItem menuFeatureDelete;
-        private System.Windows.Forms.ToolStripMenuItem menuFeatureBrowse;
-        private System.Windows.Forms.ToolStripMenuItem menuFeatureIdentify;
-        private System.Windows.Forms.ToolStripMenuItem menuFeatureEditByLocation;
-        private System.Windows.Forms.ToolStripMenuItem menuFeatureEditByRectangle;
-        private System.Windows.Forms.ToolStripMenuItem menuFeatureEditByPolygon;
-        private System.Windows.Forms.ToolStripMenuItem menuFeatureDeleteByLocation;
-        private System.Windows.Forms.ToolStripMenuItem menuFeatureDeleteByRectangle;
-        private System.Windows.Forms.ToolStripMenuItem menuFeatureDeleteByPolygon;
-        private System.Windows.Forms.ToolStripSeparator toolSeparator8;
-        private System.Windows.Forms.ToolStripSeparator toolSeparator9;
         // 工具栏
         private System.Windows.Forms.ToolStrip tool;
         private System.Windows.Forms.ToolStripLabel tslLayers;
@@ -1080,23 +1100,6 @@ namespace Lab03_4
         private System.Windows.Forms.ToolStripButton tlbLayerVisible;
         private System.Windows.Forms.ToolStripButton tlbLayerThum;
         private System.Windows.Forms.ToolStripSeparator tls1;
-        private System.Windows.Forms.ToolStripLabel tslFeatureClass;
-        private System.Windows.Forms.ToolStripButton tlbFeatureClassNew;
-        private System.Windows.Forms.ToolStripButton tlbFeatureClassEdit;
-        private System.Windows.Forms.ToolStripButton tlbFeatureClassDelete;
-        private System.Windows.Forms.ToolStripSeparator tls2;
-        private System.Windows.Forms.ToolStripLabel tslFeature;
-        private System.Windows.Forms.ToolStripButton tlbFeatureNew;
-        private System.Windows.Forms.ToolStripSplitButton tlbFeatureEdit;
-        private System.Windows.Forms.ToolStripMenuItem tlbFeatureEditByLocation;
-        private System.Windows.Forms.ToolStripMenuItem tlbFeatureEditByRectangle;
-        private System.Windows.Forms.ToolStripMenuItem tlbFeatureEditByPolygon;
-        private System.Windows.Forms.ToolStripSplitButton tlbFeatureDelete;
-        private System.Windows.Forms.ToolStripMenuItem tlbFeatureDeleteByLocation;
-        private System.Windows.Forms.ToolStripMenuItem tlbFeatureDeleteByRectangle;
-        private System.Windows.Forms.ToolStripMenuItem tlbFeatureDeleteByPolygon;
-        private System.Windows.Forms.ToolStripButton tlbFeatureBrowse;
-        private System.Windows.Forms.ToolStripButton tlbFeatureIdentify;
         // 状态栏
         private System.Windows.Forms.StatusStrip status;
         private System.Windows.Forms.ToolStripStatusLabel tslMain;
@@ -1126,6 +1129,42 @@ namespace Lab03_4
         private System.Windows.Forms.ToolStripMenuItem tsmThum;
         private System.Windows.Forms.ToolStripSeparator toolSeparator5;
         private System.Windows.Forms.ToolStripSeparator toolSeparator6;
+        private System.Windows.Forms.ToolStripMenuItem menuFeatureClass;
+        private System.Windows.Forms.ToolStripMenuItem menuFeature;
+        private System.Windows.Forms.ToolStripMenuItem menuFeatureClassNew;
+        private System.Windows.Forms.ToolStripMenuItem menuFeatureClassEdit;
+        private System.Windows.Forms.ToolStripMenuItem menuFeatureClassDelete;
+        private System.Windows.Forms.ToolStripMenuItem menuFeatureNew;
+        private System.Windows.Forms.ToolStripMenuItem menuFeatureEdit;
+        private System.Windows.Forms.ToolStripMenuItem menuFeatureDelete;
+        private System.Windows.Forms.ToolStripMenuItem menuFeatureBrowse;
+        private System.Windows.Forms.ToolStripMenuItem menuFeatureIdentify;
+        private System.Windows.Forms.ToolStripMenuItem menuFeatureEditByLocation;
+        private System.Windows.Forms.ToolStripMenuItem menuFeatureEditByRectangle;
+        private System.Windows.Forms.ToolStripMenuItem menuFeatureEditByPolygon;
+        private System.Windows.Forms.ToolStripMenuItem menuFeatureDeleteByLocation;
+        private System.Windows.Forms.ToolStripMenuItem menuFeatureDeleteByRectangle;
+        private System.Windows.Forms.ToolStripMenuItem menuFeatureDeleteByPolygon;
+        private System.Windows.Forms.ToolStripSeparator toolSeparator7;
+        private System.Windows.Forms.ToolStripSeparator toolSeparator8;
+        private System.Windows.Forms.ToolStripSeparator toolSeparator9;
+        private System.Windows.Forms.ToolStripLabel tslFeatureClass;
+        private System.Windows.Forms.ToolStripButton tlbFeatureClassNew;
+        private System.Windows.Forms.ToolStripButton tlbFeatureClassEdit;
+        private System.Windows.Forms.ToolStripButton tlbFeatureClassDelete;
+        private System.Windows.Forms.ToolStripSeparator tls2;
+        private System.Windows.Forms.ToolStripLabel tslFeature;
+        private System.Windows.Forms.ToolStripButton tlbFeatureNew;
+        private System.Windows.Forms.ToolStripSplitButton tlbFeatureEdit;
+        private System.Windows.Forms.ToolStripMenuItem tlbFeatureEditByLocation;
+        private System.Windows.Forms.ToolStripMenuItem tlbFeatureEditByRectangle;
+        private System.Windows.Forms.ToolStripMenuItem tlbFeatureEditByPolygon;
+        private System.Windows.Forms.ToolStripSplitButton tlbFeatureDelete;
+        private System.Windows.Forms.ToolStripMenuItem tlbFeatureDeleteByLocation;
+        private System.Windows.Forms.ToolStripMenuItem tlbFeatureDeleteByRectangle;
+        private System.Windows.Forms.ToolStripMenuItem tlbFeatureDeleteByPolygon;
+        private System.Windows.Forms.ToolStripButton tlbFeatureBrowse;
+        private System.Windows.Forms.ToolStripButton tlbFeatureIdentify;
     }
 }
 
