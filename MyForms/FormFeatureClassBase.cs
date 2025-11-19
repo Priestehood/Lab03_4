@@ -143,7 +143,7 @@ namespace Lab03_4.MyForms
         }
 
         /// <summary>
-        /// 设置控件编辑模式状态
+        /// 设置控件 - 编辑模式状态
         /// </summary>
         protected virtual void SetControlsStateForEditMode()
         {
@@ -364,6 +364,7 @@ namespace Lab03_4.MyForms
                 row.Cells["colFieldLength"].Value = "50";
             }
         }
+
         #endregion
 
         #region 共享的UI设置方法
@@ -434,9 +435,13 @@ namespace Lab03_4.MyForms
             if (e.RowIndex < 0 || e.ColumnIndex != 2) return;
             UpdateFieldLengthVisibility(e.RowIndex);
         }
+
         #endregion
 
         #region 共享的业务逻辑方法
+        /// <summary>
+        /// 浏览文件夹，选择存储目录
+        /// </summary>
         protected void BrowseFolder()
         {
             if (BaseTxtFormNewPath == null) return;
@@ -451,6 +456,9 @@ namespace Lab03_4.MyForms
             }
         }
 
+        /// <summary>
+        /// 删除选中字段
+        /// </summary>
         protected void DeleteSelectedFields()
         {
             if (BaseDataGridViewField == null) return;
@@ -476,6 +484,9 @@ namespace Lab03_4.MyForms
             }
         }
 
+        /// <summary>
+        /// 清空所有字段
+        /// </summary>
         protected void ClearAllFields()
         {
             if (BaseDataGridViewField == null) return;
@@ -532,8 +543,10 @@ namespace Lab03_4.MyForms
         #endregion
     }
 
+    #region 其他
     /// <summary>
-    /// Control扩展方法
+    /// Control扩展方法<para></para>
+    /// 安全地设置控件是否可用（Enabled），避免 null 或已释放控件导致程序崩溃
     /// </summary>
     public static class ControlExtensions
     {
@@ -545,4 +558,5 @@ namespace Lab03_4.MyForms
             }
         }
     }
+    #endregion
 }

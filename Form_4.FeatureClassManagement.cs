@@ -1,4 +1,7 @@
 ﻿using ESRI.ArcGIS.Carto;
+using ESRI.ArcGIS.DataManagementTools;
+using ESRI.ArcGIS.Geodatabase;
+using ESRI.ArcGIS.Geoprocessor;
 using Lab03_4.MyForms;
 using Lab03_4.MyForms.FeatureClassManagement.Helpers;
 using Lab03_4.MyForms.FeatureClassManagement.Services;
@@ -190,6 +193,92 @@ namespace Lab03_4
         {
             MessageBox.Show(message, $"{operation} - 提示",
                 MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        }
+
+        #endregion
+
+        #region 要素类管理-删除要素类
+
+        /// <summary>
+        /// 删除要素类
+        /// </summary>
+        private void DeleteFeatureClass()
+        {
+            // 获取当前选中图层
+            m_selectedLayer = GetSelectedLayer();
+            ILayer layer = m_selectedLayer;
+            if (layer == null)
+            {
+                MessageBox.Show("请先选中一个图层。", "提示",  
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            // 弹窗确认
+            var result = MessageBox.Show(
+                $"确定要删除要素类：{layer.Name} ?\n\n此操作不可恢复，是否继续？",
+                "确认删除",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning);
+
+            if (result != DialogResult.Yes) return;
+
+            // 从地图移除图层（视觉上先移除）
+            axMap.Map.DeleteLayer(layer);
+            axMap.Refresh();
+            axTOC.Refresh();
+
+            // 获取完整 shapefile 路径
+            IFeatureLayer fl = layer as IFeatureLayer;
+            IDataset ds = fl.FeatureClass as IDataset; 
+            //IDataset ds = (layer as IFeatureLayer)?.FeatureClass as IDataset;
+            if (ds == null)
+            {
+                MessageBox.Show("错误：无法获取要素类", "错误", 
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            string shpFullPath = System.IO.Path.Combine(ds.Workspace.PathName, ds.Name + ".shp");
+
+            System.Runtime.InteropServices.Marshal.ReleaseComObject(fl);
+            System.Runtime.InteropServices.Marshal.ReleaseComObject(ds);
+            fl = null;
+            ds = null;
+
+            // 删除shapefile
+            DeleteFeatureClassByGP(shpFullPath);
+        }
+
+        /// <summary>
+        /// 删除shapefile
+        /// </summary>
+        private void DeleteFeatureClassByGP(string fullPath)
+        {
+            try
+            {
+                // 强制释放 ArcObjects 对文件的引用
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
+
+                foreach (var ext in new[] { ".shp", ".shx", ".dbf", ".prj", ".sbn", ".sbx", ".fbn", ".fbx", ".atx", ".ixs", ".xml", ".cpg" })
+                {
+                    string p = System.IO.Path.ChangeExtension(fullPath, ext);
+                    if (System.IO.File.Exists(p))
+                    {
+                        try { System.IO.File.Delete(p); }
+                        catch { /* 如果锁被释放，这里一定成功 */ }
+                    }
+                }
+
+                MessageBox.Show("要素类已成功删除。", "完成",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("删除失败：" + ex.Message);
+            }
         }
 
         #endregion

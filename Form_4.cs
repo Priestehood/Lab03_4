@@ -193,6 +193,15 @@ namespace Lab03_4
             CreateNewFeatureClass();
         }
 
+        private void menuFeatureClassEdit_Click(object sender, EventArgs e)
+        {
+            EditFeatureClassFields();
+        }
+
+        private void menuFeatureClassDelete_Click(object sender, EventArgs e)
+        {
+            DeleteFeatureClass();
+        }
 
         #endregion
 
@@ -203,7 +212,18 @@ namespace Lab03_4
             CreateNewFeatureClass();
         }
 
+        private void tlbFeatureClassEdit_Click(object sender, EventArgs e)
+        {
+            EditFeatureClassFields();
+        }
+
+        private void tlbFeatureClassDelete_Click(object sender, EventArgs e)
+        {
+            DeleteFeatureClass();
+        }
+
         #endregion
+
 
     }
 }
