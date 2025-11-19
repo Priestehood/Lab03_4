@@ -107,6 +107,29 @@ namespace Lab03_4.MyForms
         }
 
         /// <summary>
+        /// 动态添加自定义属性列，可直接编辑列标题<para></para>
+        /// 服务于创建模式下的 “添加字段属性”，为便于编辑模式下的“管理字段”，未嵌入该功能
+        /// </summary>
+        private void AddCustomColumn()
+        {
+            int index = dataGridViewField.Columns.Count;
+
+            // 默认列名，如：Attr1, Attr2...
+            string internalName = "colAttr" + index;
+            string headerText = "自定义属性" + index;
+
+            DataGridViewTextBoxColumn col = new DataGridViewTextBoxColumn();
+            col.Name = internalName;
+            col.HeaderText = headerText;
+            col.Width = 120;
+
+            // 允许用户编辑列标题
+            col.SortMode = DataGridViewColumnSortMode.NotSortable;
+
+            dataGridViewField.Columns.Add(col);
+        }
+
+        /// <summary>
         /// 数据网格单元格值改变事件
         /// </summary>
         private void dataGridViewField_CellValueChanged(object sender, DataGridViewCellEventArgs e)

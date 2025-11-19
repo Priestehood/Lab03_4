@@ -297,7 +297,7 @@ namespace Lab03_4.MyForms
         }
         #endregion
 
-        #region 共享的字段管理方法
+        #region 共享的字段管理方法 *
         /// <summary>
         /// 添加字段到网格
         /// </summary>
