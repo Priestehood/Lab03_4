@@ -306,6 +306,9 @@
     </Compile>
     <Compile Include="MyForms\FeatureClassManagement\Helpers\FieldHelper.cs" />
     <Compile Include="MyForms\FeatureClassManagement\Helpers\Logger.cs" />
+    <Compile Include="MyForms\FormFeatureClassBase.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="MyForms\FormNewFeatureClass.cs">
       <SubType>Form</SubType>
     </Compile>
