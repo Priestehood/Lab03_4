@@ -403,17 +403,6 @@
     </None>
     <None Include="Resources\Lab03_manageField.png" />
     <None Include="Resources\Lab03_deleteFC.png" />
-    <None Include="Resources\Lab03_addFeature.png" />
-    <None Include="Resources\Lab03_editFeature.png" />
-    <None Include="Resources\Lab03_delByLocation.png" />
-    <None Include="Resources\Lab03_editByLocation.png" />
-    <None Include="Resources\Lab03_editByRectangle.png" />
-    <None Include="Resources\Lab03_editByPolygon.png" />
-    <None Include="Resources\Lab03_delByRectangle.png" />
-    <None Include="Resources\Lab03_delByPolygon.png" />
-    <None Include="Resources\Lab03_deleteFeature.png" />
-    <None Include="Resources\Lab03_browserFeature.png" />
-    <None Include="Resources\Lab03_infoFeature.png" />
     <Content Include="Resources\overview.png" />
   </ItemGroup>
   <ItemGroup>
