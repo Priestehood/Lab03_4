@@ -5,6 +5,9 @@ using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
+using Lab03_4.MyForms;
+using Lab03_4.MyForms.FeatureClassManagement.Services;
+
 
 namespace Lab03_4
 {
@@ -17,7 +20,7 @@ namespace Lab03_4
         {
             InitializeComponent();
             this.Load += Form_4_Load;
-
+            InitializeFeatureClassManagement(); // Lab03_4新增
         }
 
         #region 窗体加载和初始化
@@ -98,7 +101,7 @@ namespace Lab03_4
         }
         #endregion
 
-        #region 工具栏按钮
+        #region 工具栏-图层
         private void tlbLayerAllShp_Click(object sender, EventArgs e)
         {
             LoadAllShapefiles();
@@ -180,6 +183,26 @@ namespace Lab03_4
                 UpdateMenuStatus();
             }
         }
+        #endregion
+
+        // Lab03_4
+        #region 菜单-要素类管理
+
+        private void menuFeatureClassNew_Click(object sender, EventArgs e)
+        {
+            CreateNewFeatureClass();
+        }
+
+
+        #endregion
+
+        #region 工具栏-要素类管理
+
+        private void tlbFeatureClassNew_Click(object sender, EventArgs e)
+        {
+            CreateNewFeatureClass();
+        }
+
         #endregion
 
     }
