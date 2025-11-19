@@ -50,8 +50,10 @@ namespace Lab03_4
             this.menuLayerVisible = new System.Windows.Forms.ToolStripMenuItem();
             this.menuLayerThum = new System.Windows.Forms.ToolStripMenuItem();
             this.menuFeatureClass = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuFeatureClassNew = new System.Windows.Forms.ToolStripMenuItem();
             this.menuFeatureClassEdit = new System.Windows.Forms.ToolStripMenuItem();
             this.toolSeparator7 = new System.Windows.Forms.ToolStripSeparator();
+            this.menuFeatureClassDelete = new System.Windows.Forms.ToolStripMenuItem();
             this.menuFeature = new System.Windows.Forms.ToolStripMenuItem();
             this.menuFeatureNew = new System.Windows.Forms.ToolStripMenuItem();
             this.menuFeatureEdit = new System.Windows.Forms.ToolStripMenuItem();
@@ -109,40 +111,6 @@ namespace Lab03_4
             this.axMap = new ESRI.ArcGIS.Controls.AxMapControl();
             this.axToolbar = new ESRI.ArcGIS.Controls.AxToolbarControl();
             this.cmTOC = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.toolSeparator5 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolSeparator6 = new System.Windows.Forms.ToolStripSeparator();
-            this.tlbLayerAllShp = new System.Windows.Forms.ToolStripButton();
-            this.tlbLayerAddShp = new System.Windows.Forms.ToolStripButton();
-            this.tlbLayerRemove = new System.Windows.Forms.ToolStripButton();
-            this.tlbLayerSelectable = new System.Windows.Forms.ToolStripButton();
-            this.tlbLayerVisible = new System.Windows.Forms.ToolStripButton();
-            this.tlbLayerThum = new System.Windows.Forms.ToolStripButton();
-            this.tlbFeatureClassNew = new System.Windows.Forms.ToolStripButton();
-            this.tlbFeatureClassEdit = new System.Windows.Forms.ToolStripButton();
-            this.tlbFeatureClassDelete = new System.Windows.Forms.ToolStripButton();
-            this.tlbFeatureNew = new System.Windows.Forms.ToolStripButton();
-            this.tlbFeatureEdit = new System.Windows.Forms.ToolStripSplitButton();
-            this.tlbFeatureEditByLocation = new System.Windows.Forms.ToolStripMenuItem();
-            this.tlbFeatureEditByRectangle = new System.Windows.Forms.ToolStripMenuItem();
-            this.tlbFeatureEditByPolygon = new System.Windows.Forms.ToolStripMenuItem();
-            this.tlbFeatureDelete = new System.Windows.Forms.ToolStripSplitButton();
-            this.tlbFeatureDeleteByLocation = new System.Windows.Forms.ToolStripMenuItem();
-            this.tlbFeatureDeleteByRectangle = new System.Windows.Forms.ToolStripMenuItem();
-            this.tlbFeatureDeleteByPolygon = new System.Windows.Forms.ToolStripMenuItem();
-            this.tlbFeatureBrowse = new System.Windows.Forms.ToolStripButton();
-            this.tlbFeatureIdentify = new System.Windows.Forms.ToolStripButton();
-            this.menuFileNew = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuFileOpen = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuFileSave = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuFileCloseAll = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuFileExit = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuLayerAllShp = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuLayerAddShp = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuLayerRemove = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuLayerSelectable = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuLayerVisible = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuLayerThum = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuFeatureClassNew = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmUp = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmDown = new System.Windows.Forms.ToolStripMenuItem();
             this.toolSeparator5 = new System.Windows.Forms.ToolStripSeparator();
@@ -355,26 +323,38 @@ namespace Lab03_4
             this.menuFeatureClass.Text = "要素类管理";
             this.menuFeatureClass.ToolTipText = "操作要素类";
             // 
+            // menuFeatureClassNew
+            // 
+            this.menuFeatureClassNew.AutoToolTip = true;
+            this.menuFeatureClassNew.Image = ((System.Drawing.Image)(resources.GetObject("menuFeatureClassNew.Image")));
+            this.menuFeatureClassNew.Name = "menuFeatureClassNew";
+            this.menuFeatureClassNew.Size = new System.Drawing.Size(167, 26);
+            this.menuFeatureClassNew.Text = "创建要素类";
+            this.menuFeatureClassNew.ToolTipText = "创建新要素类并设置名称与字段";
+            this.menuFeatureClassNew.Click += new System.EventHandler(this.menuFeatureClassNew_Click);
+            // 
             // menuFeatureClassEdit
             // 
             this.menuFeatureClassEdit.AutoToolTip = true;
+            this.menuFeatureClassEdit.Image = ((System.Drawing.Image)(resources.GetObject("menuFeatureClassEdit.Image")));
             this.menuFeatureClassEdit.Name = "menuFeatureClassEdit";
             this.menuFeatureClassEdit.Size = new System.Drawing.Size(224, 26);
             this.menuFeatureClassEdit.Text = "管理字段";
             this.menuFeatureClassEdit.ToolTipText = "编辑选中要素类的字段";
             // 
-            // toolSeparator7
-            // 
-            this.toolSeparator7.Name = "toolSeparator7";
-            this.toolSeparator7.Size = new System.Drawing.Size(164, 6);
-            // 
             // menuFeatureClassDelete
             // 
             this.menuFeatureClassDelete.AutoToolTip = true;
+            this.menuFeatureClassDelete.Image = ((System.Drawing.Image)(resources.GetObject("menuFeatureClassDelete.Image")));
             this.menuFeatureClassDelete.Name = "menuFeatureClassDelete";
             this.menuFeatureClassDelete.Size = new System.Drawing.Size(224, 26);
             this.menuFeatureClassDelete.Text = "删除要素类";
             this.menuFeatureClassDelete.ToolTipText = "删除当前选中的要素类";
+            // 
+            // toolSeparator7
+            // 
+            this.toolSeparator7.Name = "toolSeparator7";
+            this.toolSeparator7.Size = new System.Drawing.Size(164, 6);
             // 
             // menuFeature
             // 
