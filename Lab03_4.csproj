@@ -304,6 +304,7 @@
     <Compile Include="Form_4.ThumOperations.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="MyForms\FeatureClassManagement\Helpers\FieldHelper.cs" />
     <Compile Include="MyForms\FormNewFeatureClass.cs">
       <SubType>Form</SubType>
     </Compile>
