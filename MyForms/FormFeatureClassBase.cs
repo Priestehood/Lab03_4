@@ -3,6 +3,7 @@ using ESRI.ArcGIS.Geodatabase;
 using ESRI.ArcGIS.Geometry;
 using Lab03_4.MyForms.FeatureClassManagement.Helpers;
 using System;
+using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -22,7 +23,8 @@ namespace Lab03_4.MyForms
         #region 构造函数
         public FormFeatureClassBase()
         {
-            // 基类初始化逻辑
+            // 设计器友好的构造函数
+            InitializeBaseComponents();
         }
 
         public FormFeatureClassBase(IFeatureLayer featureLayer)
@@ -30,21 +32,56 @@ namespace Lab03_4.MyForms
             _featureLayer = featureLayer ?? throw new ArgumentNullException(nameof(featureLayer));
             _featureClass = featureLayer.FeatureClass;
             _isEditMode = true;
+            InitializeBaseComponents();
+        }
+
+        /// <summary>
+        /// 初始化基类组件
+        /// </summary>
+        private void InitializeBaseComponents()
+        {
+            // 设计器需要的基本初始化
+            // 避免在设计时执行复杂逻辑
+            if (!DesignMode)
+            {
+                // 运行时初始化逻辑
+            }
         }
         #endregion
 
-        #region 虚属性 - 子类可以重写（不再是抽象属性）
-        protected virtual TextBox txtFileName => null;
-        protected virtual ComboBox cmbGeometryType => null;
-        protected virtual ComboBox cmbSR => null;
-        protected virtual TextBox txtFormNewPath => null;
-        protected virtual Button btnFormNewSelectPath => null;
-        protected virtual DataGridView dataGridViewField => null;
-        protected virtual Button btnConfirmNew => null;
+        #region 虚属性 - 子类可以重写
+        [Browsable(false)] // 设计器中不显示这些属性
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        protected virtual TextBox BaseTxtFileName => null;
+
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        protected virtual ComboBox BaseCmbGeometryType => null;
+
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        protected virtual ComboBox BaseCmbSR => null;
+
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        protected virtual TextBox BaseTxtFormNewPath => null;
+
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        protected virtual Button BaseBtnFormNewSelectPath => null;
+
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        protected virtual DataGridView BaseDataGridViewField => null;
+
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        protected virtual Button BaseBtnConfirmNew => null;
         #endregion
 
         #region 虚方法 - 子类可以重写
         protected virtual void InitializeSpecificControls() { }
+
         protected virtual void OnConfirmButtonClick()
         {
             throw new NotImplementedException("子类必须重写OnConfirmButtonClick方法");
@@ -63,6 +100,9 @@ namespace Lab03_4.MyForms
         /// </summary>
         protected virtual void FormFeatureClassBase_Load(object sender, EventArgs e)
         {
+            // 设计时不执行业务逻辑
+            if (DesignMode) return;
+
             try
             {
                 if (_isEditMode)
@@ -107,11 +147,11 @@ namespace Lab03_4.MyForms
         /// </summary>
         protected virtual void SetControlsStateForEditMode()
         {
-            SetControlReadOnly(txtFileName, true);
-            SetControlEnabled(cmbGeometryType, false);
-            SetControlEnabled(cmbSR, false);
-            SetControlReadOnly(txtFormNewPath, true);
-            SetControlEnabled(btnFormNewSelectPath, false);
+            if (BaseTxtFileName != null) SetControlReadOnly(BaseTxtFileName, true);
+            if (BaseCmbGeometryType != null) SetControlEnabled(BaseCmbGeometryType, false);
+            if (BaseCmbSR != null) SetControlEnabled(BaseCmbSR, false);
+            if (BaseTxtFormNewPath != null) SetControlReadOnly(BaseTxtFormNewPath, true);
+            if (BaseBtnFormNewSelectPath != null) SetControlEnabled(BaseBtnFormNewSelectPath, false);
             SetConfirmButtonText("保存字段");
         }
         #endregion
@@ -181,19 +221,18 @@ namespace Lab03_4.MyForms
         /// </summary>
         protected void SetControlReadOnly(Control control, bool readOnly)
         {
+            if (control == null) return;
+
             if (control is TextBox textBox)
             {
-                // TextBox 使用 ReadOnly 属性
                 textBox.ReadOnly = readOnly;
             }
             else if (control is ComboBox comboBox)
             {
-                // ComboBox 使用 Enabled 属性
                 comboBox.Enabled = !readOnly;
             }
             else
             {
-                // 其他控件类型也使用 Enabled 属性
                 control.Enabled = !readOnly;
             }
         }
@@ -203,7 +242,7 @@ namespace Lab03_4.MyForms
         /// </summary>
         protected void SetControlEnabled(Control control, bool enabled)
         {
-            control.Enabled = enabled;
+            control?.SetEnabled(enabled);
         }
 
         /// <summary>
@@ -211,11 +250,13 @@ namespace Lab03_4.MyForms
         /// </summary>
         protected void InitializeSpatialReferenceComboBox()
         {
-            cmbSR.Items.Clear();
-            cmbSR.Items.AddRange(SpatialReferenceHelper.GetPredefinedSpatialReferenceNames());
+            if (BaseCmbSR == null) return;
+
+            BaseCmbSR.Items.Clear();
+            BaseCmbSR.Items.AddRange(SpatialReferenceHelper.GetPredefinedSpatialReferenceNames());
             if (!_isEditMode)
             {
-                cmbSR.SelectedIndex = 0;
+                BaseCmbSR.SelectedIndex = 0;
             }
         }
 
@@ -224,7 +265,8 @@ namespace Lab03_4.MyForms
         /// </summary>
         protected void InitializeDataGridView()
         {
-            dataGridViewField.Columns["colFieldLength"].Visible = false;
+            if (BaseDataGridViewField == null) return;
+            BaseDataGridViewField.Columns["colFieldLength"].Visible = false;
         }
 
         /// <summary>
@@ -232,9 +274,11 @@ namespace Lab03_4.MyForms
         /// </summary>
         protected void DisplayExistingFields()
         {
+            if (BaseDataGridViewField == null) return;
+
             try
             {
-                dataGridViewField.Rows.Clear();
+                BaseDataGridViewField.Rows.Clear();
 
                 IFields fields = _featureClass.Fields;
                 for (int i = 0; i < fields.FieldCount; i++)
@@ -259,18 +303,20 @@ namespace Lab03_4.MyForms
         /// </summary>
         protected void AddFieldToGrid(IField field, bool isReadOnly)
         {
+            if (BaseDataGridViewField == null) return;
+
             string fieldType = FieldTypeHelper.ConvertToChineseName(field.Type);
             string fieldLength = FieldTypeHelper.RequiresLength(field.Type) ?
                 field.Length.ToString() : "";
 
-            int rowIndex = dataGridViewField.Rows.Add(
+            int rowIndex = BaseDataGridViewField.Rows.Add(
                 field.Name,
                 field.AliasName,
                 fieldType,
                 fieldLength
             );
 
-            SetRowReadOnly(dataGridViewField.Rows[rowIndex], isReadOnly);
+            SetRowReadOnly(BaseDataGridViewField.Rows[rowIndex], isReadOnly);
         }
 
         /// <summary>
@@ -278,8 +324,10 @@ namespace Lab03_4.MyForms
         /// </summary>
         protected void AddNewFieldRow()
         {
-            int rowIndex = dataGridViewField.Rows.Add();
-            DataGridViewRow row = dataGridViewField.Rows[rowIndex];
+            if (BaseDataGridViewField == null) return;
+
+            int rowIndex = BaseDataGridViewField.Rows.Add();
+            DataGridViewRow row = BaseDataGridViewField.Rows[rowIndex];
 
             row.Cells["colFieldType"].Value = "文本";
             UpdateFieldLengthVisibility(rowIndex);
@@ -301,13 +349,15 @@ namespace Lab03_4.MyForms
         /// </summary>
         protected void UpdateFieldLengthVisibility(int rowIndex)
         {
-            DataGridViewRow row = dataGridViewField.Rows[rowIndex];
+            if (BaseDataGridViewField == null) return;
+
+            DataGridViewRow row = BaseDataGridViewField.Rows[rowIndex];
             if (row.Cells["colFieldType"].Value == null) return;
 
             string fieldType = row.Cells["colFieldType"].Value.ToString();
             bool isTextType = (fieldType == "文本");
 
-            dataGridViewField.Columns["colFieldLength"].Visible = isTextType;
+            BaseDataGridViewField.Columns["colFieldLength"].Visible = isTextType;
 
             if (isTextType && string.IsNullOrWhiteSpace(row.Cells["colFieldLength"].Value?.ToString()))
             {
@@ -317,18 +367,34 @@ namespace Lab03_4.MyForms
         #endregion
 
         #region 共享的UI设置方法
-        protected void SetFileName(string fileName) => txtFileName.Text = fileName;
+        protected void SetFileName(string fileName)
+        {
+            if (BaseTxtFileName != null) BaseTxtFileName.Text = fileName;
+        }
+
         protected void SetGeometryType(esriGeometryType geometryType)
         {
-            cmbGeometryType.Text = GeometryTypeHelper.ConvertToChineseName(geometryType);
+            if (BaseCmbGeometryType != null)
+                BaseCmbGeometryType.Text = GeometryTypeHelper.ConvertToChineseName(geometryType);
         }
+
         protected void SetSpatialReference(ISpatialReference spatialRef)
         {
-            cmbSR.Text = SpatialReferenceHelper.GetDisplayName(spatialRef);
+            if (BaseCmbSR != null)
+                BaseCmbSR.Text = SpatialReferenceHelper.GetDisplayName(spatialRef);
         }
-        protected void SetDataSourcePath(string path) => txtFormNewPath.Text = path;
+
+        protected void SetDataSourcePath(string path)
+        {
+            if (BaseTxtFormNewPath != null) BaseTxtFormNewPath.Text = path;
+        }
+
         protected void SetFormTitle(string title) => this.Text = title;
-        protected void SetConfirmButtonText(string text) => btnConfirmNew.Text = text;
+
+        protected void SetConfirmButtonText(string text)
+        {
+            if (BaseBtnConfirmNew != null) BaseBtnConfirmNew.Text = text;
+        }
         #endregion
 
         #region 共享的事件处理方法
@@ -373,25 +439,29 @@ namespace Lab03_4.MyForms
         #region 共享的业务逻辑方法
         protected void BrowseFolder()
         {
+            if (BaseTxtFormNewPath == null) return;
+
             using (FolderBrowserDialog folderDialog = new FolderBrowserDialog())
             {
                 folderDialog.Description = "选择SHP文件存储目录";
                 if (folderDialog.ShowDialog() == DialogResult.OK)
                 {
-                    txtFormNewPath.Text = folderDialog.SelectedPath;
+                    BaseTxtFormNewPath.Text = folderDialog.SelectedPath;
                 }
             }
         }
 
         protected void DeleteSelectedFields()
         {
-            if (dataGridViewField.SelectedRows.Count == 0)
+            if (BaseDataGridViewField == null) return;
+
+            if (BaseDataGridViewField.SelectedRows.Count == 0)
             {
                 ShowWarning("请先选择要删除的字段行");
                 return;
             }
 
-            foreach (DataGridViewRow row in dataGridViewField.SelectedRows)
+            foreach (DataGridViewRow row in BaseDataGridViewField.SelectedRows)
             {
                 if (_isEditMode && row.ReadOnly)
                 {
@@ -401,32 +471,33 @@ namespace Lab03_4.MyForms
 
                 if (!row.IsNewRow)
                 {
-                    dataGridViewField.Rows.Remove(row);
+                    BaseDataGridViewField.Rows.Remove(row);
                 }
             }
         }
 
         protected void ClearAllFields()
         {
-            if (dataGridViewField.Rows.Count == 0) return;
+            if (BaseDataGridViewField == null) return;
+            if (BaseDataGridViewField.Rows.Count == 0) return;
 
             if (ShowConfirmation("确定要清空所有字段吗？"))
             {
                 if (_isEditMode)
                 {
                     // 在编辑模式下，只清空新添加的字段
-                    for (int i = dataGridViewField.Rows.Count - 1; i >= 0; i--)
+                    for (int i = BaseDataGridViewField.Rows.Count - 1; i >= 0; i--)
                     {
-                        DataGridViewRow row = dataGridViewField.Rows[i];
+                        DataGridViewRow row = BaseDataGridViewField.Rows[i];
                         if (!row.IsNewRow && !row.ReadOnly)
                         {
-                            dataGridViewField.Rows.Remove(row);
+                            BaseDataGridViewField.Rows.Remove(row);
                         }
                     }
                 }
                 else
                 {
-                    dataGridViewField.Rows.Clear();
+                    BaseDataGridViewField.Rows.Clear();
                 }
             }
         }
@@ -459,5 +530,19 @@ namespace Lab03_4.MyForms
             MessageBox.Show(message, "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
         #endregion
+    }
+
+    /// <summary>
+    /// Control扩展方法
+    /// </summary>
+    public static class ControlExtensions
+    {
+        public static void SetEnabled(this Control control, bool enabled)
+        {
+            if (control != null && !control.IsDisposed)
+            {
+                control.Enabled = enabled;
+            }
+        }
     }
 }
