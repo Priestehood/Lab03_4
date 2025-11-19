@@ -132,7 +132,7 @@ namespace Lab03_4.MyForms
         /// <summary>
         /// 数据网格单元格值改变事件
         /// </summary>
-        private void dataGridViewField_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        private new void dataGridViewField_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
             // 调用基类的实现
             base.dataGridViewField_CellValueChanged(sender, e);
