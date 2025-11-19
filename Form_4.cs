@@ -196,12 +196,14 @@ namespace Lab03_4
 
         #endregion
 
-        #region 菜单-要素类管理
+        #region 工具栏-要素类管理
+
         private void tlbFeatureClassNew_Click(object sender, EventArgs e)
         {
             CreateNewFeatureClass();
         }
 
         #endregion
+
     }
 }

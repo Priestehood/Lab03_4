@@ -85,7 +85,7 @@ namespace Lab03_4.MyForms
         }
 
         /// <summary>
-        /// 添加字段
+        /// 添加字段属性
         /// </summary>
         private void btnAddField_Click(object sender, EventArgs e)
         {
@@ -143,12 +143,64 @@ namespace Lab03_4.MyForms
         }
 
         /// <summary>
-        /// 添加字段
+        /// 添加自定义字段属性
         /// </summary>
         private void AddField()
         {
-            int newRowIndex = dataGridViewField.Rows.Add();
-            dataGridViewField.Rows[newRowIndex].Cells["colFieldLength"].Value = "50";
+            int index = dataGridViewField.Columns.Count;
+
+            // 默认列名，如：Attr1, Attr2...
+            string internalName = "colAttr" + index;
+            string headerText = "自定义属性" + index;
+
+            DataGridViewTextBoxColumn col = new DataGridViewTextBoxColumn();
+            col.Name = internalName;
+            col.HeaderText = headerText;
+            col.Width = 120;
+
+            // 允许用户编辑列标题
+            col.SortMode = DataGridViewColumnSortMode.NotSortable;
+
+            dataGridViewField.Columns.Add(col);
+        }
+
+        /// <summary>
+        /// 鼠标双击单元格事件-编辑列标题
+        /// </summary>
+        private void dataGridViewField_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // 如果是双击列标题（行号为 -1）
+            if (e.RowIndex == -1 && e.ColumnIndex >= 0)
+            {
+                DataGridViewColumn col = dataGridViewField.Columns[e.ColumnIndex];
+
+                // 创建一个文本框覆盖在标题上，让用户编辑
+                TextBox tb = new TextBox();
+                tb.Text = col.HeaderText;
+                tb.BorderStyle = BorderStyle.FixedSingle;
+
+                Rectangle rect = dataGridViewField.GetCellDisplayRectangle(e.ColumnIndex, -1, true);
+                tb.SetBounds(rect.X, rect.Y, rect.Width, rect.Height);
+
+                tb.Leave += (s, ev) =>
+                {
+                    col.HeaderText = tb.Text;  // 更新标题
+                    tb.Dispose();
+                };
+
+                tb.KeyDown += (s, ev) =>
+                {
+                    if (ev.KeyCode == Keys.Enter)
+                    {
+                        col.HeaderText = tb.Text;
+                        tb.Dispose();
+                    }
+                };
+
+                dataGridViewField.Controls.Add(tb);
+                tb.Focus();
+                tb.SelectAll();
+            }
         }
 
         /// <summary>

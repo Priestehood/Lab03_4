@@ -99,15 +99,15 @@ namespace Lab03_4.MyForms
             "EPSG:4490 (CGCS2000)",
             "EPSG:4547 (CGCS2000/3-degree Gauss-Kruger CM 114E)",
             "更多..."});
-            this.cmbSR.Location = new System.Drawing.Point(519, 82);
+            this.cmbSR.Location = new System.Drawing.Point(506, 82);
             this.cmbSR.Name = "cmbSR";
-            this.cmbSR.Size = new System.Drawing.Size(139, 23);
+            this.cmbSR.Size = new System.Drawing.Size(152, 23);
             this.cmbSR.TabIndex = 6;
             // 
             // labelSR
             // 
             this.labelSR.AutoSize = true;
-            this.labelSR.Location = new System.Drawing.Point(449, 86);
+            this.labelSR.Location = new System.Drawing.Point(434, 86);
             this.labelSR.Name = "labelSR";
             this.labelSR.Size = new System.Drawing.Size(67, 15);
             this.labelSR.TabIndex = 5;
@@ -122,13 +122,13 @@ namespace Lab03_4.MyForms
             "面"});
             this.cmbGeometryType.Location = new System.Drawing.Point(304, 82);
             this.cmbGeometryType.Name = "cmbGeometryType";
-            this.cmbGeometryType.Size = new System.Drawing.Size(121, 23);
+            this.cmbGeometryType.Size = new System.Drawing.Size(102, 23);
             this.cmbGeometryType.TabIndex = 4;
             // 
             // labelGeometryType
             // 
             this.labelGeometryType.AutoSize = true;
-            this.labelGeometryType.Location = new System.Drawing.Point(234, 86);
+            this.labelGeometryType.Location = new System.Drawing.Point(232, 86);
             this.labelGeometryType.Name = "labelGeometryType";
             this.labelGeometryType.Size = new System.Drawing.Size(67, 15);
             this.labelGeometryType.TabIndex = 3;
@@ -146,10 +146,9 @@ namespace Lab03_4.MyForms
             // 
             // txtFormNewPath
             // 
-            this.txtFormNewPath.Location = new System.Drawing.Point(97, 39);
+            this.txtFormNewPath.Location = new System.Drawing.Point(93, 39);
             this.txtFormNewPath.Name = "txtFormNewPath";
-            this.txtFormNewPath.ReadOnly = true;
-            this.txtFormNewPath.Size = new System.Drawing.Size(471, 25);
+            this.txtFormNewPath.Size = new System.Drawing.Size(475, 25);
             this.txtFormNewPath.TabIndex = 1;
             // 
             // labelFormNewPath
@@ -183,9 +182,10 @@ namespace Lab03_4.MyForms
             this.dataGridViewField.Name = "dataGridViewField";
             this.dataGridViewField.RowHeadersWidth = 51;
             this.dataGridViewField.RowTemplate.Height = 27;
-            this.dataGridViewField.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.dataGridViewField.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewField.Size = new System.Drawing.Size(636, 350);
             this.dataGridViewField.TabIndex = 0;
+            this.dataGridViewField.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewField_CellDoubleClick);
             this.dataGridViewField.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewField_CellValueChanged);
             // 
             // colFieldName
@@ -223,7 +223,7 @@ namespace Lab03_4.MyForms
             // 
             // btnDeleteField
             // 
-            this.btnDeleteField.Location = new System.Drawing.Point(157, 625);
+            this.btnDeleteField.Location = new System.Drawing.Point(161, 625);
             this.btnDeleteField.Name = "btnDeleteField";
             this.btnDeleteField.Size = new System.Drawing.Size(105, 33);
             this.btnDeleteField.TabIndex = 2;
@@ -233,8 +233,7 @@ namespace Lab03_4.MyForms
             // 
             // btnClearField
             // 
-            this.btnClearField.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnClearField.Location = new System.Drawing.Point(279, 625);
+            this.btnClearField.Location = new System.Drawing.Point(277, 625);
             this.btnClearField.Name = "btnClearField";
             this.btnClearField.Size = new System.Drawing.Size(105, 33);
             this.btnClearField.TabIndex = 3;
@@ -254,19 +253,18 @@ namespace Lab03_4.MyForms
             // 
             // btnAddField
             // 
-            this.btnAddField.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnAddField.Location = new System.Drawing.Point(35, 625);
             this.btnAddField.Name = "btnAddField";
-            this.btnAddField.Size = new System.Drawing.Size(105, 33);
+            this.btnAddField.Size = new System.Drawing.Size(115, 33);
             this.btnAddField.TabIndex = 5;
-            this.btnAddField.Text = "添加字段";
+            this.btnAddField.Text = "添加字段属性";
             this.btnAddField.UseVisualStyleBackColor = true;
             this.btnAddField.Click += new System.EventHandler(this.btnAddField_Click);
             // 
             // btnCancel
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(444, 625);
+            this.btnCancel.Location = new System.Drawing.Point(450, 625);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(105, 33);
             this.btnCancel.TabIndex = 6;
