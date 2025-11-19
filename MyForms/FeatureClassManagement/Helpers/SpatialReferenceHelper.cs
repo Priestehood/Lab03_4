@@ -73,5 +73,32 @@ namespace Lab03_4.MyForms.FeatureClassManagement.Helpers
             names.Add("更多...");
             return names.ToArray();
         }
+
+        /// <summary>
+        /// 获取空间参考的显示名称
+        /// </summary>
+        public static string GetDisplayName(ISpatialReference spatialRef)
+        {
+            if (spatialRef == null) return "未知坐标系";
+
+            try
+            {
+                int factoryCode = spatialRef.FactoryCode;
+
+                foreach (var item in PredefinedSpatialReferences)
+                {
+                    if (item.Value == factoryCode)
+                    {
+                        return item.Key;
+                    }
+                }
+
+                return $"EPSG:{factoryCode}";
+            }
+            catch
+            {
+                return "未知坐标系";
+            }
+        }
     }
 }
