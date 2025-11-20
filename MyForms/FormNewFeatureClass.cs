@@ -165,6 +165,38 @@ namespace Lab03_4.MyForms
         {
             base.OnCancelButtonClick(); // 调用基类实现
         }
+
+        // 保留设计器生成的事件绑定，但重定向到基类方法
+        private new void btnFormNewSelectPath_Click(object sender, EventArgs e)
+        {
+            base.btnFormNewSelectPath_Click(sender, e);
+        }
+
+        private new void btnAddField_Click(object sender, EventArgs e)
+        {
+            base.btnAddField_Click(sender, e);
+        }
+
+        private new void btnDeleteField_Click(object sender, EventArgs e)
+        {
+            base.btnDeleteField_Click(sender, e);
+        }
+
+        private new void btnClearField_Click(object sender, EventArgs e)
+        {
+            base.btnClearField_Click(sender, e);
+        }
+
+        private new void btnConfirmNew_Click(object sender, EventArgs e)
+        {
+            base.btnConfirmNew_Click(sender, e);
+        }
+
+        private new void btnCancel_Click(object sender, EventArgs e)
+        {
+            base.btnCancel_Click(sender, e);
+        }
+
         #endregion
 
         #region 业务逻辑方法
