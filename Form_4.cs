@@ -5,7 +5,7 @@ using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
-using Lab03_4.MyForms;
+using Lab03_4.MyForms.FeatureClassManagement.Forms;
 using Lab03_4.MyForms.FeatureClassManagement.Services;
 
 

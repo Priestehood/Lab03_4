@@ -8,7 +8,7 @@ using System;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace Lab03_4.MyForms
+namespace Lab03_4.MyForms.FeatureClassManagement.Forms
 {
     public partial class FormNewFeatureClass : FormFeatureClassBase
     {
