@@ -419,6 +419,7 @@
     <None Include="Resources\Lab03_deleteFeature.png" />
     <None Include="Resources\Lab03_browserFeature.png" />
     <None Include="Resources\Lab03_infoFeature.png" />
+    <Content Include="Resources\Lab03_manageField1.ico" />
     <Content Include="Resources\overview.png" />
   </ItemGroup>
   <ItemGroup />

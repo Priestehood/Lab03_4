@@ -48,6 +48,7 @@ namespace Lab03_4.MyForms.FeatureClassManagement.Forms
         protected override Button BaseBtnFormNewSelectPath => this.btnFormNewSelectPath;
         protected override DataGridView BaseDataGridViewField => this.dataGridViewField;
         protected override Button BaseBtnConfirmNew => this.btnConfirmNew;
+        protected override Button BaseBtnCancelNew => this.btnCancel;
         #endregion
 
         #region 事件处理方法 - 修复Designer错误
