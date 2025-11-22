@@ -224,6 +224,104 @@ namespace Lab03_4
 
         #endregion
 
+        #region 菜单-要素管理
+
+        private void menuFeatureNew_Click(object sender, EventArgs e)
+        {
+            BeginCreateNewFeature();
+        }
+
+        private void menuFeatureEditByLocation_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void menuFeatureEditByRectangle_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void menuFeatureEditByPolygon_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void menuFeatureDeleteByLocation_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void menuFeatureDeleteByRectangle_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void menuFeatureDeleteByPolygon_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void menuFeatureBrowse_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void menuFeatureIdentify_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
+        #endregion
+
+        #region 工具栏-要素管理
+
+        private void tlbFeatureNew_Click(object sender, EventArgs e)
+        {
+            BeginCreateNewFeature();
+        }
+
+        private void tlbFeatureEditByLocation_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tlbFeatureEditByRectangle_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tlbFeatureEditByPolygon_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tlbFeatureDeleteByLocation_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tlbFeatureDeleteByRectangle_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tlbFeatureDeleteByPolygon_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tlbFeatureBrowse_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tlbFeatureIdentify_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        #endregion
 
     }
 }

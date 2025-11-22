@@ -5,6 +5,7 @@ using ESRI.ArcGIS.Geometry;
 using System;
 using System.Linq;
 using System.Windows.Forms;
+using Lab03_4.MyForms.FeatureManagement.Services;
 
 namespace Lab03_4
 {
@@ -66,18 +67,55 @@ namespace Lab03_4
         }
 
         /// <summary>
+        /// 主地图鼠标点击，根据mapOperation执行相应操作
+        /// </summary>
+        private void axMap_OnMouseUp(object sender, IMapControlEvents2_OnMouseUpEvent e)
+        {
+            if (mapOperation == MapOperationType.CreateFeature)
+            {
+                IGeometry geometry = sketcher.Sketch(axMap, e);
+                CreateNewFeature(geometry);
+            }
+            else if (mapOperation == MapOperationType.EditFeature)
+            {
+                axMap.Map.ClearSelection();
+                //IFeature feature = mapHelper.SelectFeature(this.selectedLayer as IFeatureLayer, operation, e);
+                //if (feature == null) return;
+
+                //MyForms.FormEditFeature frm = new MyForms.FormEditFeature(((IFeatureLayer)this.selectedLayer).FeatureClass, feature);
+                //frm.ShowDialog();
+            }
+            else if (mapOperation == MapOperationType.DeleteFeature)
+            {
+                axMap.Map.ClearSelection();
+                //mapHelper.DeleteFeature(this.selectedLayer as IFeatureLayer, operation, e);
+            }
+            else if (mapOperation == MapOperationType.SelectFeature)
+            {
+
+            }
+            else if (mapOperation == MapOperationType.IdentifyFeature)
+            {
+                axMap.Map.ClearSelection();
+                //IFeature feature = mapHelper.SelectFeature(this.selectedLayer as IFeatureLayer, operation, e);
+                //MyForms.FormIdentify frm = new MyForms.FormIdentify(feature);
+                //frm.ShowDialog();
+            }
+        }
+
+        /// <summary>
         /// 主地图显示
         /// </summary>
         private void axMap_OnExtentUpdated(object sender, IMapControlEvents2_OnExtentUpdatedEvent e)
         {
             try
             {
-                if(e is null)
+                if (e is null)
                 {
                     UpdateThumbnailExtentBox(axMap.Extent);
                     return;
                 }
-              
+
                 IEnvelope newEnvelope = e.newEnvelope as IEnvelope;
                 UpdateThumbnailExtentBox(newEnvelope);
             }

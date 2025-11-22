@@ -286,6 +286,9 @@
     <Compile Include="Form_4.FeatureClassManagement.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form_4.FeatureManagement.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form_4.HelperMethods.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -306,6 +309,14 @@
     </Compile>
     <Compile Include="MyForms\FeatureClassManagement\Helpers\FieldHelper.cs" />
     <Compile Include="MyForms\FeatureClassManagement\Helpers\Logger.cs" />
+    <Compile Include="MyForms\FeatureClassManagement\Services\ShapefileService.cs" />
+    <Compile Include="MyForms\FeatureManagement\Forms\FormNewFeature.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MyForms\FeatureManagement\Forms\FormNewFeature.Designer.cs">
+      <DependentUpon>FormNewFeature.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MyForms\FeatureManagement\Services\ShapeSketcher.cs" />
     <Compile Include="MyForms\FormFeatureClassBase.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -319,7 +330,6 @@
     <Compile Include="MyForms\FeatureClassManagement\Helpers\GeometryTypeHelper.cs" />
     <Compile Include="MyForms\FeatureClassManagement\Helpers\SpatialReferenceHelper.cs" />
     <Compile Include="MyForms\FeatureClassManagement\Services\FieldBuilderService.cs" />
-    <Compile Include="MyForms\FeatureClassManagement\Services\ShapefileService.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="LicenseInitializer.cs" />
@@ -328,6 +338,9 @@
     </Compile>
     <EmbeddedResource Include="Form_4.resx">
       <DependentUpon>Form_4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyForms\FeatureManagement\Forms\FormNewFeature.resx">
+      <DependentUpon>FormNewFeature.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MyForms\FormNewFeatureClass.resx">
       <DependentUpon>FormNewFeatureClass.cs</DependentUpon>
@@ -423,6 +436,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="MyForms\FeatureClassManagement\Forms\" />
+    <Folder Include="MyForms\FeatureManagement\Helpers\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
