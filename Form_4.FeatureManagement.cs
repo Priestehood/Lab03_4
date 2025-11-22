@@ -100,6 +100,7 @@ namespace Lab03_4
                 try
                 {
                     // 设置形状
+                    SetZValue(feature, geometry);
                     feature.Shape = geometry;
                     // 设置属性
                     frm.SetFeatureFields(feature, featureClass);
@@ -120,6 +121,30 @@ namespace Lab03_4
             // 刷新地图
             axMap.Refresh();
             axMap.Update();
+        }
+
+        /// <summary>
+        /// 为geometry设置Z值和M值，
+        /// 修复The Geometry has no Z values的异常
+        /// </summary>
+        /// <param name="feature">新要素</param>
+        /// <param name="geometry">绘制的几何图形</param>
+        private void SetZValue(IFeature feature, IGeometry geometry)
+        {
+            int fieldIndex = feature.Fields.FindField("Shape");
+            IGeometryDef geometryDef = feature.Fields.Field[fieldIndex].GeometryDef;
+            IZAware zAware = geometry as IZAware;
+
+            if (geometryDef.HasZ)
+            {
+                zAware.ZAware = true;
+                IZ iz = geometry as IZ;
+                iz.SetConstantZ(0);
+            }
+            else
+            {
+                zAware.ZAware = false;
+            }
         }
     }
 }
