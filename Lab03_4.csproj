@@ -310,12 +310,19 @@
     <Compile Include="MyForms\FeatureClassManagement\Helpers\FieldHelper.cs" />
     <Compile Include="MyForms\FeatureClassManagement\Helpers\Logger.cs" />
     <Compile Include="MyForms\FeatureClassManagement\Services\ShapefileService.cs" />
+    <Compile Include="MyForms\FeatureManagement\Forms\FieldValueControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MyForms\FeatureManagement\Forms\FieldValueControl.Designer.cs">
+      <DependentUpon>FieldValueControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="MyForms\FeatureManagement\Forms\FormNewFeature.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MyForms\FeatureManagement\Forms\FormNewFeature.Designer.cs">
       <DependentUpon>FormNewFeature.cs</DependentUpon>
     </Compile>
+    <Compile Include="MyForms\FeatureManagement\Helpers\LayerHelper.cs" />
     <Compile Include="MyForms\FeatureManagement\Services\ShapeSketcher.cs" />
     <Compile Include="MyForms\FormFeatureClassBase.cs">
       <SubType>Form</SubType>
@@ -338,6 +345,9 @@
     </Compile>
     <EmbeddedResource Include="Form_4.resx">
       <DependentUpon>Form_4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyForms\FeatureManagement\Forms\FieldValueControl.resx">
+      <DependentUpon>FieldValueControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MyForms\FeatureManagement\Forms\FormNewFeature.resx">
       <DependentUpon>FormNewFeature.cs</DependentUpon>
@@ -436,7 +446,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="MyForms\FeatureClassManagement\Forms\" />
-    <Folder Include="MyForms\FeatureManagement\Helpers\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

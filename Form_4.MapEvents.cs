@@ -74,6 +74,7 @@ namespace Lab03_4
             if (mapOperation == MapOperationType.CreateFeature)
             {
                 IGeometry geometry = sketcher.Sketch(axMap, e);
+                if (geometry is null) return;
                 CreateNewFeature(geometry);
             }
             else if (mapOperation == MapOperationType.EditFeature)

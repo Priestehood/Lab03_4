@@ -5,6 +5,7 @@ using System;
 using System.IO;
 using System.Windows.Forms;
 using Lab03_4.MyForms.FeatureManagement.Services;
+using Lab03_4.MyForms.FeatureManagement.Forms;
 
 namespace Lab03_4
 {
@@ -83,21 +84,42 @@ namespace Lab03_4
             var selectedLayer = GetSelectedLayer();
             if (!ValidateFeatureLayer(selectedLayer, "添加要素")) return;
 
-            // 等待用户修改属性并确认
-            //MyForms.FormNewFeature frm = new MyForms.FormNewFeature(this.selectedLayer as IFeatureLayer, geom);
-            //frm.ShowDialog();
-
-            // 添加到选定图层的要素类
+            // 选定图层的要素类
             IFeatureLayer featureLayer = selectedLayer as IFeatureLayer;
             IFeatureClass featureClass = featureLayer.FeatureClass;
+            // 创建新的空白要素
             IFeature feature = featureClass.CreateFeature();
-            // 设置形状
-            feature.Shape = geometry;
-            // 设置属性
-            //feature.Value[featureClass.FindField("Name")] =
-            //    string.Format("Point_{0}", featureClass.FeatureCount(null));
-            // 保存修改
-            feature.Store();
+
+            // 等待用户修改属性并确认
+            FormNewFeature frm = new FormNewFeature(selectedLayer as IFeatureLayer, geometry);
+            while (true)
+            {
+                DialogResult result = frm.ShowDialog();
+                if (result != DialogResult.OK) return;
+
+                try
+                {
+                    // 设置形状
+                    feature.Shape = geometry;
+                    // 设置属性
+                    frm.SetFeatureFields(feature, featureClass);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("[异常] " + ex.Message, "错误",
+                         MessageBoxButtons.OK,
+                         MessageBoxIcon.Error);
+                    continue;
+                }
+
+                // 保存修改
+                feature.Store();
+                break;
+            }
+
+            // 刷新地图
+            axMap.Refresh();
+            axMap.Update();
         }
     }
 }
