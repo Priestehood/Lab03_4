@@ -53,10 +53,11 @@ namespace Lab03_4.MyForms.FeatureManagement.Services
             }
             // 左键点击
 
-            IPoint point = CreatePoint(e);
             switch (shape)
             {
                 case Shape.Point:
+                    IPoint point = CreatePoint(e);
+                    point.SpatialReference = map.SpatialReference;
                     return point;
                 case Shape.Polygon:
                     rubber = new RubberPolygon();
