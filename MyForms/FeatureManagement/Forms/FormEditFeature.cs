@@ -41,5 +41,18 @@ namespace Lab03_4.MyForms.FeatureManagement.Forms
                     MessageBoxIcon.Error);
             }
         }
+
+        #region 事件处理方法 - 修复Designer错误
+        // 保留设计器生成的事件绑定，但重定向到基类方法
+        private new void btnCancel_Click(object sender, EventArgs e)
+        {
+            base.btnCancel_Click(sender, e);
+        }
+
+        private new void btnConfirm_Click(object sender, EventArgs e)
+        {
+            base.btnConfirm_Click(sender, e);
+        }
+        #endregion
     }
 }
