@@ -98,7 +98,7 @@ namespace Lab03_4
             IFeature feature = featureClass.CreateFeature();
 
             // 等待用户修改属性并确认
-            FormNewFeature frm = new FormNewFeature(selectedLayer as IFeatureLayer, geometry);
+            FormNewFeature frm = new FormNewFeature(selectedLayer as IFeatureLayer);
             while (true)
             {
                 DialogResult result = frm.ShowDialog();
@@ -110,7 +110,7 @@ namespace Lab03_4
                     SetZValue(feature, geometry);
                     feature.Shape = geometry;
                     // 设置属性
-                    frm.SetFeatureFields(feature, featureClass);
+                    frm.SetFeatureFields(feature);
                 }
                 catch (Exception ex)
                 {
@@ -243,8 +243,37 @@ namespace Lab03_4
         /// <param name="feature">待编辑要素</param>
         private void EditFeature(IFeature feature)
         {
-            //MyForms.FormEditFeature frm = new MyForms.FormEditFeature(((IFeatureLayer)this.selectedLayer).FeatureClass, feature);
-            //frm.ShowDialog();
+            var selectedLayer = GetSelectedLayer();
+            if (!ValidateFeatureLayer(selectedLayer, "编辑要素")) return;
+
+            // 等待用户修改属性并确认
+            FormEditFeature frm = new FormEditFeature(feature);
+            while (true)
+            {
+                DialogResult result = frm.ShowDialog();
+                if (result != DialogResult.OK) return;
+
+                try
+                {
+                    // 设置属性
+                    frm.SetFeatureFields(feature);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("[异常] " + ex.Message, "错误",
+                         MessageBoxButtons.OK,
+                         MessageBoxIcon.Error);
+                    continue;
+                }
+
+                // 保存修改
+                feature.Store();
+                break;
+            }
+
+            // 刷新地图
+            axMap.Refresh();
+            axMap.Update();
         }
 
         /// <summary>

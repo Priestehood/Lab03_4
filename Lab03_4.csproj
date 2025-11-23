@@ -316,6 +316,15 @@
     <Compile Include="MyForms\FeatureManagement\Forms\FieldValueControl.Designer.cs">
       <DependentUpon>FieldValueControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="MyForms\FeatureManagement\Forms\FormEditFeature.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MyForms\FeatureManagement\Forms\FormEditFeature.Designer.cs">
+      <DependentUpon>FormEditFeature.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MyForms\FeatureManagement\Forms\FormFeatureBase.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="MyForms\FeatureManagement\Forms\FormNewFeature.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -348,6 +357,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MyForms\FeatureManagement\Forms\FieldValueControl.resx">
       <DependentUpon>FieldValueControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyForms\FeatureManagement\Forms\FormEditFeature.resx">
+      <DependentUpon>FormEditFeature.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MyForms\FeatureManagement\Forms\FormNewFeature.resx">
       <DependentUpon>FormNewFeature.cs</DependentUpon>

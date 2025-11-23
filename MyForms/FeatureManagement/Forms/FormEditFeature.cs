@@ -6,13 +6,12 @@ using System.Windows.Forms;
 
 namespace Lab03_4.MyForms.FeatureManagement.Forms
 {
-    public partial class FormNewFeature : FormFeatureBase
+    public partial class FormEditFeature : FormFeatureBase
     {
-        #region 私有成员
-        private IFeatureLayer layer;
-        #endregion
+        private IFeature feature;
 
         #region 重写基类虚属性 - 使用不同的命名避免冲突
+
         protected override FieldValueControl BaseTblFieldValue => this.tblFieldValue;
 
         protected override Button BaseBtnCancel => this.btnCancel;
@@ -21,25 +20,19 @@ namespace Lab03_4.MyForms.FeatureManagement.Forms
         #endregion
 
         #region 构造函数
-        public FormNewFeature(IFeatureLayer featureLayer)
+        public FormEditFeature(IFeature feature)
         {
             InitializeComponent();
-            this.layer = featureLayer;
-            DisplayFeatureClassInfo();
+            this.feature = feature;
+            DisplayFeatureInfo();
         }
         #endregion
 
-        #region 重写基类虚方法
-        /// <summary>
-        /// 显示要素类路径及字段列表
-        /// </summary>
-        protected virtual void DisplayFeatureClassInfo()
+        private void DisplayFeatureInfo()
         {
-            IFeatureClass featureClass = layer.FeatureClass;
             try
             {
-                txtSource.Text = Helpers.LayerHelper.GetDataSource(layer);
-                tblFieldValue.Fields = featureClass.Fields;
+                BaseTblFieldValue.Feature = feature;
             }
             catch (Exception ex)
             {
@@ -48,6 +41,5 @@ namespace Lab03_4.MyForms.FeatureManagement.Forms
                     MessageBoxIcon.Error);
             }
         }
-        #endregion
     }
 }

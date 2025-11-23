@@ -14,6 +14,7 @@ namespace Lab03_4.MyForms.FeatureManagement.Forms
     public partial class FieldValueControl : UserControl
     {
         private IFields fields;
+        private IFeature feature;
         public IFields Fields
         {
             get => fields;
@@ -23,10 +24,20 @@ namespace Lab03_4.MyForms.FeatureManagement.Forms
                 UpdateRows();
             }
         }
+        public IFeature Feature
+        {
+            set
+            {
+                this.feature = value;
+                this.fields = feature.Fields;
+                UpdateRows();
+            }
+        }
 
         public FieldValueControl()
         {
             fields = null;
+            feature = null;
             InitializeComponent();
         }
 
@@ -43,7 +54,14 @@ namespace Lab03_4.MyForms.FeatureManagement.Forms
                         continue;
 
                     //在表格中显示字段别名
-                    dgvFields.Rows.Add(fields.Field[i].AliasName, null);
+                    if (feature is null)
+                    {
+                        dgvFields.Rows.Add(fields.Field[i].AliasName, null);
+                    }
+                    else
+                    {
+                        dgvFields.Rows.Add(fields.Field[i].AliasName, feature.Value[i].ToString());
+                    }
                     //在行的Tag属性中记录字段编号
                     dgvFields.Rows[j].Tag = i;
                     j++;
@@ -58,7 +76,7 @@ namespace Lab03_4.MyForms.FeatureManagement.Forms
             }
         }
 
-        public void SetFeatureFields(IFeature feature, IFeatureClass featureClass)
+        public void SetFeatureFields(IFeature feature)
         {
             IFields fields = feature.Fields;
             foreach (DataGridViewRow row in dgvFields.Rows)

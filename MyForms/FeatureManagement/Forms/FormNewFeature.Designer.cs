@@ -40,6 +40,7 @@ namespace Lab03_4.MyForms.FeatureManagement.Forms
             // 
             // tblFieldValue
             // 
+            this.tblFieldValue.Fields = null;
             this.tblFieldValue.Location = new System.Drawing.Point(39, 157);
             this.tblFieldValue.Name = "tblFieldValue";
             this.tblFieldValue.Size = new System.Drawing.Size(795, 603);
@@ -75,7 +76,7 @@ namespace Lab03_4.MyForms.FeatureManagement.Forms
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(229, 766);
+            this.btnCancel.Location = new System.Drawing.Point(515, 783);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(125, 41);
             this.btnCancel.TabIndex = 3;
@@ -85,7 +86,7 @@ namespace Lab03_4.MyForms.FeatureManagement.Forms
             // 
             // btnConfirm
             // 
-            this.btnConfirm.Location = new System.Drawing.Point(479, 766);
+            this.btnConfirm.Location = new System.Drawing.Point(220, 783);
             this.btnConfirm.Name = "btnConfirm";
             this.btnConfirm.Size = new System.Drawing.Size(125, 41);
             this.btnConfirm.TabIndex = 3;
@@ -97,7 +98,7 @@ namespace Lab03_4.MyForms.FeatureManagement.Forms
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(875, 819);
+            this.ClientSize = new System.Drawing.Size(876, 836);
             this.Controls.Add(this.btnConfirm);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.groupBox1);
