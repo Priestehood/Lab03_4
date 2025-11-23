@@ -268,7 +268,7 @@ namespace Lab03_4
 
         private void menuFeatureIdentify_Click(object sender, EventArgs e)
         {
-
+            BeginIdentifyFeature();
         }
 
 
@@ -318,7 +318,7 @@ namespace Lab03_4
 
         private void tlbFeatureIdentify_Click(object sender, EventArgs e)
         {
-
+            BeginIdentifyFeature();
         }
 
         #endregion

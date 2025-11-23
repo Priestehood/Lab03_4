@@ -100,9 +100,11 @@ namespace Lab03_4
             else if (mapOperation == MapOperationType.IdentifyFeature)
             {
                 axMap.Map.ClearSelection();
-                //IFeature feature = mapHelper.SelectFeature(this.selectedLayer as IFeatureLayer, operation, e);
-                //MyForms.FormIdentify frm = new MyForms.FormIdentify(feature);
-                //frm.ShowDialog();
+                IGeometry geometry = sketcher.Sketch(axMap, e);
+                if (geometry is null) return;
+                IFeature feature = SelectFirstFeature(geometry);
+                if (feature == null) return;
+                IdentifyFeature(feature);                
             }
         }
 

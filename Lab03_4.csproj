@@ -325,6 +325,12 @@
     <Compile Include="MyForms\FeatureManagement\Forms\FormFeatureBase.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="MyForms\FeatureManagement\Forms\FormIdentifyFeature.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MyForms\FeatureManagement\Forms\FormIdentifyFeature.Designer.cs">
+      <DependentUpon>FormIdentifyFeature.cs</DependentUpon>
+    </Compile>
     <Compile Include="MyForms\FeatureManagement\Forms\FormNewFeature.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -360,6 +366,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MyForms\FeatureManagement\Forms\FormEditFeature.resx">
       <DependentUpon>FormEditFeature.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyForms\FeatureManagement\Forms\FormIdentifyFeature.resx">
+      <DependentUpon>FormIdentifyFeature.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MyForms\FeatureManagement\Forms\FormNewFeature.resx">
       <DependentUpon>FormNewFeature.cs</DependentUpon>

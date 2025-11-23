@@ -33,6 +33,14 @@ namespace Lab03_4.MyForms.FeatureManagement.Forms
                 UpdateRows();
             }
         }
+        public bool ReadOnly
+        {
+            set
+            {
+                this.dgvFields.ReadOnly = value;
+                this.dgvFields.AllowUserToAddRows = !value;
+            }
+        }
 
         public FieldValueControl()
         {

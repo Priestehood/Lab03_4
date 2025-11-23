@@ -309,6 +309,21 @@ namespace Lab03_4
             axMap.Update();
         }
 
+        private void BeginIdentifyFeature()
+        {
+            var selectedLayer = GetSelectedLayer();
+            if (!ValidateFeatureLayer(selectedLayer, "要素信息")) return;
+
+            BeginSelectFeature("Location");
+            mapOperation = MapOperationType.IdentifyFeature;
+        }
+
+        private void IdentifyFeature(IFeature feature)
+        {
+            FormIdentifyFeature frm = new FormIdentifyFeature(feature);
+            frm.ShowDialog();
+        }
+
         /// <summary>
         /// 为geometry设置Z值和M值，
         /// 修复The Geometry has no Z values的异常
