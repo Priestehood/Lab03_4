@@ -263,7 +263,7 @@ namespace Lab03_4
 
         private void menuFeatureBrowse_Click(object sender, EventArgs e)
         {
-
+            BrowseFeatures();
         }
 
         private void menuFeatureIdentify_Click(object sender, EventArgs e)
@@ -313,7 +313,7 @@ namespace Lab03_4
 
         private void tlbFeatureBrowse_Click(object sender, EventArgs e)
         {
-
+            BrowseFeatures();
         }
 
         private void tlbFeatureIdentify_Click(object sender, EventArgs e)

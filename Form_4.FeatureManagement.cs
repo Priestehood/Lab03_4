@@ -6,6 +6,7 @@ using System.IO;
 using System.Windows.Forms;
 using Lab03_4.MyForms.FeatureManagement.Services;
 using Lab03_4.MyForms.FeatureManagement.Forms;
+using System.Data;
 
 namespace Lab03_4
 {
@@ -307,6 +308,19 @@ namespace Lab03_4
             // 刷新地图
             axMap.Refresh();
             axMap.Update();
+        }
+
+        private void BrowseFeatures()
+        {
+            var selectedLayer = GetSelectedLayer();
+            if (!ValidateFeatureLayer(selectedLayer, "要素信息")) return;
+
+            // 调用工具类转换数据
+            DataTable dt = FeatureHelper.ToDataTable((selectedLayer as IFeatureLayer).FeatureClass);
+            // 打开新增的浏览窗体
+            FormBrowseFeatures frm = new FormBrowseFeatures();
+            frm.dgvFeatures.DataSource = dt;
+            frm.ShowDialog();
         }
 
         private void BeginIdentifyFeature()
