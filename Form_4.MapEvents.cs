@@ -95,9 +95,6 @@ namespace Lab03_4
                 object features;
                 if (geometry is IPoint)
                 {
-                    //IPoint point = new Point();
-                    //point.PutCoords(e.mapX, e.mapY);
-                    //features = SelectFirstFeature(point);
                     features = SelectFirstFeature(geometry);
                 }
                 else

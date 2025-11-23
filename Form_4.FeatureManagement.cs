@@ -192,7 +192,7 @@ namespace Lab03_4
             }
             return cursor;
         }
-        
+
         /// <summary>
         /// 使用IIdentify获取点选要素
         /// </summary>
@@ -221,6 +221,27 @@ namespace Lab03_4
             return feature;
         }
 
+        /// <summary>
+        /// 根据指定容差，对用户点击的点做缓冲区分析，方便选中要素
+        /// </summary>
+        /// <param name="point">点击的点</param>
+        /// <param name="tolerancePixels">点击的容差大小（像素）</param>
+        /// <returns></returns>
+        private IGeometry GetPointBuffer(IPoint point, int tolerancePixels)
+        {
+            // 容差（像素）比上屏幕宽度
+            double toleranceScale = (double)tolerancePixels / axMap.Width;
+            // 再乘上屏幕显示地图范围的宽度，即得到地图坐标系的容差大小
+            double searchTolerance = toleranceScale * axMap.Extent.Width;
+            // 做缓冲区分析
+            ITopologicalOperator topo = (ITopologicalOperator)point;
+            IGeometry buffer = topo.Buffer(searchTolerance) as IPolygon;
+            return buffer;
+        }
+
+        /// <summary>
+        /// 刷新地图
+        /// </summary>
         private void UpdateMap()
         {
             axMap.ActiveView.PartialRefresh(esriViewDrawPhase.esriViewGraphics, null, null);
@@ -238,14 +259,15 @@ namespace Lab03_4
             IFeature feature;
             if (filterGeometry is IPoint)
             {
-                feature = GetFeatureByPointUsingIdentify(filterGeometry as IPoint);
+                //feature = GetFeatureByPointUsingIdentify(filterGeometry as IPoint);
+                filterGeometry = GetPointBuffer(filterGeometry as IPoint, 5);
             }
-            else
-            {
-                IFeatureCursor cursor = GetFilteredFeatures(filterGeometry);
-                // 选中首个要素
-                feature = cursor.NextFeature();
-            }
+            //else
+            //{
+            IFeatureCursor cursor = GetFilteredFeatures(filterGeometry);
+            // 选中首个要素
+            feature = cursor.NextFeature();
+            //}
             // 选中要素
             axMap.Map.SelectFeature(GetSelectedLayer(), feature);
 
