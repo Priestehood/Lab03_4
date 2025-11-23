@@ -77,6 +77,7 @@ namespace Lab03_4.MyForms.FeatureClassManagement.Forms
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         protected virtual Button BaseBtnConfirmNew => null;
+        protected virtual Button BaseBtnCancelNew => null;
         #endregion
 
         #region 虚方法 - 子类可以重写
@@ -140,6 +141,7 @@ namespace Lab03_4.MyForms.FeatureClassManagement.Forms
             InitializeDataGridView();
             DisplayExistingFields();
             SetControlsStateForEditMode();
+            SetEditModeIcon();
         }
 
         /// <summary>
@@ -153,6 +155,25 @@ namespace Lab03_4.MyForms.FeatureClassManagement.Forms
             if (BaseTxtFormNewPath != null) SetControlReadOnly(BaseTxtFormNewPath, true);
             if (BaseBtnFormNewSelectPath != null) SetControlEnabled(BaseBtnFormNewSelectPath, false);
             SetConfirmButtonText("保存字段");
+            SetCancelButtonText("退出管理");
+        }
+
+        /// <summary>
+        /// 设置编辑模式图标
+        /// </summary>
+        protected virtual void SetEditModeIcon()
+        {
+            if (_isEditMode)
+            {
+                try
+                {
+                    this.Icon = Properties.Resources.Lab03_manageField1;
+                }
+                catch
+                {
+                    // 如果资源不存在，保持原图标
+                }
+            }
         }
         #endregion
 
@@ -266,7 +287,15 @@ namespace Lab03_4.MyForms.FeatureClassManagement.Forms
         protected void InitializeDataGridView()
         {
             if (BaseDataGridViewField == null) return;
-            BaseDataGridViewField.Columns["colFieldLength"].Visible = false;
+            // 只在创建模式下隐藏字段长度列，编辑模式下显示
+            if (!_isEditMode)
+            {
+                BaseDataGridViewField.Columns["colFieldLength"].Visible = false;
+            }
+            else
+            {
+                BaseDataGridViewField.Columns["colFieldLength"].Visible = true;
+            }
         }
 
         /// <summary>
@@ -395,6 +424,11 @@ namespace Lab03_4.MyForms.FeatureClassManagement.Forms
         protected void SetConfirmButtonText(string text)
         {
             if (BaseBtnConfirmNew != null) BaseBtnConfirmNew.Text = text;
+        }
+
+        protected void SetCancelButtonText(string text)
+        {
+            if (BaseBtnCancelNew != null) BaseBtnCancelNew.Text = text;
         }
         #endregion
 
