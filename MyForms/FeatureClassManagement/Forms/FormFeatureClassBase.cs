@@ -7,7 +7,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace Lab03_4.MyForms
+namespace Lab03_4.MyForms.FeatureClassManagement.Forms
 {
     /// <summary>
     /// 要素类窗体基类，包含共享的功能和UI元素

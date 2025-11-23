@@ -310,6 +310,9 @@ namespace Lab03_4
             axMap.Update();
         }
 
+        /// <summary>
+        /// 浏览选中要素类的所有要素的信息
+        /// </summary>
         private void BrowseFeatures()
         {
             var selectedLayer = GetSelectedLayer();
@@ -323,6 +326,9 @@ namespace Lab03_4
             frm.ShowDialog();
         }
 
+        /// <summary>
+        /// 开始选择待查看要素
+        /// </summary>
         private void BeginIdentifyFeature()
         {
             var selectedLayer = GetSelectedLayer();
@@ -332,6 +338,10 @@ namespace Lab03_4
             mapOperation = MapOperationType.IdentifyFeature;
         }
 
+        /// <summary>
+        /// 查看要素信息
+        /// </summary>
+        /// <param name="feature">选中的要素</param>
         private void IdentifyFeature(IFeature feature)
         {
             FormIdentifyFeature frm = new FormIdentifyFeature(feature);

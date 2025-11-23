@@ -346,13 +346,13 @@
     <Compile Include="MyForms\FeatureManagement\Helpers\FeatureHelper.cs" />
     <Compile Include="MyForms\FeatureManagement\Helpers\LayerHelper.cs" />
     <Compile Include="MyForms\FeatureManagement\Services\ShapeSketcher.cs" />
-    <Compile Include="MyForms\FormFeatureClassBase.cs">
+    <Compile Include="MyForms\FeatureClassManagement\Forms\FormFeatureClassBase.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MyForms\FormNewFeatureClass.cs">
+    <Compile Include="MyForms\FeatureClassManagement\Forms\FormNewFeatureClass.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MyForms\FormNewFeatureClass.Designer.cs">
+    <Compile Include="MyForms\FeatureClassManagement\Forms\FormNewFeatureClass.Designer.cs">
       <DependentUpon>FormNewFeatureClass.cs</DependentUpon>
     </Compile>
     <Compile Include="MyForms\FeatureClassManagement\Helpers\FieldTypeHelper.cs" />
@@ -383,7 +383,7 @@
     <EmbeddedResource Include="MyForms\FeatureManagement\Forms\FormNewFeature.resx">
       <DependentUpon>FormNewFeature.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MyForms\FormNewFeatureClass.resx">
+    <EmbeddedResource Include="MyForms\FeatureClassManagement\Forms\FormNewFeatureClass.resx">
       <DependentUpon>FormNewFeatureClass.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -475,9 +475,7 @@
     <None Include="Resources\Lab03_infoFeature.png" />
     <Content Include="Resources\overview.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="MyForms\FeatureClassManagement\Forms\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
