@@ -5,8 +5,6 @@ using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
-using Lab03_4.MyForms;
-using Lab03_4.MyForms.FeatureClassManagement.Services;
 
 
 namespace Lab03_4
@@ -224,6 +222,104 @@ namespace Lab03_4
 
         #endregion
 
+        #region 菜单-要素管理
+
+        private void menuFeatureNew_Click(object sender, EventArgs e)
+        {
+            BeginCreateNewFeature();
+        }
+
+        private void menuFeatureEditByLocation_Click(object sender, EventArgs e)
+        {
+            BeginEditFeature("Location");
+        }
+
+        private void menuFeatureEditByRectangle_Click(object sender, EventArgs e)
+        {
+            BeginEditFeature("Rectangle");
+        }
+
+        private void menuFeatureEditByPolygon_Click(object sender, EventArgs e)
+        {
+            BeginEditFeature("Polygon");
+        }
+
+        private void menuFeatureDeleteByLocation_Click(object sender, EventArgs e)
+        {
+            BeginDeleteFeature("Location");
+        }
+
+        private void menuFeatureDeleteByRectangle_Click(object sender, EventArgs e)
+        {
+            BeginDeleteFeature("Rectangle");
+        }
+
+        private void menuFeatureDeleteByPolygon_Click(object sender, EventArgs e)
+        {
+            BeginDeleteFeature("Polygon");
+        }
+
+        private void menuFeatureBrowse_Click(object sender, EventArgs e)
+        {
+            BrowseFeatures();
+        }
+
+        private void menuFeatureIdentify_Click(object sender, EventArgs e)
+        {
+            BeginIdentifyFeature();
+        }
+
+
+        #endregion
+
+        #region 工具栏-要素管理
+
+        private void tlbFeatureNew_Click(object sender, EventArgs e)
+        {
+            BeginCreateNewFeature();
+        }
+
+        private void tlbFeatureEditByLocation_Click(object sender, EventArgs e)
+        {
+            BeginEditFeature("Location");
+        }
+
+        private void tlbFeatureEditByRectangle_Click(object sender, EventArgs e)
+        {
+            BeginEditFeature("Rectangle");
+        }
+
+        private void tlbFeatureEditByPolygon_Click(object sender, EventArgs e)
+        {
+            BeginEditFeature("Polygon");
+        }
+
+        private void tlbFeatureDeleteByLocation_Click(object sender, EventArgs e)
+        {
+            BeginDeleteFeature("Location");
+        }
+
+        private void tlbFeatureDeleteByRectangle_Click(object sender, EventArgs e)
+        {
+            BeginDeleteFeature("Rectangle");
+        }
+
+        private void tlbFeatureDeleteByPolygon_Click(object sender, EventArgs e)
+        {
+            BeginDeleteFeature("Polygon");
+        }
+
+        private void tlbFeatureBrowse_Click(object sender, EventArgs e)
+        {
+            BrowseFeatures();
+        }
+
+        private void tlbFeatureIdentify_Click(object sender, EventArgs e)
+        {
+            BeginIdentifyFeature();
+        }
+
+        #endregion
 
     }
 }

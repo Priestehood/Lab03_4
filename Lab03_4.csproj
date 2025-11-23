@@ -286,6 +286,9 @@
     <Compile Include="Form_4.FeatureClassManagement.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form_4.FeatureManagement.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form_4.HelperMethods.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -306,20 +309,56 @@
     </Compile>
     <Compile Include="MyForms\FeatureClassManagement\Helpers\FieldHelper.cs" />
     <Compile Include="MyForms\FeatureClassManagement\Helpers\Logger.cs" />
-    <Compile Include="MyForms\FormFeatureClassBase.cs">
+    <Compile Include="MyForms\FeatureClassManagement\Services\ShapefileService.cs" />
+    <Compile Include="MyForms\FeatureManagement\Forms\FieldValueControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MyForms\FeatureManagement\Forms\FieldValueControl.Designer.cs">
+      <DependentUpon>FieldValueControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MyForms\FeatureManagement\Forms\FormBrowseFeatures.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MyForms\FormNewFeatureClass.cs">
+    <Compile Include="MyForms\FeatureManagement\Forms\FormBrowseFeatures.Designer.cs">
+      <DependentUpon>FormBrowseFeatures.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MyForms\FeatureManagement\Forms\FormEditFeature.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MyForms\FormNewFeatureClass.Designer.cs">
+    <Compile Include="MyForms\FeatureManagement\Forms\FormEditFeature.Designer.cs">
+      <DependentUpon>FormEditFeature.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MyForms\FeatureManagement\Forms\FormFeatureBase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MyForms\FeatureManagement\Forms\FormIdentifyFeature.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MyForms\FeatureManagement\Forms\FormIdentifyFeature.Designer.cs">
+      <DependentUpon>FormIdentifyFeature.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MyForms\FeatureManagement\Forms\FormNewFeature.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MyForms\FeatureManagement\Forms\FormNewFeature.Designer.cs">
+      <DependentUpon>FormNewFeature.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MyForms\FeatureManagement\Helpers\FeatureHelper.cs" />
+    <Compile Include="MyForms\FeatureManagement\Helpers\LayerHelper.cs" />
+    <Compile Include="MyForms\FeatureManagement\Services\ShapeSketcher.cs" />
+    <Compile Include="MyForms\FeatureClassManagement\Forms\FormFeatureClassBase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MyForms\FeatureClassManagement\Forms\FormNewFeatureClass.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MyForms\FeatureClassManagement\Forms\FormNewFeatureClass.Designer.cs">
       <DependentUpon>FormNewFeatureClass.cs</DependentUpon>
     </Compile>
     <Compile Include="MyForms\FeatureClassManagement\Helpers\FieldTypeHelper.cs" />
     <Compile Include="MyForms\FeatureClassManagement\Helpers\GeometryTypeHelper.cs" />
     <Compile Include="MyForms\FeatureClassManagement\Helpers\SpatialReferenceHelper.cs" />
     <Compile Include="MyForms\FeatureClassManagement\Services\FieldBuilderService.cs" />
-    <Compile Include="MyForms\FeatureClassManagement\Services\ShapefileService.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="LicenseInitializer.cs" />
@@ -329,7 +368,22 @@
     <EmbeddedResource Include="Form_4.resx">
       <DependentUpon>Form_4.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MyForms\FormNewFeatureClass.resx">
+    <EmbeddedResource Include="MyForms\FeatureManagement\Forms\FieldValueControl.resx">
+      <DependentUpon>FieldValueControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyForms\FeatureManagement\Forms\FormBrowseFeatures.resx">
+      <DependentUpon>FormBrowseFeatures.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyForms\FeatureManagement\Forms\FormEditFeature.resx">
+      <DependentUpon>FormEditFeature.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyForms\FeatureManagement\Forms\FormIdentifyFeature.resx">
+      <DependentUpon>FormIdentifyFeature.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyForms\FeatureManagement\Forms\FormNewFeature.resx">
+      <DependentUpon>FormNewFeature.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyForms\FeatureClassManagement\Forms\FormNewFeatureClass.resx">
       <DependentUpon>FormNewFeatureClass.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -419,11 +473,10 @@
     <None Include="Resources\Lab03_deleteFeature.png" />
     <None Include="Resources\Lab03_browserFeature.png" />
     <None Include="Resources\Lab03_infoFeature.png" />
+    <Content Include="Resources\Lab03_manageField1.ico" />
     <Content Include="Resources\overview.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="MyForms\FeatureClassManagement\Forms\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

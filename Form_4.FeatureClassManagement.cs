@@ -2,7 +2,7 @@
 using ESRI.ArcGIS.DataManagementTools;
 using ESRI.ArcGIS.Geodatabase;
 using ESRI.ArcGIS.Geoprocessor;
-using Lab03_4.MyForms;
+using Lab03_4.MyForms.FeatureClassManagement.Forms;
 using Lab03_4.MyForms.FeatureClassManagement.Helpers;
 using Lab03_4.MyForms.FeatureClassManagement.Services;
 using System;
@@ -225,8 +225,12 @@ namespace Lab03_4
 
             // 从地图移除图层（视觉上先移除）
             axMap.Map.DeleteLayer(layer);
+            RemoveLayerFromThumbnail(m_selectedLayer.Name);
             axMap.Refresh();
             axTOC.Refresh();
+            axThum.Refresh();
+            UpdateStatus("要素类删除成功: " + m_selectedLayer.Name);
+            m_selectedLayer = null;
 
             // 获取完整 shapefile 路径
             IFeatureLayer fl = layer as IFeatureLayer;

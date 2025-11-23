@@ -5,6 +5,8 @@ using ESRI.ArcGIS.Geometry;
 using System;
 using System.Linq;
 using System.Windows.Forms;
+using Lab03_4.MyForms.FeatureManagement.Services;
+using ESRI.ArcGIS.Geodatabase;
 
 namespace Lab03_4
 {
@@ -66,18 +68,67 @@ namespace Lab03_4
         }
 
         /// <summary>
+        /// 主地图鼠标点击，根据mapOperation执行相应操作
+        /// </summary>
+        private void axMap_OnMouseUp(object sender, IMapControlEvents2_OnMouseUpEvent e)
+        {
+            if (mapOperation == MapOperationType.CreateFeature)
+            {
+                IGeometry geometry = sketcher.Sketch(axMap, e);
+                if (geometry is null) return;
+                CreateNewFeature(geometry);
+            }
+            else if (mapOperation == MapOperationType.EditFeature)
+            {
+                axMap.Map.ClearSelection();
+                IGeometry geometry = sketcher.Sketch(axMap, e);
+                if (geometry is null) return;
+                IFeature feature = SelectFirstFeature(geometry);
+                if (feature is null) return;
+                EditFeature(feature);
+            }
+            else if (mapOperation == MapOperationType.DeleteFeature)
+            {
+                axMap.Map.ClearSelection();
+                IGeometry geometry = sketcher.Sketch(axMap, e);
+                if (geometry is null) return;
+                object features;
+                if (geometry is IPoint)
+                {
+                    features = SelectFirstFeature(geometry);
+                }
+                else
+                {
+                    features = SelectAllFeatures(geometry);
+                }
+                if (features is null) return;
+                DeleteFeatures(features);
+                axMap.Map.ClearSelection();
+            }
+            else if (mapOperation == MapOperationType.IdentifyFeature)
+            {
+                axMap.Map.ClearSelection();
+                IGeometry geometry = sketcher.Sketch(axMap, e);
+                if (geometry is null) return;
+                IFeature feature = SelectFirstFeature(geometry);
+                if (feature is null) return;
+                IdentifyFeature(feature);
+            }
+        }
+
+        /// <summary>
         /// 主地图显示
         /// </summary>
         private void axMap_OnExtentUpdated(object sender, IMapControlEvents2_OnExtentUpdatedEvent e)
         {
             try
             {
-                if(e is null)
+                if (e is null)
                 {
                     UpdateThumbnailExtentBox(axMap.Extent);
                     return;
                 }
-              
+
                 IEnvelope newEnvelope = e.newEnvelope as IEnvelope;
                 UpdateThumbnailExtentBox(newEnvelope);
             }
