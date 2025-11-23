@@ -6,6 +6,7 @@ using System;
 using System.Linq;
 using System.Windows.Forms;
 using Lab03_4.MyForms.FeatureManagement.Services;
+using ESRI.ArcGIS.Geodatabase;
 
 namespace Lab03_4
 {
@@ -80,20 +81,21 @@ namespace Lab03_4
             else if (mapOperation == MapOperationType.EditFeature)
             {
                 axMap.Map.ClearSelection();
-                //IFeature feature = mapHelper.SelectFeature(this.selectedLayer as IFeatureLayer, operation, e);
-                //if (feature == null) return;
-
-                //MyForms.FormEditFeature frm = new MyForms.FormEditFeature(((IFeatureLayer)this.selectedLayer).FeatureClass, feature);
-                //frm.ShowDialog();
+                IGeometry geometry = sketcher.Sketch(axMap, e);
+                if (geometry is null) return;
+                IFeature feature = SelectFirstFeature(geometry);
+                if (feature == null) return;
+                EditFeature(feature);
             }
             else if (mapOperation == MapOperationType.DeleteFeature)
             {
                 axMap.Map.ClearSelection();
-                //mapHelper.DeleteFeature(this.selectedLayer as IFeatureLayer, operation, e);
-            }
-            else if (mapOperation == MapOperationType.SelectFeature)
-            {
-
+                IGeometry geometry = sketcher.Sketch(axMap, e);
+                if (geometry is null) return;
+                IFeatureCursor features = SelectAllFeatures(geometry);
+                if (features == null) return;
+                DeleteFeatures(features);
+                axMap.Map.ClearSelection();
             }
             else if (mapOperation == MapOperationType.IdentifyFeature)
             {

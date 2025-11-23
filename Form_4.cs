@@ -233,32 +233,32 @@ namespace Lab03_4
 
         private void menuFeatureEditByLocation_Click(object sender, EventArgs e)
         {
-
+            BeginEditFeature("Location");
         }
 
         private void menuFeatureEditByRectangle_Click(object sender, EventArgs e)
         {
-
+            BeginEditFeature("Rectangle");
         }
 
         private void menuFeatureEditByPolygon_Click(object sender, EventArgs e)
         {
-
+            BeginEditFeature("Polygon");
         }
 
         private void menuFeatureDeleteByLocation_Click(object sender, EventArgs e)
         {
-
+            BeginDeleteFeature("Location");
         }
 
         private void menuFeatureDeleteByRectangle_Click(object sender, EventArgs e)
         {
-
+            BeginDeleteFeature("Rectangle");
         }
 
         private void menuFeatureDeleteByPolygon_Click(object sender, EventArgs e)
         {
-
+            BeginDeleteFeature("Polygon");
         }
 
         private void menuFeatureBrowse_Click(object sender, EventArgs e)
@@ -283,32 +283,32 @@ namespace Lab03_4
 
         private void tlbFeatureEditByLocation_Click(object sender, EventArgs e)
         {
-
+            BeginEditFeature("Location");
         }
 
         private void tlbFeatureEditByRectangle_Click(object sender, EventArgs e)
         {
-
+            BeginEditFeature("Rectangle");
         }
 
         private void tlbFeatureEditByPolygon_Click(object sender, EventArgs e)
         {
-
+            BeginEditFeature("Polygon");
         }
 
         private void tlbFeatureDeleteByLocation_Click(object sender, EventArgs e)
         {
-
+            BeginDeleteFeature("Location");
         }
 
         private void tlbFeatureDeleteByRectangle_Click(object sender, EventArgs e)
         {
-
+            BeginDeleteFeature("Rectangle");
         }
 
         private void tlbFeatureDeleteByPolygon_Click(object sender, EventArgs e)
         {
-
+            BeginDeleteFeature("Polygon");
         }
 
         private void tlbFeatureBrowse_Click(object sender, EventArgs e)

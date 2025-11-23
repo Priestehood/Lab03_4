@@ -381,7 +381,7 @@ namespace Lab03_4
             this.menuFeatureNew.AutoToolTip = true;
             this.menuFeatureNew.Image = ((System.Drawing.Image)(resources.GetObject("menuFeatureNew.Image")));
             this.menuFeatureNew.Name = "menuFeatureNew";
-            this.menuFeatureNew.Size = new System.Drawing.Size(175, 40);
+            this.menuFeatureNew.Size = new System.Drawing.Size(315, 40);
             this.menuFeatureNew.Text = "添加";
             this.menuFeatureNew.ToolTipText = "添加新要素，并设置要素属性";
             this.menuFeatureNew.Click += new System.EventHandler(this.menuFeatureNew_Click);
@@ -395,7 +395,7 @@ namespace Lab03_4
             this.menuFeatureEditByPolygon});
             this.menuFeatureEdit.Image = ((System.Drawing.Image)(resources.GetObject("menuFeatureEdit.Image")));
             this.menuFeatureEdit.Name = "menuFeatureEdit";
-            this.menuFeatureEdit.Size = new System.Drawing.Size(175, 40);
+            this.menuFeatureEdit.Size = new System.Drawing.Size(315, 40);
             this.menuFeatureEdit.Text = "编辑";
             this.menuFeatureEdit.ToolTipText = "编辑当前选中图层的要素[几何与属性](老师只要求属性？";
             // 
@@ -404,7 +404,7 @@ namespace Lab03_4
             this.menuFeatureEditByLocation.AutoToolTip = true;
             this.menuFeatureEditByLocation.Image = ((System.Drawing.Image)(resources.GetObject("menuFeatureEditByLocation.Image")));
             this.menuFeatureEditByLocation.Name = "menuFeatureEditByLocation";
-            this.menuFeatureEditByLocation.Size = new System.Drawing.Size(285, 40);
+            this.menuFeatureEditByLocation.Size = new System.Drawing.Size(315, 40);
             this.menuFeatureEditByLocation.Text = "点选编辑";
             this.menuFeatureEditByLocation.ToolTipText = "通过点击地图选择要素并进行编辑";
             this.menuFeatureEditByLocation.Click += new System.EventHandler(this.menuFeatureEditByLocation_Click);
@@ -414,7 +414,7 @@ namespace Lab03_4
             this.menuFeatureEditByRectangle.AutoToolTip = true;
             this.menuFeatureEditByRectangle.Image = ((System.Drawing.Image)(resources.GetObject("menuFeatureEditByRectangle.Image")));
             this.menuFeatureEditByRectangle.Name = "menuFeatureEditByRectangle";
-            this.menuFeatureEditByRectangle.Size = new System.Drawing.Size(285, 40);
+            this.menuFeatureEditByRectangle.Size = new System.Drawing.Size(315, 40);
             this.menuFeatureEditByRectangle.Text = "框选编辑";
             this.menuFeatureEditByRectangle.ToolTipText = "使用矩形框选多个要素并进行编辑";
             this.menuFeatureEditByRectangle.Click += new System.EventHandler(this.menuFeatureEditByRectangle_Click);
@@ -424,7 +424,7 @@ namespace Lab03_4
             this.menuFeatureEditByPolygon.AutoToolTip = true;
             this.menuFeatureEditByPolygon.Image = ((System.Drawing.Image)(resources.GetObject("menuFeatureEditByPolygon.Image")));
             this.menuFeatureEditByPolygon.Name = "menuFeatureEditByPolygon";
-            this.menuFeatureEditByPolygon.Size = new System.Drawing.Size(285, 40);
+            this.menuFeatureEditByPolygon.Size = new System.Drawing.Size(315, 40);
             this.menuFeatureEditByPolygon.Text = "多边形选取编辑";
             this.menuFeatureEditByPolygon.ToolTipText = "绘制多边形选择多个要素进行编辑";
             this.menuFeatureEditByPolygon.Click += new System.EventHandler(this.menuFeatureEditByPolygon_Click);
@@ -432,7 +432,7 @@ namespace Lab03_4
             // toolSeparator8
             // 
             this.toolSeparator8.Name = "toolSeparator8";
-            this.toolSeparator8.Size = new System.Drawing.Size(172, 6);
+            this.toolSeparator8.Size = new System.Drawing.Size(312, 6);
             // 
             // menuFeatureDelete
             // 
@@ -443,7 +443,7 @@ namespace Lab03_4
             this.menuFeatureDeleteByPolygon});
             this.menuFeatureDelete.Image = ((System.Drawing.Image)(resources.GetObject("menuFeatureDelete.Image")));
             this.menuFeatureDelete.Name = "menuFeatureDelete";
-            this.menuFeatureDelete.Size = new System.Drawing.Size(175, 40);
+            this.menuFeatureDelete.Size = new System.Drawing.Size(315, 40);
             this.menuFeatureDelete.Text = "删除";
             this.menuFeatureDelete.ToolTipText = "删除当前选中图层中的要素";
             // 
@@ -452,7 +452,7 @@ namespace Lab03_4
             this.menuFeatureDeleteByLocation.AutoToolTip = true;
             this.menuFeatureDeleteByLocation.Image = ((System.Drawing.Image)(resources.GetObject("menuFeatureDeleteByLocation.Image")));
             this.menuFeatureDeleteByLocation.Name = "menuFeatureDeleteByLocation";
-            this.menuFeatureDeleteByLocation.Size = new System.Drawing.Size(285, 40);
+            this.menuFeatureDeleteByLocation.Size = new System.Drawing.Size(315, 40);
             this.menuFeatureDeleteByLocation.Text = "点选删除";
             this.menuFeatureDeleteByLocation.ToolTipText = "通过点击地图选择要素并将其删除";
             this.menuFeatureDeleteByLocation.Click += new System.EventHandler(this.menuFeatureDeleteByLocation_Click);
@@ -462,7 +462,7 @@ namespace Lab03_4
             this.menuFeatureDeleteByRectangle.AutoToolTip = true;
             this.menuFeatureDeleteByRectangle.Image = ((System.Drawing.Image)(resources.GetObject("menuFeatureDeleteByRectangle.Image")));
             this.menuFeatureDeleteByRectangle.Name = "menuFeatureDeleteByRectangle";
-            this.menuFeatureDeleteByRectangle.Size = new System.Drawing.Size(285, 40);
+            this.menuFeatureDeleteByRectangle.Size = new System.Drawing.Size(315, 40);
             this.menuFeatureDeleteByRectangle.Text = "框选删除";
             this.menuFeatureDeleteByRectangle.ToolTipText = "矩形框选多个要素并批量删除";
             this.menuFeatureDeleteByRectangle.Click += new System.EventHandler(this.menuFeatureDeleteByRectangle_Click);
@@ -472,7 +472,7 @@ namespace Lab03_4
             this.menuFeatureDeleteByPolygon.AutoToolTip = true;
             this.menuFeatureDeleteByPolygon.Image = ((System.Drawing.Image)(resources.GetObject("menuFeatureDeleteByPolygon.Image")));
             this.menuFeatureDeleteByPolygon.Name = "menuFeatureDeleteByPolygon";
-            this.menuFeatureDeleteByPolygon.Size = new System.Drawing.Size(285, 40);
+            this.menuFeatureDeleteByPolygon.Size = new System.Drawing.Size(315, 40);
             this.menuFeatureDeleteByPolygon.Text = "多边形选取删除";
             this.menuFeatureDeleteByPolygon.ToolTipText = "绘制多边形选择多个要素进行批量删除";
             this.menuFeatureDeleteByPolygon.Click += new System.EventHandler(this.menuFeatureDeleteByPolygon_Click);
@@ -480,14 +480,14 @@ namespace Lab03_4
             // toolSeparator9
             // 
             this.toolSeparator9.Name = "toolSeparator9";
-            this.toolSeparator9.Size = new System.Drawing.Size(172, 6);
+            this.toolSeparator9.Size = new System.Drawing.Size(312, 6);
             // 
             // menuFeatureBrowse
             // 
             this.menuFeatureBrowse.AutoToolTip = true;
             this.menuFeatureBrowse.Image = ((System.Drawing.Image)(resources.GetObject("menuFeatureBrowse.Image")));
             this.menuFeatureBrowse.Name = "menuFeatureBrowse";
-            this.menuFeatureBrowse.Size = new System.Drawing.Size(175, 40);
+            this.menuFeatureBrowse.Size = new System.Drawing.Size(315, 40);
             this.menuFeatureBrowse.Text = "浏览";
             this.menuFeatureBrowse.ToolTipText = "浏览当前选中图层的全部要素";
             this.menuFeatureBrowse.Click += new System.EventHandler(this.menuFeatureBrowse_Click);
@@ -497,7 +497,7 @@ namespace Lab03_4
             this.menuFeatureIdentify.AutoToolTip = true;
             this.menuFeatureIdentify.Image = ((System.Drawing.Image)(resources.GetObject("menuFeatureIdentify.Image")));
             this.menuFeatureIdentify.Name = "menuFeatureIdentify";
-            this.menuFeatureIdentify.Size = new System.Drawing.Size(175, 40);
+            this.menuFeatureIdentify.Size = new System.Drawing.Size(315, 40);
             this.menuFeatureIdentify.Text = "属性";
             this.menuFeatureIdentify.ToolTipText = "查看所选要素的属性信息";
             this.menuFeatureIdentify.Click += new System.EventHandler(this.menuFeatureIdentify_Click);
@@ -689,7 +689,7 @@ namespace Lab03_4
             this.tlbFeatureEditByLocation.AutoToolTip = true;
             this.tlbFeatureEditByLocation.Image = ((System.Drawing.Image)(resources.GetObject("tlbFeatureEditByLocation.Image")));
             this.tlbFeatureEditByLocation.Name = "tlbFeatureEditByLocation";
-            this.tlbFeatureEditByLocation.Size = new System.Drawing.Size(315, 40);
+            this.tlbFeatureEditByLocation.Size = new System.Drawing.Size(285, 40);
             this.tlbFeatureEditByLocation.Text = "点选编辑";
             this.tlbFeatureEditByLocation.ToolTipText = "通过点击地图选择要素并进行编辑";
             this.tlbFeatureEditByLocation.Click += new System.EventHandler(this.tlbFeatureEditByLocation_Click);
@@ -699,7 +699,7 @@ namespace Lab03_4
             this.tlbFeatureEditByRectangle.AutoToolTip = true;
             this.tlbFeatureEditByRectangle.Image = ((System.Drawing.Image)(resources.GetObject("tlbFeatureEditByRectangle.Image")));
             this.tlbFeatureEditByRectangle.Name = "tlbFeatureEditByRectangle";
-            this.tlbFeatureEditByRectangle.Size = new System.Drawing.Size(315, 40);
+            this.tlbFeatureEditByRectangle.Size = new System.Drawing.Size(285, 40);
             this.tlbFeatureEditByRectangle.Text = "框选编辑";
             this.tlbFeatureEditByRectangle.ToolTipText = "使用矩形框选多个要素并进行编辑";
             this.tlbFeatureEditByRectangle.Click += new System.EventHandler(this.tlbFeatureEditByRectangle_Click);
@@ -709,7 +709,7 @@ namespace Lab03_4
             this.tlbFeatureEditByPolygon.AutoToolTip = true;
             this.tlbFeatureEditByPolygon.Image = ((System.Drawing.Image)(resources.GetObject("tlbFeatureEditByPolygon.Image")));
             this.tlbFeatureEditByPolygon.Name = "tlbFeatureEditByPolygon";
-            this.tlbFeatureEditByPolygon.Size = new System.Drawing.Size(315, 40);
+            this.tlbFeatureEditByPolygon.Size = new System.Drawing.Size(285, 40);
             this.tlbFeatureEditByPolygon.Text = "多边形选取编辑";
             this.tlbFeatureEditByPolygon.ToolTipText = "绘制多边形选择多个要素进行编辑";
             this.tlbFeatureEditByPolygon.Click += new System.EventHandler(this.tlbFeatureEditByPolygon_Click);
@@ -733,7 +733,7 @@ namespace Lab03_4
             this.tlbFeatureDeleteByLocation.AutoToolTip = true;
             this.tlbFeatureDeleteByLocation.Image = ((System.Drawing.Image)(resources.GetObject("tlbFeatureDeleteByLocation.Image")));
             this.tlbFeatureDeleteByLocation.Name = "tlbFeatureDeleteByLocation";
-            this.tlbFeatureDeleteByLocation.Size = new System.Drawing.Size(315, 40);
+            this.tlbFeatureDeleteByLocation.Size = new System.Drawing.Size(285, 40);
             this.tlbFeatureDeleteByLocation.Text = "点选删除";
             this.tlbFeatureDeleteByLocation.ToolTipText = "通过点击地图选择要素并将其删除";
             this.tlbFeatureDeleteByLocation.Click += new System.EventHandler(this.tlbFeatureDeleteByLocation_Click);
@@ -743,7 +743,7 @@ namespace Lab03_4
             this.tlbFeatureDeleteByRectangle.AutoToolTip = true;
             this.tlbFeatureDeleteByRectangle.Image = ((System.Drawing.Image)(resources.GetObject("tlbFeatureDeleteByRectangle.Image")));
             this.tlbFeatureDeleteByRectangle.Name = "tlbFeatureDeleteByRectangle";
-            this.tlbFeatureDeleteByRectangle.Size = new System.Drawing.Size(315, 40);
+            this.tlbFeatureDeleteByRectangle.Size = new System.Drawing.Size(285, 40);
             this.tlbFeatureDeleteByRectangle.Text = "框选删除";
             this.tlbFeatureDeleteByRectangle.ToolTipText = "矩形框选多个要素并批量删除";
             this.tlbFeatureDeleteByRectangle.Click += new System.EventHandler(this.tlbFeatureDeleteByRectangle_Click);
@@ -753,7 +753,7 @@ namespace Lab03_4
             this.tlbFeatureDeleteByPolygon.AutoToolTip = true;
             this.tlbFeatureDeleteByPolygon.Image = ((System.Drawing.Image)(resources.GetObject("tlbFeatureDeleteByPolygon.Image")));
             this.tlbFeatureDeleteByPolygon.Name = "tlbFeatureDeleteByPolygon";
-            this.tlbFeatureDeleteByPolygon.Size = new System.Drawing.Size(315, 40);
+            this.tlbFeatureDeleteByPolygon.Size = new System.Drawing.Size(285, 40);
             this.tlbFeatureDeleteByPolygon.Text = "绘制多边形删除";
             this.tlbFeatureDeleteByPolygon.ToolTipText = "绘制多边形选择多个要素进行批量删除";
             this.tlbFeatureDeleteByPolygon.Click += new System.EventHandler(this.tlbFeatureDeleteByPolygon_Click);
