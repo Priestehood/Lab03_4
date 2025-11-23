@@ -7,6 +7,7 @@ using System.Windows.Forms;
 using Lab03_4.MyForms.FeatureManagement.Services;
 using Lab03_4.MyForms.FeatureManagement.Forms;
 using System.Data;
+using ESRI.ArcGIS.esriSystem;
 
 namespace Lab03_4
 {
@@ -191,6 +192,41 @@ namespace Lab03_4
             }
             return cursor;
         }
+        
+        /// <summary>
+        /// 使用IIdentify获取点选要素
+        /// </summary>
+        /// <param name="point"></param>
+        /// <returns></returns>
+        private IFeature GetFeatureByPointUsingIdentify(IPoint point)
+        {
+            IFeatureLayer layer = GetSelectedLayer() as IFeatureLayer;
+            IIdentify identifyLayer = (IIdentify)layer;
+
+            // 检查点的空间参考系是否与选中图层一致
+            IGeoDataset dataset = layer.FeatureClass as IGeoDataset;
+            if (point.SpatialReference != dataset.SpatialReference)
+            {
+                point.Project(dataset.SpatialReference);
+            }
+
+            IArray array = identifyLayer.Identify(point);
+            if (array is null) return null;
+
+            object obj = array.get_Element(0);
+            IFeatureIdentifyObj fobj = obj as IFeatureIdentifyObj;
+            IRowIdentifyObject irow = fobj as IRowIdentifyObject;
+            //获取选中的要素
+            IFeature feature = irow.Row as IFeature;
+            return feature;
+        }
+
+        private void UpdateMap()
+        {
+            axMap.ActiveView.PartialRefresh(esriViewDrawPhase.esriViewGraphics, null, null);
+            axMap.Refresh();
+            axMap.Update();
+        }
 
         /// <summary>
         /// （在地图中）选中符合条件的首个要素
@@ -199,15 +235,22 @@ namespace Lab03_4
         /// <returns>首个要素</returns>
         private IFeature SelectFirstFeature(IGeometry filterGeometry)
         {
-            IFeatureCursor cursor = GetFilteredFeatures(filterGeometry);
-            // 选中首个要素
-            IFeature feature = cursor.NextFeature();
+            IFeature feature;
+            if (filterGeometry is IPoint)
+            {
+                feature = GetFeatureByPointUsingIdentify(filterGeometry as IPoint);
+            }
+            else
+            {
+                IFeatureCursor cursor = GetFilteredFeatures(filterGeometry);
+                // 选中首个要素
+                feature = cursor.NextFeature();
+            }
+            // 选中要素
             axMap.Map.SelectFeature(GetSelectedLayer(), feature);
 
             // 刷新地图
-            axMap.ActiveView.PartialRefresh(esriViewDrawPhase.esriViewGraphics, null, null);
-            axMap.Refresh();
-            axMap.Update();
+            UpdateMap();
 
             // 返回
             return feature;
@@ -229,9 +272,7 @@ namespace Lab03_4
             }
 
             // 刷新地图
-            axMap.ActiveView.PartialRefresh(esriViewDrawPhase.esriViewGraphics, null, null);
-            axMap.Refresh();
-            axMap.Update();
+            UpdateMap();
 
             // 返回更新游标
             cursor = GetFilteredFeatures(filterGeometry, true);
@@ -273,8 +314,7 @@ namespace Lab03_4
             }
 
             // 刷新地图
-            axMap.Refresh();
-            axMap.Update();
+            UpdateMap();
         }
 
         /// <summary>
@@ -293,21 +333,29 @@ namespace Lab03_4
         /// <summary>
         /// 弹出提示，确认后删除要素
         /// </summary>
-        /// <param name="features">待删除要素的更新游标</param>
-        private void DeleteFeatures(IFeatureCursor features)
+        /// <param name="features">待删除的要素或更新游标</param>
+        private void DeleteFeatures(object features)
         {
             DialogResult dialogResult =
                 MessageBox.Show("是否要删除选中要素？该操作不可撤回", "删除要素", MessageBoxButtons.OKCancel);
             if (dialogResult != DialogResult.OK) return;
 
-            while (features.NextFeature() != null)
+            if (features is IFeatureCursor)
             {
-                features.DeleteFeature();
+                IFeatureCursor cursor = features as IFeatureCursor;
+                while (cursor.NextFeature() != null)
+                {
+                    cursor.DeleteFeature();
+                }
+            }
+            else if (features is IFeature)
+            {
+                IFeature feature = features as IFeature;
+                feature.Delete();
             }
 
             // 刷新地图
-            axMap.Refresh();
-            axMap.Update();
+            UpdateMap();
         }
 
         /// <summary>

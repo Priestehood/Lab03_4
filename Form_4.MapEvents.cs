@@ -84,7 +84,7 @@ namespace Lab03_4
                 IGeometry geometry = sketcher.Sketch(axMap, e);
                 if (geometry is null) return;
                 IFeature feature = SelectFirstFeature(geometry);
-                if (feature == null) return;
+                if (feature is null) return;
                 EditFeature(feature);
             }
             else if (mapOperation == MapOperationType.DeleteFeature)
@@ -92,8 +92,19 @@ namespace Lab03_4
                 axMap.Map.ClearSelection();
                 IGeometry geometry = sketcher.Sketch(axMap, e);
                 if (geometry is null) return;
-                IFeatureCursor features = SelectAllFeatures(geometry);
-                if (features == null) return;
+                object features;
+                if (geometry is IPoint)
+                {
+                    //IPoint point = new Point();
+                    //point.PutCoords(e.mapX, e.mapY);
+                    //features = SelectFirstFeature(point);
+                    features = SelectFirstFeature(geometry);
+                }
+                else
+                {
+                    features = SelectAllFeatures(geometry);
+                }
+                if (features is null) return;
                 DeleteFeatures(features);
                 axMap.Map.ClearSelection();
             }
@@ -103,8 +114,8 @@ namespace Lab03_4
                 IGeometry geometry = sketcher.Sketch(axMap, e);
                 if (geometry is null) return;
                 IFeature feature = SelectFirstFeature(geometry);
-                if (feature == null) return;
-                IdentifyFeature(feature);                
+                if (feature is null) return;
+                IdentifyFeature(feature);
             }
         }
 
