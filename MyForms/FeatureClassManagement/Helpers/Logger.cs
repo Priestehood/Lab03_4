@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 
-namespace Lab03_4.MyForms.FeatureClassManagement.Helpers
+namespace Lab04_4.MyForms.FeatureClassManagement.Helpers
 {
     /// <summary>
     /// 简单的日志记录工具

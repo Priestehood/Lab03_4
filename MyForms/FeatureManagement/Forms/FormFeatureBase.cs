@@ -6,7 +6,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace Lab03_4.MyForms.FeatureManagement.Forms
+namespace Lab04_4.MyForms.FeatureManagement.Forms
 {
     public partial class FormFeatureBase : Form
     {

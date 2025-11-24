@@ -4,7 +4,7 @@ using ESRI.ArcGIS.Display;
 using ESRI.ArcGIS.Geometry;
 using System;
 
-namespace Lab03_4.MyForms.FeatureManagement.Services
+namespace Lab04_4.MyForms.FeatureManagement.Services
 {
     /// <summary>
     /// 绘制图形形状枚举类型

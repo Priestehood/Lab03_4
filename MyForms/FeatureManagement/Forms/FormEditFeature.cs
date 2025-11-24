@@ -4,7 +4,7 @@ using ESRI.ArcGIS.Geometry;
 using System;
 using System.Windows.Forms;
 
-namespace Lab03_4.MyForms.FeatureManagement.Forms
+namespace Lab04_4.MyForms.FeatureManagement.Forms
 {
     public partial class FormEditFeature : FormFeatureBase
     {

@@ -7,7 +7,7 @@ using System.Drawing;
 using System.Windows.Forms;
 
 
-namespace Lab03_4
+namespace Lab04_4
 {
     public partial class Form_4 : Form
     {
@@ -18,7 +18,7 @@ namespace Lab03_4
         {
             InitializeComponent();
             this.Load += Form_4_Load;
-            InitializeFeatureClassManagement(); // Lab03_4新增
+            InitializeFeatureClassManagement();
         }
 
         #region 窗体加载和初始化
@@ -183,7 +183,6 @@ namespace Lab03_4
         }
         #endregion
 
-        // Lab03_4
         #region 菜单-要素类管理
 
         private void menuFeatureClassNew_Click(object sender, EventArgs e)

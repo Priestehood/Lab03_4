@@ -1,5 +1,5 @@
 
-namespace Lab03_4
+namespace Lab04_4
 {
     partial class Form_4
     {
@@ -1162,7 +1162,7 @@ namespace Lab03_4
         private System.Windows.Forms.ToolStripMenuItem menuFeatureDeleteByLocation;
         private System.Windows.Forms.ToolStripMenuItem menuFeatureDeleteByRectangle;
         private System.Windows.Forms.ToolStripMenuItem menuFeatureDeleteByPolygon;
-        // Lab03_4
+        // Lab04_4
         private System.Windows.Forms.ToolStripSeparator toolSeparator7;
         private System.Windows.Forms.ToolStripSeparator toolSeparator8;
         private System.Windows.Forms.ToolStripSeparator toolSeparator9;

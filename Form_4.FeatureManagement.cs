@@ -4,12 +4,12 @@ using ESRI.ArcGIS.Geometry;
 using System;
 using System.IO;
 using System.Windows.Forms;
-using Lab03_4.MyForms.FeatureManagement.Services;
-using Lab03_4.MyForms.FeatureManagement.Forms;
+using Lab04_4.MyForms.FeatureManagement.Services;
+using Lab04_4.MyForms.FeatureManagement.Forms;
 using System.Data;
 using ESRI.ArcGIS.esriSystem;
 
-namespace Lab03_4
+namespace Lab04_4
 {
     /// <summary>
     /// 地图操作枚举类型

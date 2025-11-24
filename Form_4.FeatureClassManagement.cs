@@ -2,14 +2,14 @@
 using ESRI.ArcGIS.DataManagementTools;
 using ESRI.ArcGIS.Geodatabase;
 using ESRI.ArcGIS.Geoprocessor;
-using Lab03_4.MyForms.FeatureClassManagement.Forms;
-using Lab03_4.MyForms.FeatureClassManagement.Helpers;
-using Lab03_4.MyForms.FeatureClassManagement.Services;
+using Lab04_4.MyForms.FeatureClassManagement.Forms;
+using Lab04_4.MyForms.FeatureClassManagement.Helpers;
+using Lab04_4.MyForms.FeatureClassManagement.Services;
 using System;
 using System.IO;
 using System.Windows.Forms;
 
-namespace Lab03_4
+namespace Lab04_4
 {
     public partial class Form_4 : Form
     {

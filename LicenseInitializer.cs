@@ -1,7 +1,7 @@
 using ESRI.ArcGIS;
 using System;
 
-namespace Lab03_4
+namespace Lab04_4
 {
     internal partial class LicenseInitializer
     {
