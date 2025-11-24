@@ -1,7 +1,7 @@
 ﻿using ESRI.ArcGIS.Geodatabase;
 using System;
 
-namespace Lab03_4.MyForms.FeatureClassManagement.Helpers
+namespace Lab04_4.MyForms.FeatureClassManagement.Helpers
 {
     /// <summary>
     /// 字段相关方法 | 工具类

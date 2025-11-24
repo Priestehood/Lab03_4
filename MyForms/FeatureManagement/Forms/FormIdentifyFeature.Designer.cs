@@ -1,5 +1,5 @@
 ﻿
-namespace Lab03_4.MyForms.FeatureManagement.Forms
+namespace Lab04_4.MyForms.FeatureManagement.Forms
 {
     partial class FormIdentifyFeature
     {
@@ -29,7 +29,7 @@ namespace Lab03_4.MyForms.FeatureManagement.Forms
         /// </summary>
         private void InitializeComponent()
         {
-            this.tblFieldValue = new Lab03_4.MyForms.FeatureManagement.Forms.FieldValueControl();
+            this.tblFieldValue = new Lab04_4.MyForms.FeatureManagement.Forms.FieldValueControl();
             this.SuspendLayout();
             // 
             // tblFieldValue

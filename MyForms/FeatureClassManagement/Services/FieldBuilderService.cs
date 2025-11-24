@@ -1,6 +1,6 @@
 ﻿using ESRI.ArcGIS.Geodatabase;
 using ESRI.ArcGIS.Geometry;
-using Lab03_4.MyForms.FeatureClassManagement.Helpers;
+using Lab04_4.MyForms.FeatureClassManagement.Helpers;
 using System;
 using System.Windows.Forms;
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lab03_4.MyForms.FeatureClassManagement.Services
+namespace Lab04_4.MyForms.FeatureClassManagement.Services
 {
     /// <summary>
     /// 构建字段集合 | 服务类

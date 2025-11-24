@@ -1,5 +1,5 @@
 ﻿
-namespace Lab03_4.MyForms.FeatureManagement.Forms
+namespace Lab04_4.MyForms.FeatureManagement.Forms
 {
     partial class FieldValueControl
     {

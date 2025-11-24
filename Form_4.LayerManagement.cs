@@ -7,7 +7,7 @@ using System.IO;
 using System.Windows.Forms;
 using System.Drawing;
 
-namespace Lab03_4
+namespace Lab04_4
 {
     public partial class Form_4 : Form
     {

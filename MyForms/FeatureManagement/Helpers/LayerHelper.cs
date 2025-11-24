@@ -7,7 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace Lab03_4.MyForms.FeatureManagement.Helpers
+namespace Lab04_4.MyForms.FeatureManagement.Helpers
 {
     class LayerHelper
     {

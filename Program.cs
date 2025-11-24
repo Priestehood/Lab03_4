@@ -3,11 +3,11 @@ using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
-namespace Lab03_4
+namespace Lab04_4
 {
     static class Program
     {
-        private static LicenseInitializer m_AOLicenseInitializer = new Lab03_4.LicenseInitializer();
+        private static LicenseInitializer m_AOLicenseInitializer = new Lab04_4.LicenseInitializer();
 
         /// <summary>
         /// The main entry point for the application.

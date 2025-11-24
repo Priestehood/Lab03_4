@@ -8,8 +8,8 @@
     <ProjectGuid>{6709CAAC-12AF-4842-A092-58CAD92B93E8}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Lab03_4</RootNamespace>
-    <AssemblyName>Lab03_4</AssemblyName>
+    <RootNamespace>Lab04_4</RootNamespace>
+    <AssemblyName>Lab04_4</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <FileUpgradeFlags>

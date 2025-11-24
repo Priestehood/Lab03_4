@@ -1,5 +1,5 @@
 ﻿
-namespace Lab03_4.MyForms.FeatureManagement.Forms
+namespace Lab04_4.MyForms.FeatureManagement.Forms
 {
     partial class FormEditFeature
     {
@@ -31,7 +31,7 @@ namespace Lab03_4.MyForms.FeatureManagement.Forms
         {
             this.btnConfirm = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
-            this.tblFieldValue = new Lab03_4.MyForms.FeatureManagement.Forms.FieldValueControl();
+            this.tblFieldValue = new Lab04_4.MyForms.FeatureManagement.Forms.FieldValueControl();
             this.SuspendLayout();
             // 
             // btnConfirm

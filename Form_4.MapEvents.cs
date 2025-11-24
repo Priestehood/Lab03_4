@@ -5,10 +5,10 @@ using ESRI.ArcGIS.Geometry;
 using System;
 using System.Linq;
 using System.Windows.Forms;
-using Lab03_4.MyForms.FeatureManagement.Services;
+using Lab04_4.MyForms.FeatureManagement.Services;
 using ESRI.ArcGIS.Geodatabase;
 
-namespace Lab03_4
+namespace Lab04_4
 {
     public partial class Form_4 : Form
     {
