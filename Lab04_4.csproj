@@ -483,15 +483,6 @@
     <EmbeddedResource Include="Resources\Lab04_SQDrawAPolyline.png" />
     <EmbeddedResource Include="Resources\Lab04_SQFeature.png" />
     <EmbeddedResource Include="Resources\Lab04_SQPolylineBufferAnalysis.png" />
-    <None Include="Resources\Lab04_EAFiltering1.png" />
-    <None Include="Resources\Lab04_EALoadE1.png" />
-    <None Include="Resources\Lab04_EAQueryElevation1.png" />
-    <None Include="Resources\Lab04_EASetElevationLayer1.png" />
-    <None Include="Resources\Lab04_SQAreaExtreme1.png" />
-    <None Include="Resources\Lab04_SQBufferAnalysis1.png" />
-    <None Include="Resources\Lab04_SQDrawAPolyline1.png" />
-    <None Include="Resources\Lab04_SQFeature1.png" />
-    <None Include="Resources\Lab04_SQPolylineBufferAnalysis1.png" />
     <Content Include="Resources\overview.png" />
   </ItemGroup>
   <ItemGroup />
