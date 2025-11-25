@@ -304,6 +304,9 @@
     <Compile Include="Form_4.MenuFile.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form_4.SpatialQuery.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form_4.ThumOperations.cs">
       <SubType>Form</SubType>
     </Compile>
