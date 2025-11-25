@@ -1404,6 +1404,7 @@ namespace Lab04_4
         private System.Windows.Forms.ToolStripMenuItem tsmThum;
         private System.Windows.Forms.ToolStripSeparator toolSeparator5;
         private System.Windows.Forms.ToolStripSeparator toolSeparator6;
+        // Lab03_4
         private System.Windows.Forms.ToolStripMenuItem menuFeatureClass;
         private System.Windows.Forms.ToolStripMenuItem menuFeature;
         private System.Windows.Forms.ToolStripMenuItem menuFeatureClassNew;
@@ -1420,7 +1421,6 @@ namespace Lab04_4
         private System.Windows.Forms.ToolStripMenuItem menuFeatureDeleteByLocation;
         private System.Windows.Forms.ToolStripMenuItem menuFeatureDeleteByRectangle;
         private System.Windows.Forms.ToolStripMenuItem menuFeatureDeleteByPolygon;
-        // Lab04_4
         private System.Windows.Forms.ToolStripSeparator toolSeparator7;
         private System.Windows.Forms.ToolStripSeparator toolSeparator8;
         private System.Windows.Forms.ToolStripSeparator toolSeparator9;
@@ -1441,6 +1441,7 @@ namespace Lab04_4
         private System.Windows.Forms.ToolStripMenuItem tlbFeatureDeleteByPolygon;
         private System.Windows.Forms.ToolStripButton tlbFeatureBrowse;
         private System.Windows.Forms.ToolStripButton tlbFeatureIdentify;
+        // Lab04_4
         private System.Windows.Forms.ToolStripMenuItem menuSpatialQuery;
         private System.Windows.Forms.ToolStripMenuItem menuSQQueryAreaExtremeValue;
         private System.Windows.Forms.ToolStripMenuItem menuSQElementClickQuery;
