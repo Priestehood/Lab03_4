@@ -474,6 +474,24 @@
     <None Include="Resources\Lab03_browserFeature.png" />
     <None Include="Resources\Lab03_infoFeature.png" />
     <Content Include="Resources\Lab03_manageField1.ico" />
+    <EmbeddedResource Include="Resources\Lab04_EAFiltering.png" />
+    <EmbeddedResource Include="Resources\Lab04_EALoadE.png" />
+    <EmbeddedResource Include="Resources\Lab04_EAQueryElevation.png" />
+    <EmbeddedResource Include="Resources\Lab04_EASetElevationLayer.png" />
+    <EmbeddedResource Include="Resources\Lab04_SQAreaExtreme.png" />
+    <EmbeddedResource Include="Resources\Lab04_SQBufferAnalysis.png" />
+    <EmbeddedResource Include="Resources\Lab04_SQDrawAPolyline.png" />
+    <EmbeddedResource Include="Resources\Lab04_SQFeature.png" />
+    <EmbeddedResource Include="Resources\Lab04_SQPolylineBufferAnalysis.png" />
+    <None Include="Resources\Lab04_EAFiltering1.png" />
+    <None Include="Resources\Lab04_EALoadE1.png" />
+    <None Include="Resources\Lab04_EAQueryElevation1.png" />
+    <None Include="Resources\Lab04_EASetElevationLayer1.png" />
+    <None Include="Resources\Lab04_SQAreaExtreme1.png" />
+    <None Include="Resources\Lab04_SQBufferAnalysis1.png" />
+    <None Include="Resources\Lab04_SQDrawAPolyline1.png" />
+    <None Include="Resources\Lab04_SQFeature1.png" />
+    <None Include="Resources\Lab04_SQPolylineBufferAnalysis1.png" />
     <Content Include="Resources\overview.png" />
   </ItemGroup>
   <ItemGroup />
