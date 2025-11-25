@@ -1,19 +1,61 @@
 ﻿using ESRI.ArcGIS.Carto;
-using ESRI.ArcGIS.Controls;
 using ESRI.ArcGIS.Geodatabase;
-using ESRI.ArcGIS.DataSourcesFile;
 using ESRI.ArcGIS.Geometry;
 using System;
-using System.IO;
 using System.Windows.Forms;
-using System.Drawing;
 using Lab04_4.MyForms.FeatureClassManagement.Helpers;
-using ESRI.ArcGIS.esriSystem;
+using Lab04_4.MyForms.SpatialQuery.Services;
+using Lab04_4.MyForms.SpatialQuery.Helpers;
 
 namespace Lab04_4
 {
     public partial class Form_4 : Form
     {
+        #region 初始化
+
+        // 服务实例
+        private AreaCalculation _areaCalculationService;
+        private FeatureHighlight _featureHighlightService;
+        private NavigationService _navigationService;
+
+        // 存储当前查询状态
+        private int _maxAreaFeatureOID = -1;
+        private int _minAreaFeatureOID = -1;
+        private IFeatureLayer _currentFeatureLayer = null;
+
+        // 服务属性 - 延迟初始化
+        private AreaCalculation AreaCalculationService
+        {
+            get
+            {
+                if (_areaCalculationService == null)
+                    _areaCalculationService = new AreaCalculation();
+                return _areaCalculationService;
+            }
+        }
+
+        private FeatureHighlight FeatureHighlightService
+        {
+            get
+            {
+                if (_featureHighlightService == null)
+                    _featureHighlightService = new FeatureHighlight(axMap);
+                return _featureHighlightService;
+            }
+        }
+
+        private NavigationService NavigationService
+        {
+            get
+            {
+                if (_navigationService == null)
+                    _navigationService = new NavigationService(axMap);
+                return _navigationService;
+            }
+        }
+
+        #endregion
+
         #region 空间查询-查询面积极值
 
         /// <summary>
@@ -27,174 +69,122 @@ namespace Lab04_4
                 if (!ValidateFeatureLayer(selectedLayer, "查询面积极值")) return;
 
                 IFeatureLayer featureLayer = selectedLayer as IFeatureLayer;
-                IFeatureClass featureClass = featureLayer.FeatureClass;
+                _currentFeatureLayer = featureLayer;
 
-                // 检查是否为面状要素
-                if (featureClass.ShapeType != esriGeometryType.esriGeometryPolygon)
-                {
-                    MessageBox.Show("请选择一个面状要素图层（建筑图层）", "提示",
-                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
+                if (!ValidatePolygonLayer(featureLayer)) return;
 
-                // 检查坐标系统 - 面积计算需要投影坐标系
-                bool isGeographic = IsGeographicCoordinateSystem(featureClass);
-                if (isGeographic)
-                {
-                    MessageBox.Show("警告：当前图层使用地理坐标系，面积计算将自动转换为平方米。",
-                        "坐标系提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
+                // 检查坐标系
+                bool isGeographic = CoordinateSystem.IsGeographicCoordinateSystem(featureLayer.FeatureClass);
+                CoordinateSystem.ShowCoordinateSystemWarning(isGeographic);
 
-                // 查找名称和ID字段
-                int nameFieldIndex = FindFieldIndex(featureClass, new[] { "NAME", "名称", "建筑名称", "BUILDING", "MC", "建筑名" });
-                int idFieldIndex = FindFieldIndex(featureClass, new[] { "ID", "FID", "OBJECTID", "编号", "BH" });
-
-                if (nameFieldIndex == -1 || idFieldIndex == -1)
-                {
-                    MessageBox.Show("未找到必要的字段（名称字段和ID字段）", "错误",
-                        MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
+                // 查找必要字段
+                var fieldIndices = FindRequiredFieldIndices(featureLayer.FeatureClass);
+                if (!fieldIndices.IsValid) return;
 
                 // 查询面积极值
-                var result = FindAreaExtremeValues(featureClass, nameFieldIndex, idFieldIndex, isGeographic);
+                var result = FindAreaExtremeValues(featureLayer.FeatureClass, fieldIndices, isGeographic);
 
                 // 显示结果
                 ShowAreaExtremeResult(result, selectedLayer.Name, isGeographic);
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"查询面积极值失败: {ex.Message}", "错误",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                ShowError($"查询面积极值失败: {ex.Message}");
                 Logger.Error("查询面积极值失败", ex);
             }
         }
 
+        #region 空间查询-查询面积极值-辅助方法
         /// <summary>
-        /// 检查是否为地理坐标系
+        /// 验证面状要素图层
         /// </summary>
-        private bool IsGeographicCoordinateSystem(IFeatureClass featureClass)
+        private bool ValidatePolygonLayer(IFeatureLayer featureLayer)
         {
-            try
+            if (featureLayer?.FeatureClass?.ShapeType != esriGeometryType.esriGeometryPolygon)
             {
-                IGeoDataset geoDataset = featureClass as IGeoDataset;
-                if (geoDataset?.SpatialReference == null) return false;
-
-                return IsGeographicCoordinateSystem(geoDataset.SpatialReference);
-            }
-            catch
-            {
+                MessageBox.Show("请选择一个面状要素图层（建筑图层）", "提示",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
+            return true;
         }
 
         /// <summary>
-        /// 检查是否为地理坐标系
+        /// 查找必要字段索引
         /// </summary>
-        private bool IsGeographicCoordinateSystem(ISpatialReference spatialReference)
+        private FieldIndicesResult FindRequiredFieldIndices(IFeatureClass featureClass)
         {
-            try
-            {
-                return spatialReference is IGeographicCoordinateSystem;
-            }
-            catch
-            {
-                return false;
-            }
-        }
+            string[] nameFields = { "NAME", "名称", "建筑名称", "BUILDING", "MC", "建筑名" };
+            string[] idFields = { "ID", "FID", "OBJECTID", "编号", "BH" };
 
-        /// <summary>
-        /// 查找字段索引
-        /// </summary>
-        private int FindFieldIndex(IFeatureClass featureClass, string[] fieldNames)
-        {
-            for (int i = 0; i < featureClass.Fields.FieldCount; i++)
+            int nameIndex = SQFieldHelper.FindFieldIndex(featureClass, nameFields);
+            int idIndex = SQFieldHelper.FindFieldIndex(featureClass, idFields);
+
+            if (nameIndex == -1 || idIndex == -1)
             {
-                string fieldName = featureClass.Fields.Field[i].Name.ToUpper();
-                foreach (string name in fieldNames)
-                {
-                    if (fieldName == name.ToUpper())
-                        return i;
-                }
+                MessageBox.Show("未找到必要的字段（名称字段和ID字段）", "错误",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return new FieldIndicesResult(-1, -1, false);
             }
-            return -1;
+
+            return new FieldIndicesResult(nameIndex, idIndex, true);
         }
 
         /// <summary>
         /// 查找面积最大和最小的要素
         /// </summary>
-        private AreaExtremeResult FindAreaExtremeValues(IFeatureClass featureClass, int nameFieldIndex, int idFieldIndex, bool isGeographic)
+        private AreaExtremeResult FindAreaExtremeValues(IFeatureClass featureClass,
+            FieldIndicesResult fieldIndices, bool isGeographic)
         {
-            IFeatureCursor featureCursor = featureClass.Search(null, false);
-            IFeature feature;
-
-            IFeature maxAreaFeature = null;
-            IFeature minAreaFeature = null;
-            double maxArea = double.MinValue;
-            double minArea = double.MaxValue;
-
-            int processedCount = 0;
-            int validGeometryCount = 0;
-
-            // 获取空间参考用于单位转换
-            ISpatialReference spatialReference = null;
-            IGeoDataset geoDataset = featureClass as IGeoDataset;
-            if (geoDataset != null)
+            var result = new AreaExtremeResult
             {
-                spatialReference = geoDataset.SpatialReference;
-            }
+                NameFieldIndex = fieldIndices.NameIndex,
+                IDFieldIndex = fieldIndices.IDIndex,
+                IsGeographicCoordinateSystem = isGeographic
+            };
 
+            IFeatureCursor featureCursor = null;
             try
             {
+                featureCursor = featureClass.Search(null, false);
+                IFeature feature;
+                IFeature maxAreaFeature = null;
+                IFeature minAreaFeature = null;
+                double maxArea = double.MinValue;
+                double minArea = double.MaxValue;
+
                 while ((feature = featureCursor.NextFeature()) != null)
                 {
-                    processedCount++;
+                    result.ProcessedCount++;
 
                     if (feature.Shape == null)
                     {
-                        Logger.Warn($"要素 {processedCount} 的几何图形为空");
+                        Logger.Warn($"要素 {result.ProcessedCount} 的几何图形为空");
                         continue;
                     }
 
-                    // 更安全的面积计算方法，传入空间参考信息
-                    double? currentArea = CalculateAreaSafely(feature.Shape, spatialReference, isGeographic);
+                    // 使用属性访问服务
+                    double? currentArea = AreaCalculationService.CalculateAreaSafely(
+                        feature.Shape, GetSpatialReference(featureClass), isGeographic);
+
                     if (!currentArea.HasValue)
                     {
-                        Logger.Warn($"要素 {processedCount} 的面积计算失败");
+                        Logger.Warn($"要素 {result.ProcessedCount} 的面积计算失败");
                         continue;
                     }
 
-                    validGeometryCount++;
-
-                    // 更新最大面积要素
-                    if (currentArea.Value > maxArea)
-                    {
-                        maxArea = currentArea.Value;
-                        maxAreaFeature = feature;
-                    }
-
-                    // 更新最小面积要素
-                    if (currentArea.Value < minArea)
-                    {
-                        minArea = currentArea.Value;
-                        minAreaFeature = feature;
-                    }
+                    result.ValidGeometryCount++;
+                    UpdateExtremeFeatures(feature, currentArea.Value, ref maxAreaFeature, ref minAreaFeature, ref maxArea, ref minArea);
                 }
 
-                Logger.Info($"处理了 {processedCount} 个要素，其中 {validGeometryCount} 个有有效几何图形");
+                result.MaxAreaFeature = maxAreaFeature;
+                result.MinAreaFeature = minAreaFeature;
+                result.MaxArea = maxArea;
+                result.MinArea = minArea;
 
-                return new AreaExtremeResult
-                {
-                    MaxAreaFeature = maxAreaFeature,
-                    MinAreaFeature = minAreaFeature,
-                    MaxArea = maxArea,
-                    MinArea = minArea,
-                    NameFieldIndex = nameFieldIndex,
-                    IDFieldIndex = idFieldIndex,
-                    ProcessedCount = processedCount,
-                    ValidGeometryCount = validGeometryCount,
-                    IsGeographicCoordinateSystem = isGeographic
-                };
+                // 存储要素OID用于后续操作
+                if (maxAreaFeature != null) _maxAreaFeatureOID = GetFeatureOID(maxAreaFeature);
+                if (minAreaFeature != null) _minAreaFeatureOID = GetFeatureOID(minAreaFeature);
             }
             finally
             {
@@ -202,190 +192,74 @@ namespace Lab04_4
                 if (featureCursor != null)
                     System.Runtime.InteropServices.Marshal.ReleaseComObject(featureCursor);
             }
+
+            Logger.Info($"处理了 {result.ProcessedCount} 个要素，其中 {result.ValidGeometryCount} 个有有效几何图形");
+            return result;
         }
 
         /// <summary>
-        /// 安全计算面积 - 使用多种方法确保面积计算正确
+        /// 获取空间参考
         /// </summary>
-        private double? CalculateAreaSafely(IGeometry geometry, ISpatialReference spatialReference, bool isGeographic)
+        private ISpatialReference GetSpatialReference(IFeatureClass featureClass)
+        {
+            IGeoDataset geoDataset = featureClass as IGeoDataset;
+            return geoDataset?.SpatialReference;
+        }
+
+        /// <summary>
+        /// 更新极值要素
+        /// </summary>
+        private void UpdateExtremeFeatures(IFeature feature, double currentArea,
+            ref IFeature maxAreaFeature, ref IFeature minAreaFeature,
+            ref double maxArea, ref double minArea)
+        {
+            if (currentArea > maxArea)
+            {
+                maxArea = currentArea;
+                maxAreaFeature = feature;
+            }
+
+            if (currentArea < minArea)
+            {
+                minArea = currentArea;
+                minAreaFeature = feature;
+            }
+        }
+
+        /// <summary>
+        /// 获取要素OID
+        /// </summary>
+        private int GetFeatureOID(IFeature feature)
         {
             try
             {
-                double? calculatedArea = null;
-
-                // 方法1: 直接使用 IArea 接口
-                IArea area = geometry as IArea;
-                if (area != null)
-                {
-                    double rawArea = area.Area;
-                    if (!double.IsNaN(rawArea) && !double.IsInfinity(rawArea) && rawArea >= 0)
-                    {
-                        calculatedArea = rawArea;
-                    }
-                }
-
-                // 方法2: 如果方法1失败，使用 ITopologicalOperator 确保几何图形有效
-                if (!calculatedArea.HasValue)
-                {
-                    ITopologicalOperator topoOperator = geometry as ITopologicalOperator;
-                    if (topoOperator != null)
-                    {
-                        try
-                        {
-                            // 使用 IClone 接口克隆几何对象
-                            IClone cloneable = geometry as IClone;
-                            if (cloneable != null)
-                            {
-                                IGeometry clonedGeometry = cloneable.Clone() as IGeometry;
-                                if (clonedGeometry != null)
-                                {
-                                    // 对克隆后的几何对象进行简化
-                                    ITopologicalOperator clonedTopoOperator = clonedGeometry as ITopologicalOperator;
-                                    if (clonedTopoOperator != null)
-                                    {
-                                        clonedTopoOperator.Simplify();
-
-                                        IArea simplifiedArea = clonedGeometry as IArea;
-                                        if (simplifiedArea != null)
-                                        {
-                                            double rawArea = simplifiedArea.Area;
-                                            if (!double.IsNaN(rawArea) && !double.IsInfinity(rawArea) && rawArea >= 0)
-                                            {
-                                                calculatedArea = rawArea;
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                        catch
-                        {
-                            // 简化失败，继续尝试其他方法
-                        }
-                    }
-                }
-
-                // 如果计算出了面积且是地理坐标系，则转换为平方米
-                if (calculatedArea.HasValue && isGeographic)
-                {
-                    calculatedArea = ConvertGeographicAreaToSquareMeters(calculatedArea.Value, geometry, spatialReference);
-                }
-
-                if (!calculatedArea.HasValue)
-                {
-                    Logger.Warn("所有面积计算方法都失败了");
-                }
-
-                return calculatedArea;
-            }
-            catch (Exception ex)
-            {
-                Logger.Error("面积计算过程中发生异常", ex);
-                return null;
-            }
-        }
-
-        /// <summary>
-        /// 将地理坐标系的面积（平方度）转换为平方米
-        /// </summary>
-        private double ConvertGeographicAreaToSquareMeters(double areaInSquareDegrees, IGeometry geometry, ISpatialReference spatialReference)
-        {
-            try
-            {
-                // 使用近似转换（基于WGS84椭球体）
-                IEnvelope envelope = geometry.Envelope;
-                if (envelope != null)
-                {
-                    double centerY = (envelope.YMax + envelope.YMin) / 2.0; // 中心纬度
-                    double latLength = 111320.0; // 1度纬度约111.32km
-                    double lonLength = 111320.0 * Math.Cos(centerY * Math.PI / 180.0); // 1度经度长度
-
-                    // 近似转换因子
-                    double conversionFactor = latLength * lonLength;
-                    double approximateArea = areaInSquareDegrees * conversionFactor;
-
-                    // 记录使用近似方法
-                    Logger.Info($"使用近似方法计算地理坐标系面积: {areaInSquareDegrees:F6} 平方度 ≈ {approximateArea:F6} 平方米");
-
-                    return approximateArea;
-                }
-
-                // 如果无法计算，返回原始值并记录警告
-                Logger.Warn("无法将地理坐标面积转换为平方米，使用原始平方度值");
-                return areaInSquareDegrees;
-            }
-            catch (Exception ex)
-            {
-                Logger.Error("地理坐标面积转换失败", ex);
-                return areaInSquareDegrees;
-            }
-        }
-
-        /// <summary>
-        /// 显示面积极值查询结果
-        /// </summary>
-        private void ShowAreaExtremeResult(AreaExtremeResult result, string layerName, bool isGeographic)
-        {
-            if (result.MaxAreaFeature == null || result.MinAreaFeature == null)
-            {
-                string messageA = "未找到有效的面状要素";
-                if (result.ProcessedCount > 0)
-                {
-                    messageA += $"\n\n处理了 {result.ProcessedCount} 个要素，但只有 {result.ValidGeometryCount} 个有有效的几何图形";
-                }
-
-                MessageBox.Show(messageA, "提示",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
-            }
-
-            string maxAreaName = GetFieldValueSafely(result.MaxAreaFeature, result.NameFieldIndex);
-            string maxAreaID = GetFieldValueSafely(result.MaxAreaFeature, result.IDFieldIndex);
-
-            string minAreaName = GetFieldValueSafely(result.MinAreaFeature, result.NameFieldIndex);
-            string minAreaID = GetFieldValueSafely(result.MinAreaFeature, result.IDFieldIndex);
-
-            // 确定面积单位和显示格式
-            string areaUnit = isGeographic ? "平方米" : GetAreaUnit(result.MaxAreaFeature);
-            string formatString = isGeographic ? "F8" : "F6"; // 平方米用8位小数，其他用6位
-
-            string message = $@"图层: {layerName}
-坐标系: {(isGeographic ? "地理坐标系（已转换为平方米）" : "投影坐标系")}
-
-面积最大的建筑:
-名称: {maxAreaName}
-ID: {maxAreaID}
-近似面积: {result.MaxArea.ToString(formatString)} {areaUnit}
-
-面积最小的建筑:
-名称: {minAreaName}
-ID: {minAreaID}
-近似面积: {result.MinArea.ToString(formatString)} {areaUnit}
-
-统计信息:
-- 处理要素总数: {result.ProcessedCount}
-- 有效几何图形: {result.ValidGeometryCount}";
-
-            MessageBox.Show(message, "建筑面积极值查询结果",
-                MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-            // 更新状态栏
-            UpdateStatus($"已查询要素面积极值 - 最大: {maxAreaName}, 最小: {minAreaName}");
-        }
-
-        /// <summary>
-        /// 安全获取字段值
-        /// </summary>
-        private string GetFieldValueSafely(IFeature feature, int fieldIndex)
-        {
-            try
-            {
-                object value = feature.get_Value(fieldIndex);
-                return value?.ToString() ?? "未知";
+                return feature.OID;
             }
             catch
             {
-                return "未知";
+                return -1;
+            }
+        }
+
+        /// <summary>
+        /// 高亮和导航
+        /// </summary>
+        private void HighlightAndNavigate(AreaExtremeResult result)
+        {
+            string maxAreaName = SQFieldHelper.GetFieldValueSafely(result.MaxAreaFeature, result.NameFieldIndex);
+            string minAreaName = SQFieldHelper.GetFieldValueSafely(result.MinAreaFeature, result.NameFieldIndex);
+
+            // 高亮显示要素 - 使用属性访问服务
+            if (FeatureHighlightService.HighlightFeatures(_currentFeatureLayer,
+                new[] { _maxAreaFeatureOID, _minAreaFeatureOID }))
+            {
+                // 显示导航选项 - 使用属性访问服务
+                NavigationService.ShowNavigationOptions(
+                    maxAreaName,
+                    minAreaName,
+                    () => NavigationService.ZoomToFeature(_currentFeatureLayer, _maxAreaFeatureOID),
+                    () => NavigationService.ZoomToFeature(_currentFeatureLayer, _minAreaFeatureOID)
+                );
             }
         }
 
@@ -402,7 +276,7 @@ ID: {minAreaID}
                     ISpatialReference spatialRef = geoDataset.SpatialReference;
 
                     // 检查是否为投影坐标系
-                    if (!IsGeographicCoordinateSystem(spatialRef))
+                    if (!CoordinateSystem.IsGeographicCoordinateSystem(spatialRef))
                     {
                         IProjectedCoordinateSystem projCS = spatialRef as IProjectedCoordinateSystem;
                         if (projCS != null)
@@ -431,27 +305,112 @@ ID: {minAreaID}
 
             return "平方单位";
         }
-
         #endregion
 
-        #region 辅助结构
-
+        #region 空间查询-查询面积极值-消息与提示
         /// <summary>
-        /// 面积极值查询结果
+        /// 显示面积极值查询结果
         /// </summary>
-        private struct AreaExtremeResult
+        private void ShowAreaExtremeResult(AreaExtremeResult result, string layerName, bool isGeographic)
         {
-            public IFeature MaxAreaFeature { get; set; }
-            public IFeature MinAreaFeature { get; set; }
-            public double MaxArea { get; set; }
-            public double MinArea { get; set; }
-            public int NameFieldIndex { get; set; }
-            public int IDFieldIndex { get; set; }
-            public int ProcessedCount { get; set; }
-            public int ValidGeometryCount { get; set; }
-            public bool IsGeographicCoordinateSystem { get; set; }
+            if (result.MaxAreaFeature == null || result.MinAreaFeature == null)
+            {
+                ShowNoValidFeaturesMessage(result);
+                return;
+            }
+
+            string message = BuildResultMessage(result, layerName, isGeographic);
+            DialogResult dialogResult = MessageBox.Show(message, "建筑面积极值查询结果",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+
+            if (dialogResult == DialogResult.Yes)
+            {
+                HighlightAndNavigate(result);
+            }
+
+            UpdateStatusBar(result);
         }
 
+        /// <summary>
+        /// 显示无有效要素消息
+        /// </summary>
+        private void ShowNoValidFeaturesMessage(AreaExtremeResult result)
+        {
+            string message = "未找到有效的面状要素";
+            if (result.ProcessedCount > 0)
+            {
+                message += $"\n\n处理了 {result.ProcessedCount} 个要素，但只有 {result.ValidGeometryCount} 个有有效的几何图形";
+            }
+
+            MessageBox.Show(message, "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        /// <summary>
+        /// 构建结果消息
+        /// </summary>
+        private string BuildResultMessage(AreaExtremeResult result, string layerName, bool isGeographic)
+        {
+            string maxAreaName = SQFieldHelper.GetFieldValueSafely(result.MaxAreaFeature, result.NameFieldIndex);
+            string maxAreaID = SQFieldHelper.GetFieldValueSafely(result.MaxAreaFeature, result.IDFieldIndex);
+            string minAreaName = SQFieldHelper.GetFieldValueSafely(result.MinAreaFeature, result.NameFieldIndex);
+            string minAreaID = SQFieldHelper.GetFieldValueSafely(result.MinAreaFeature, result.IDFieldIndex);
+
+            string areaUnit = isGeographic ? "平方米" : GetAreaUnit(result.MaxAreaFeature);
+            string formatString = isGeographic ? "F6" : "F8";
+
+            return $@"图层: {layerName}
+坐标系: {(isGeographic ? "地理坐标系（已转换为平方米）" : "投影坐标系")}
+
+面积最大的要素:
+名称: {maxAreaName}
+ID: {maxAreaID}
+近似面积: {result.MaxArea.ToString(formatString)} {areaUnit}
+
+面积最小的要素:
+名称: {minAreaName}
+ID: {minAreaID}
+近似面积: {result.MinArea.ToString(formatString)} {areaUnit}
+
+统计信息:
+- 处理要素总数: {result.ProcessedCount}
+- 有效几何图形: {result.ValidGeometryCount}
+
+是否要在地图上高亮显示这两个要素？";
+        }
+
+        /// <summary>
+        /// 更新状态栏
+        /// </summary>
+        private void UpdateStatusBar(AreaExtremeResult result)
+        {
+            string maxAreaName = SQFieldHelper.GetFieldValueSafely(result.MaxAreaFeature, result.NameFieldIndex);
+            string maxAreaID = SQFieldHelper.GetFieldValueSafely(result.MaxAreaFeature, result.IDFieldIndex);
+            string minAreaName = SQFieldHelper.GetFieldValueSafely(result.MinAreaFeature, result.NameFieldIndex);
+            string minAreaID = SQFieldHelper.GetFieldValueSafely(result.MinAreaFeature, result.IDFieldIndex);
+
+            // 处理名称为空的情况
+            string maxDisplayName = string.IsNullOrWhiteSpace(maxAreaName) || maxAreaName == "未知"
+                ? "未知"
+                : maxAreaName;
+
+            string minDisplayName = string.IsNullOrWhiteSpace(minAreaName) || minAreaName == "未知"
+                ? "未知"
+                : minAreaName;
+
+            UpdateStatus($"已查询要素面积极值 - 最大: {maxDisplayName}(ID: {maxAreaID}), 最小: {minDisplayName}(ID: {minAreaID})");
+        }
+
+        /// <summary>
+        /// 显示错误消息
+        /// </summary>
+        private void ShowError(string message)
+        {
+            MessageBox.Show(message, "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
         #endregion
+
+        #endregion
+
+
     }
 }

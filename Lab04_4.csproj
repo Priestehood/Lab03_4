@@ -362,6 +362,13 @@
     <Compile Include="MyForms\FeatureClassManagement\Helpers\GeometryTypeHelper.cs" />
     <Compile Include="MyForms\FeatureClassManagement\Helpers\SpatialReferenceHelper.cs" />
     <Compile Include="MyForms\FeatureClassManagement\Services\FieldBuilderService.cs" />
+    <Compile Include="MyForms\SpatialQuery\Helpers\AreaExtremeResult.cs" />
+    <Compile Include="MyForms\SpatialQuery\Helpers\ComObjectWrapper.cs" />
+    <Compile Include="MyForms\SpatialQuery\Helpers\CoordinateSystem.cs" />
+    <Compile Include="MyForms\SpatialQuery\Helpers\SQFieldHelper.cs" />
+    <Compile Include="MyForms\SpatialQuery\Services\AreaCalculation.cs" />
+    <Compile Include="MyForms\SpatialQuery\Services\FeatureHighlight.cs" />
+    <Compile Include="MyForms\SpatialQuery\Services\NavigationService.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="LicenseInitializer.cs" />
