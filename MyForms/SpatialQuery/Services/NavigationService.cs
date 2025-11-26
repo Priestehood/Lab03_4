@@ -53,7 +53,7 @@ namespace Lab04_4.MyForms.SpatialQuery.Services
             var form = new Form
             {
                 Text = "导航选项",
-                Size = new System.Drawing.Size(450, 200),
+                Size = new System.Drawing.Size(500, 200),
                 StartPosition = FormStartPosition.CenterParent,
                 FormBorderStyle = FormBorderStyle.FixedDialog,
                 MaximizeBox = false,
@@ -70,27 +70,49 @@ namespace Lab04_4.MyForms.SpatialQuery.Services
 
             var btnOK = new Button
             {
-                Text = "确定",
+                Text = "显示全图范围",
                 Location = new System.Drawing.Point(50, 100),
-                Size = new System.Drawing.Size(80, 30),
-                DialogResult = DialogResult.OK
+                Size = new System.Drawing.Size(120, 30),
+                // DialogResult = DialogResult.OK
+            };
+            btnOK.Click += (s, e) =>
+            {
+                // 点击确定后缩放到全图范围，但保持高亮
+                ZoomToFullExtent();
             };
 
             var btnMax = new Button
             {
                 Text = "查看最大面积要素",
-                Location = new System.Drawing.Point(150, 100),
+                Location = new System.Drawing.Point(180, 100),
                 Size = new System.Drawing.Size(120, 30)
             };
-            btnMax.Click += (s, e) => { zoomToMaxAction?.Invoke(); form.Close(); };
+            btnMax.Click += (s, e) => 
+            { 
+                zoomToMaxAction?.Invoke(); 
+                // form.Close(); 
+            };
 
             var btnMin = new Button
             {
                 Text = "查看最小面积要素",
-                Location = new System.Drawing.Point(280, 100),
+                Location = new System.Drawing.Point(310, 100),
                 Size = new System.Drawing.Size(120, 30)
             };
-            btnMin.Click += (s, e) => { zoomToMinAction?.Invoke(); form.Close(); };
+            btnMin.Click += (s, e) => 
+            { 
+                zoomToMinAction?.Invoke(); 
+                // form.Close(); 
+            };
+
+            form.FormClosing += (s, e) =>
+            {
+                // 只有当用户点击右上角关闭按钮时才取消高亮
+                if (form.DialogResult != DialogResult.OK)
+                {
+                    ClearHighlight();
+                }
+            };
 
             form.Controls.AddRange(new Control[] { label, btnOK, btnMax, btnMin });
 
@@ -132,6 +154,60 @@ namespace Lab04_4.MyForms.SpatialQuery.Services
             {
                 Logger.Error($"缩放到要素失败: {ex.Message}");
                 return false;
+            }
+        }
+
+        /// <summary>
+        /// 缩放到全图范围
+        /// </summary>
+        private void ZoomToFullExtent()
+        {
+            try
+            {
+                if (_mapControl != null)
+                {
+                    // 缩放到地图的全图范围
+                    _mapControl.Extent = _mapControl.FullExtent;
+
+                    // 刷新地图以保持高亮显示
+                    _mapControl.Refresh(esriViewDrawPhase.esriViewGeography, null, null);
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Warn($"缩放到全图范围失败: {ex.Message}");
+            }
+        }
+
+        /// <summary>
+        /// 清除要素高亮
+        /// </summary>
+        private void ClearHighlight()
+        {
+            try
+            {
+                if (_mapControl?.Map == null) return;
+
+                // 遍历所有图层，清除选择集
+                for (int i = 0; i < _mapControl.Map.LayerCount; i++)
+                {
+                    var layer = _mapControl.Map.get_Layer(i) as IFeatureLayer;
+                    if (layer != null)
+                    {
+                        var featureSelection = layer as IFeatureSelection;
+                        if (featureSelection != null)
+                        {
+                            featureSelection.Clear();
+                        }
+                    }
+                }
+
+                // 刷新地图
+                _mapControl.Refresh(esriViewDrawPhase.esriViewGeography, null, null);
+            }
+            catch (Exception ex)
+            {
+                Logger.Warn($"清除高亮失败: {ex.Message}");
             }
         }
     }
