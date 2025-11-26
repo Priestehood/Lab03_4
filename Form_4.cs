@@ -19,6 +19,7 @@ namespace Lab04_4
             InitializeComponent();
             this.Load += Form_4_Load;
             InitializeFeatureClassManagement();
+            InitializeElevationManager();
         }
 
         #region 窗体加载和初始化
@@ -344,7 +345,12 @@ namespace Lab04_4
 
         private void menuEALoadElevationData_Click(object sender, EventArgs e)
         {
+            LoadElevationDat();
+        }
 
+        private void menuEASetElevationLayer_Click(object sender, EventArgs e)
+        {
+            SetElevationLayers();
         }
 
         #endregion
@@ -353,9 +359,15 @@ namespace Lab04_4
 
         private void tlbEALoadElevationData_Click(object sender, EventArgs e)
         {
+            LoadElevationDat();
+        }
 
+        private void tlbEASetElevationLayer_Click(object sender, EventArgs e)
+        {
+            SetElevationLayers();
         }
 
         #endregion
+
     }
 }

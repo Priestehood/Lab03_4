@@ -6,6 +6,7 @@ using System;
 using System.IO;
 using System.Windows.Forms;
 using System.Drawing;
+using ESRI.ArcGIS.Geometry;
 
 namespace Lab04_4
 {
@@ -137,6 +138,20 @@ namespace Lab04_4
             IFeatureLayer featureLayer = new FeatureLayerClass();
             featureLayer.FeatureClass = featureClass;
             featureLayer.Name = layerName;
+
+            // 若是点图层，则加入高程管理器（默认不启用）
+            if (featureLayer.FeatureClass.ShapeType == esriGeometryType.esriGeometryPoint)
+            {
+                // 自动查找 Z 字段（常见字段名：Z、Elevation、Height 等）
+                string zField = FindZField(featureLayer.FeatureClass);
+
+                _elevationManager.AddSource(
+                    featureLayer,
+                    zField,         // 可能为 null，没关系，可在 UI 界面里选
+                    isFromDat: false,
+                    isEnabled: false
+                );
+            }
 
             axMap.AddLayer(featureLayer);
         }

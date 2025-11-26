@@ -545,7 +545,7 @@ namespace Lab04_4
             this.menuSQQueryAreaExtremeValue.AutoToolTip = true;
             this.menuSQQueryAreaExtremeValue.Image = ((System.Drawing.Image)(resources.GetObject("menuSQQueryAreaExtremeValue.Image")));
             this.menuSQQueryAreaExtremeValue.Name = "menuSQQueryAreaExtremeValue";
-            this.menuSQQueryAreaExtremeValue.Size = new System.Drawing.Size(224, 26);
+            this.menuSQQueryAreaExtremeValue.Size = new System.Drawing.Size(212, 26);
             this.menuSQQueryAreaExtremeValue.Text = "查询面积极值";
             this.menuSQQueryAreaExtremeValue.ToolTipText = "查询选中图层面积最大和最小的\r\n面要素，显示对应名称和ID号";
             this.menuSQQueryAreaExtremeValue.Click += new System.EventHandler(this.menuSQQueryAreaExtremeValue_Click);
@@ -555,14 +555,14 @@ namespace Lab04_4
             this.menuSQElementClickQuery.AutoToolTip = true;
             this.menuSQElementClickQuery.Image = ((System.Drawing.Image)(resources.GetObject("menuSQElementClickQuery.Image")));
             this.menuSQElementClickQuery.Name = "menuSQElementClickQuery";
-            this.menuSQElementClickQuery.Size = new System.Drawing.Size(224, 26);
+            this.menuSQElementClickQuery.Size = new System.Drawing.Size(212, 26);
             this.menuSQElementClickQuery.Text = "查询要素名称及ID";
             this.menuSQElementClickQuery.ToolTipText = "点击要素，显示其名称和ID";
             // 
             // toolSeparator10
             // 
             this.toolSeparator10.Name = "toolSeparator10";
-            this.toolSeparator10.Size = new System.Drawing.Size(221, 6);
+            this.toolSeparator10.Size = new System.Drawing.Size(209, 6);
             // 
             // menuSQPolylineBufferAnalysis
             // 
@@ -572,7 +572,7 @@ namespace Lab04_4
             this.menuSQBufferAnalysis});
             this.menuSQPolylineBufferAnalysis.Image = ((System.Drawing.Image)(resources.GetObject("menuSQPolylineBufferAnalysis.Image")));
             this.menuSQPolylineBufferAnalysis.Name = "menuSQPolylineBufferAnalysis";
-            this.menuSQPolylineBufferAnalysis.Size = new System.Drawing.Size(224, 26);
+            this.menuSQPolylineBufferAnalysis.Size = new System.Drawing.Size(212, 26);
             this.menuSQPolylineBufferAnalysis.Text = "多义线缓冲分析";
             this.menuSQPolylineBufferAnalysis.ToolTipText = "绘制多义线，计算缓冲区范围内\r\n相交的面要素并显示其面积";
             // 
@@ -615,7 +615,8 @@ namespace Lab04_4
             this.menuEALoadElevationData.Name = "menuEALoadElevationData";
             this.menuEALoadElevationData.Size = new System.Drawing.Size(224, 26);
             this.menuEALoadElevationData.Text = "加载高程点";
-            this.menuEALoadElevationData.ToolTipText = "从DAT/TXT文件加载高程点，自动识别Z字段\r\n并作为高程数据源加入，同时在地图中显示\r\n注：可在“设置高程图层”中关闭其高程源状态";
+            this.menuEALoadElevationData.ToolTipText = "从DAT/TXT文件加载高程点，自动识别Z字段\r\n并作为高程数据源加入，同时在地图中显示\r\n\r\n[注] 可在“设置高程图层”中关闭其高程源状态\r\n[格式] 每行三" +
+    "个值：X Y Z，以空格、制表符或逗号分隔";
             this.menuEALoadElevationData.Click += new System.EventHandler(this.menuEALoadElevationData_Click);
             // 
             // menuEASetElevationLayer
@@ -626,6 +627,7 @@ namespace Lab04_4
             this.menuEASetElevationLayer.Size = new System.Drawing.Size(224, 26);
             this.menuEASetElevationLayer.Text = "设置高程图层";
             this.menuEASetElevationLayer.ToolTipText = "从已加载的点图层中选择或取消图层作为\r\n高程数据源，并为每个图层指定高程字段";
+            this.menuEASetElevationLayer.Click += new System.EventHandler(this.menuEASetElevationLayer_Click);
             // 
             // toolSeparator11
             // 
@@ -1021,7 +1023,8 @@ namespace Lab04_4
             this.tlbEALoadElevationData.Name = "tlbEALoadElevationData";
             this.tlbEALoadElevationData.Size = new System.Drawing.Size(29, 24);
             this.tlbEALoadElevationData.Text = "加载高程点";
-            this.tlbEALoadElevationData.ToolTipText = "从DAT/TXT文件加载高程点，自动识别Z字段\r\n并作为高程数据源加入，同时在地图中显示\r\n注：可在“设置高程图层”中关闭其高程源状态";
+            this.tlbEALoadElevationData.ToolTipText = "从DAT/TXT文件加载高程点，自动识别Z字段\r\n并作为高程数据源加入，同时在地图中显示\r\n\r\n[注] 可在“设置高程图层”中关闭其高程源状态\r\n[格式] 每行三" +
+    "个值：X Y Z，以空格、制表符或逗号分隔";
             this.tlbEALoadElevationData.Click += new System.EventHandler(this.tlbEALoadElevationData_Click);
             // 
             // tlbEASetElevationLayer
@@ -1033,6 +1036,7 @@ namespace Lab04_4
             this.tlbEASetElevationLayer.Size = new System.Drawing.Size(29, 24);
             this.tlbEASetElevationLayer.Text = "设置高程图层";
             this.tlbEASetElevationLayer.ToolTipText = "从已加载的点图层中选择或取消图层作为\r\n高程数据源，并为每个图层指定高程字段";
+            this.tlbEASetElevationLayer.Click += new System.EventHandler(this.tlbEASetElevationLayer_Click);
             // 
             // tlbEAElevationPointFiltering
             // 
@@ -1075,7 +1079,7 @@ namespace Lab04_4
             this.tslMain.AutoSize = false;
             this.tslMain.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right)));
             this.tslMain.Name = "tslMain";
-            this.tslMain.Size = new System.Drawing.Size(280, 50);
+            this.tslMain.Size = new System.Drawing.Size(360, 50);
             this.tslMain.Text = "就绪！";
             this.tslMain.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tslMain.ToolTipText = "显示操作状态信息";
@@ -1100,7 +1104,7 @@ namespace Lab04_4
             // tslBlank1
             // 
             this.tslBlank1.Name = "tslBlank1";
-            this.tslBlank1.Size = new System.Drawing.Size(180, 50);
+            this.tslBlank1.Size = new System.Drawing.Size(61, 50);
             this.tslBlank1.Spring = true;
             // 
             // tslCopyright

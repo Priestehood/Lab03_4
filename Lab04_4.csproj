@@ -283,6 +283,9 @@
     <Compile Include="Form_4.Designer.cs">
       <DependentUpon>Form_4.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form_4.ElevationManager.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form_4.FeatureClassManagement.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -310,6 +313,17 @@
     <Compile Include="Form_4.ThumOperations.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="MyForms\ElevationManager\Services\ElevationManagerD.cs" />
+    <Compile Include="MyForms\ElevationManager\Forms\FormSelectElevationLayers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MyForms\ElevationManager\Forms\FormSelectElevationLayers.Designer.cs">
+      <DependentUpon>FormSelectElevationLayers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MyForms\ElevationManager\Helpers\DatFileParser.cs" />
+    <Compile Include="MyForms\ElevationManager\Helpers\InMemoryFeatureClass.cs" />
+    <Compile Include="MyForms\ElevationManager\Models\ElevationSource.cs" />
+    <Compile Include="MyForms\ElevationManager\Models\PointZ.cs" />
     <Compile Include="MyForms\FeatureClassManagement\Helpers\FieldHelper.cs" />
     <Compile Include="MyForms\FeatureClassManagement\Helpers\Logger.cs" />
     <Compile Include="MyForms\FeatureClassManagement\Services\ShapefileService.cs" />
@@ -377,6 +391,9 @@
     </Compile>
     <EmbeddedResource Include="Form_4.resx">
       <DependentUpon>Form_4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyForms\ElevationManager\Forms\FormSelectElevationLayers.resx">
+      <DependentUpon>FormSelectElevationLayers.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MyForms\FeatureManagement\Forms\FieldValueControl.resx">
       <DependentUpon>FieldValueControl.cs</DependentUpon>

@@ -1,5 +1,6 @@
 ﻿using ESRI.ArcGIS.Carto;
 using ESRI.ArcGIS.Controls;
+using ESRI.ArcGIS.Geodatabase;
 using ESRI.ArcGIS.Geometry;
 using System;
 using System.Drawing;
@@ -152,6 +153,53 @@ namespace Lab04_4
                 }
             }
         }
+
+        /// <summary>
+        /// 自动查找 Z 字段的工具函数
+        /// </summary>
+        private string FindZField(IFeatureClass fc)
+        {
+            string[] zNames = { "Z", "z", "Elevation", "elevation", "Height", "height", "H", "h" };
+
+            IFields fields = fc.Fields;
+            for (int i = 0; i < fields.FieldCount; i++)
+            {
+                IField field = fields.get_Field(i);
+                string fieldName = field.Name.ToUpper();
+
+                // 检查字段名称是否匹配常见的 Z 值字段
+                foreach (string possibleName in zNames)
+                {
+                    if (fieldName == possibleName.ToUpper())
+                    {
+                        // 确保字段类型是数值类型
+                        if (field.Type == esriFieldType.esriFieldTypeDouble ||
+                            field.Type == esriFieldType.esriFieldTypeSingle ||
+                            field.Type == esriFieldType.esriFieldTypeInteger ||
+                            field.Type == esriFieldType.esriFieldTypeSmallInteger)
+                        {
+                            return field.Name;
+                        }
+                    }
+                }
+            }
+
+            return null; // 没有找到合适的 Z 字段
+
+            //for (int i = 0; i < fc.Fields.FieldCount; i++)
+            //{
+            //    var fld = fc.Fields.get_Field(i);
+            //    if (fld.Type == esriFieldType.esriFieldTypeDouble ||
+            //        fld.Type == esriFieldType.esriFieldTypeSingle ||
+            //        fld.Type == esriFieldType.esriFieldTypeInteger)
+            //    {
+            //        if (zNames.Contains(fld.Name))
+            //            return fld.Name;
+            //    }
+            //}
+            //return null;
+        }
+
 
         #endregion
 
