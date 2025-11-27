@@ -320,5 +320,42 @@ namespace Lab04_4
 
         #endregion
 
+        // Lab04_4
+
+        #region 菜单-空间查询
+
+        private void menuSQQueryAreaExtremeValue_Click(object sender, EventArgs e)
+        {
+            QueryAreaExtremeValue();
+        }
+
+        #endregion
+
+        #region 工具栏-空间查询
+
+        private void tlbSQAreaExtremeValue_Click(object sender, EventArgs e)
+        {
+            QueryAreaExtremeValue();
+        }
+
+        #endregion
+
+        #region 菜单-高程分析
+
+        private void menuEALoadElevationData_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        #endregion
+
+        #region 工具栏-高程分析
+
+        private void tlbEALoadElevationData_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        #endregion
     }
 }
