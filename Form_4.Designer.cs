@@ -177,7 +177,7 @@ namespace Lab04_4
             this.menu.ShowItemToolTips = true;
             this.menu.Size = new System.Drawing.Size(1400, 28);
             this.menu.TabIndex = 0;
-            this.menu.Text = "²Ëµ¥";
+            this.menu.Text = "èœå•";
             // 
             // menuFile
             // 
@@ -192,16 +192,16 @@ namespace Lab04_4
             this.menuFileExit});
             this.menuFile.Name = "menuFile";
             this.menuFile.Size = new System.Drawing.Size(71, 24);
-            this.menuFile.Text = "ÎÄ¼ş(&F)";
-            this.menuFile.ToolTipText = "ÎÄ¼ş²Ù×÷";
+            this.menuFile.Text = "æ–‡ä»¶(&F)";
+            this.menuFile.ToolTipText = "æ–‡ä»¶æ“ä½œ";
             // 
             // menuFileNew
             // 
             this.menuFileNew.Image = ((System.Drawing.Image)(resources.GetObject("menuFileNew.Image")));
             this.menuFileNew.Name = "menuFileNew";
             this.menuFileNew.Size = new System.Drawing.Size(192, 26);
-            this.menuFileNew.Text = "ĞÂ½¨(&N)";
-            this.menuFileNew.ToolTipText = "ĞÂ½¨ÎÄµµ";
+            this.menuFileNew.Text = "æ–°å»º(&N)";
+            this.menuFileNew.ToolTipText = "æ–°å»ºæ–‡æ¡£";
             this.menuFileNew.Click += new System.EventHandler(this.menuFileNew_Click);
             // 
             // menuFileOpen
@@ -209,8 +209,8 @@ namespace Lab04_4
             this.menuFileOpen.Image = ((System.Drawing.Image)(resources.GetObject("menuFileOpen.Image")));
             this.menuFileOpen.Name = "menuFileOpen";
             this.menuFileOpen.Size = new System.Drawing.Size(192, 26);
-            this.menuFileOpen.Text = "´ò¿ª(&O)";
-            this.menuFileOpen.ToolTipText = "´ò¿ªÒÑÓĞµÄÎÄµµ";
+            this.menuFileOpen.Text = "æ‰“å¼€(&O)";
+            this.menuFileOpen.ToolTipText = "æ‰“å¼€å·²æœ‰çš„æ–‡æ¡£";
             this.menuFileOpen.Click += new System.EventHandler(this.menuFileOpen_Click);
             // 
             // toolSeparator2
@@ -224,8 +224,8 @@ namespace Lab04_4
             this.menuFileSave.Name = "menuFileSave";
             this.menuFileSave.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
             this.menuFileSave.Size = new System.Drawing.Size(192, 26);
-            this.menuFileSave.Text = "±£´æ";
-            this.menuFileSave.ToolTipText = "±£´æ";
+            this.menuFileSave.Text = "ä¿å­˜";
+            this.menuFileSave.ToolTipText = "ä¿å­˜";
             this.menuFileSave.Click += new System.EventHandler(this.menuFileSave_Click);
             // 
             // toolSeparator1
@@ -240,8 +240,8 @@ namespace Lab04_4
             this.menuFileCloseAll.ShortcutKeyDisplayString = "Ctrl+Del";
             this.menuFileCloseAll.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Delete)));
             this.menuFileCloseAll.Size = new System.Drawing.Size(192, 26);
-            this.menuFileCloseAll.Text = "¹Ø±Õ";
-            this.menuFileCloseAll.ToolTipText = "Çå¿ÕËùÓĞÍ¼²ã";
+            this.menuFileCloseAll.Text = "å…³é—­";
+            this.menuFileCloseAll.ToolTipText = "æ¸…ç©ºæ‰€æœ‰å›¾å±‚";
             this.menuFileCloseAll.Click += new System.EventHandler(this.menuFileCloseAll_Click);
             // 
             // menuFileExit
@@ -250,8 +250,8 @@ namespace Lab04_4
             this.menuFileExit.Name = "menuFileExit";
             this.menuFileExit.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Q)));
             this.menuFileExit.Size = new System.Drawing.Size(192, 26);
-            this.menuFileExit.Text = "ÍË³ö";
-            this.menuFileExit.ToolTipText = "ÍË³ö³ÌĞò";
+            this.menuFileExit.Text = "é€€å‡º";
+            this.menuFileExit.ToolTipText = "é€€å‡ºç¨‹åº";
             this.menuFileExit.Click += new System.EventHandler(this.menuFileExit_Click);
             // 
             // menuLayers
@@ -268,16 +268,16 @@ namespace Lab04_4
             this.menuLayerThum});
             this.menuLayers.Name = "menuLayers";
             this.menuLayers.Size = new System.Drawing.Size(71, 24);
-            this.menuLayers.Text = "Í¼²ã(&L)";
-            this.menuLayers.ToolTipText = "Í¼²ã²Ù×÷";
+            this.menuLayers.Text = "å›¾å±‚(&L)";
+            this.menuLayers.ToolTipText = "å›¾å±‚æ“ä½œ";
             // 
             // menuLayerAllShp
             // 
             this.menuLayerAllShp.Image = ((System.Drawing.Image)(resources.GetObject("menuLayerAllShp.Image")));
             this.menuLayerAllShp.Name = "menuLayerAllShp";
             this.menuLayerAllShp.Size = new System.Drawing.Size(227, 26);
-            this.menuLayerAllShp.Text = "´ò¿ªSHPÎÄ¼ş¼Ğ";
-            this.menuLayerAllShp.ToolTipText = "¼ÓÔØËùÑ¡Ä¿Â¼ÏÂµÄËùÓĞSHPÎÄ¼ş";
+            this.menuLayerAllShp.Text = "æ‰“å¼€SHPæ–‡ä»¶å¤¹";
+            this.menuLayerAllShp.ToolTipText = "åŠ è½½æ‰€é€‰ç›®å½•ä¸‹çš„æ‰€æœ‰SHPæ–‡ä»¶";
             this.menuLayerAllShp.Click += new System.EventHandler(this.menuLayerAllShp_Click);
             // 
             // menuLayerAddShp
@@ -285,8 +285,8 @@ namespace Lab04_4
             this.menuLayerAddShp.Image = ((System.Drawing.Image)(resources.GetObject("menuLayerAddShp.Image")));
             this.menuLayerAddShp.Name = "menuLayerAddShp";
             this.menuLayerAddShp.Size = new System.Drawing.Size(227, 26);
-            this.menuLayerAddShp.Text = "¼ÓÔØSHPÎÄ¼ş";
-            this.menuLayerAddShp.ToolTipText = "¼ÓÔØÑ¡¶¨µÄSHPÎÄ¼ş";
+            this.menuLayerAddShp.Text = "åŠ è½½SHPæ–‡ä»¶";
+            this.menuLayerAddShp.ToolTipText = "åŠ è½½é€‰å®šçš„SHPæ–‡ä»¶";
             this.menuLayerAddShp.Click += new System.EventHandler(this.menuLayerAddShp_Click);
             // 
             // toolSeparator3
@@ -301,8 +301,8 @@ namespace Lab04_4
             this.menuLayerRemove.ShortcutKeyDisplayString = "Shift+Del";
             this.menuLayerRemove.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Shift | System.Windows.Forms.Keys.Delete)));
             this.menuLayerRemove.Size = new System.Drawing.Size(227, 26);
-            this.menuLayerRemove.Text = "ÒÆ³ı";
-            this.menuLayerRemove.ToolTipText = "ÒÆ³ıµ±Ç°Ñ¡ÖĞµÄÍ¼²ã";
+            this.menuLayerRemove.Text = "ç§»é™¤";
+            this.menuLayerRemove.ToolTipText = "ç§»é™¤å½“å‰é€‰ä¸­çš„å›¾å±‚";
             this.menuLayerRemove.Click += new System.EventHandler(this.menuLayerRemove_Click);
             // 
             // toolSeparator4
@@ -315,8 +315,8 @@ namespace Lab04_4
             this.menuLayerSelectable.Image = ((System.Drawing.Image)(resources.GetObject("menuLayerSelectable.Image")));
             this.menuLayerSelectable.Name = "menuLayerSelectable";
             this.menuLayerSelectable.Size = new System.Drawing.Size(227, 26);
-            this.menuLayerSelectable.Text = "ÉèÖÃÎªÎ¨Ò»¿ÉÑ¡Í¼²ã";
-            this.menuLayerSelectable.ToolTipText = "½öµ±Ç°Ñ¡ÖĞµÄÍ¼²ã¿ÉÑ¡";
+            this.menuLayerSelectable.Text = "è®¾ç½®ä¸ºå”¯ä¸€å¯é€‰å›¾å±‚";
+            this.menuLayerSelectable.ToolTipText = "ä»…å½“å‰é€‰ä¸­çš„å›¾å±‚å¯é€‰";
             this.menuLayerSelectable.Click += new System.EventHandler(this.menuLayerSelectable_Click);
             // 
             // menuLayerVisible
@@ -325,8 +325,8 @@ namespace Lab04_4
             this.menuLayerVisible.Name = "menuLayerVisible";
             this.menuLayerVisible.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.H)));
             this.menuLayerVisible.Size = new System.Drawing.Size(227, 26);
-            this.menuLayerVisible.Text = "ÏÔÊ¾/Òş²Ø";
-            this.menuLayerVisible.ToolTipText = "ÇĞ»»µ±Ç°Ñ¡ÖĞÍ¼²ãµÄ¿É¼ûĞÔ£¨ÏÔÊ¾ / Òş²Ø£©";
+            this.menuLayerVisible.Text = "æ˜¾ç¤º/éšè—";
+            this.menuLayerVisible.ToolTipText = "åˆ‡æ¢å½“å‰é€‰ä¸­å›¾å±‚çš„å¯è§æ€§ï¼ˆæ˜¾ç¤º / éšè—ï¼‰";
             this.menuLayerVisible.Click += new System.EventHandler(this.menuLayerVisible_Click);
             // 
             // menuLayerThum
@@ -334,8 +334,8 @@ namespace Lab04_4
             this.menuLayerThum.Image = ((System.Drawing.Image)(resources.GetObject("menuLayerThum.Image")));
             this.menuLayerThum.Name = "menuLayerThum";
             this.menuLayerThum.Size = new System.Drawing.Size(227, 26);
-            this.menuLayerThum.Text = "Ìí¼Óµ½Ó¥ÑÛ";
-            this.menuLayerThum.ToolTipText = "Ìí¼Óµ±Ç°Ñ¡ÖĞµÄÍ¼²ãÖÁÓ¥ÑÛÍ¼";
+            this.menuLayerThum.Text = "æ·»åŠ åˆ°é¹°çœ¼";
+            this.menuLayerThum.ToolTipText = "æ·»åŠ å½“å‰é€‰ä¸­çš„å›¾å±‚è‡³é¹°çœ¼å›¾";
             this.menuLayerThum.Click += new System.EventHandler(this.menuLayerThum_Click);
             // 
             // menuFeatureClass
@@ -348,8 +348,8 @@ namespace Lab04_4
             this.menuFeatureClassDelete});
             this.menuFeatureClass.Name = "menuFeatureClass";
             this.menuFeatureClass.Size = new System.Drawing.Size(98, 24);
-            this.menuFeatureClass.Text = "ÒªËØÀà¹ÜÀí";
-            this.menuFeatureClass.ToolTipText = "²Ù×÷ÒªËØÀà";
+            this.menuFeatureClass.Text = "è¦ç´ ç±»ç®¡ç†";
+            this.menuFeatureClass.ToolTipText = "æ“ä½œè¦ç´ ç±»";
             // 
             // menuFeatureClassNew
             // 
@@ -357,8 +357,8 @@ namespace Lab04_4
             this.menuFeatureClassNew.Image = ((System.Drawing.Image)(resources.GetObject("menuFeatureClassNew.Image")));
             this.menuFeatureClassNew.Name = "menuFeatureClassNew";
             this.menuFeatureClassNew.Size = new System.Drawing.Size(167, 26);
-            this.menuFeatureClassNew.Text = "´´½¨ÒªËØÀà";
-            this.menuFeatureClassNew.ToolTipText = "´´½¨ĞÂÒªËØÀà²¢ÉèÖÃÃû³ÆÓë×Ö¶Î";
+            this.menuFeatureClassNew.Text = "åˆ›å»ºè¦ç´ ç±»";
+            this.menuFeatureClassNew.ToolTipText = "åˆ›å»ºæ–°è¦ç´ ç±»å¹¶è®¾ç½®åç§°ä¸å­—æ®µ";
             this.menuFeatureClassNew.Click += new System.EventHandler(this.menuFeatureClassNew_Click);
             // 
             // menuFeatureClassEdit
@@ -367,8 +367,8 @@ namespace Lab04_4
             this.menuFeatureClassEdit.Image = ((System.Drawing.Image)(resources.GetObject("menuFeatureClassEdit.Image")));
             this.menuFeatureClassEdit.Name = "menuFeatureClassEdit";
             this.menuFeatureClassEdit.Size = new System.Drawing.Size(167, 26);
-            this.menuFeatureClassEdit.Text = "¹ÜÀí×Ö¶Î";
-            this.menuFeatureClassEdit.ToolTipText = "±à¼­Ñ¡ÖĞÒªËØÀàµÄ×Ö¶Î";
+            this.menuFeatureClassEdit.Text = "ç®¡ç†å­—æ®µ";
+            this.menuFeatureClassEdit.ToolTipText = "ç¼–è¾‘é€‰ä¸­è¦ç´ ç±»çš„å­—æ®µ";
             this.menuFeatureClassEdit.Click += new System.EventHandler(this.menuFeatureClassEdit_Click);
             // 
             // toolSeparator7
@@ -382,8 +382,8 @@ namespace Lab04_4
             this.menuFeatureClassDelete.Image = ((System.Drawing.Image)(resources.GetObject("menuFeatureClassDelete.Image")));
             this.menuFeatureClassDelete.Name = "menuFeatureClassDelete";
             this.menuFeatureClassDelete.Size = new System.Drawing.Size(167, 26);
-            this.menuFeatureClassDelete.Text = "É¾³ıÒªËØÀà";
-            this.menuFeatureClassDelete.ToolTipText = "É¾³ıµ±Ç°Ñ¡ÖĞµÄÒªËØÀà";
+            this.menuFeatureClassDelete.Text = "åˆ é™¤è¦ç´ ç±»";
+            this.menuFeatureClassDelete.ToolTipText = "åˆ é™¤å½“å‰é€‰ä¸­çš„è¦ç´ ç±»";
             this.menuFeatureClassDelete.Click += new System.EventHandler(this.menuFeatureClassDelete_Click);
             // 
             // menuFeature
@@ -399,8 +399,8 @@ namespace Lab04_4
             this.menuFeatureIdentify});
             this.menuFeature.Name = "menuFeature";
             this.menuFeature.Size = new System.Drawing.Size(83, 24);
-            this.menuFeature.Text = "ÒªËØ¹ÜÀí";
-            this.menuFeature.ToolTipText = "¹ÜÀíµ±Ç°Í¼²ãµÄÒªËØ£¬°üÀ¨Ìí¼Ó¡¢±à¼­¡¢É¾³ı¡¢ä¯ÀÀÓëÊôĞÔ²é¿´";
+            this.menuFeature.Text = "è¦ç´ ç®¡ç†";
+            this.menuFeature.ToolTipText = "ç®¡ç†å½“å‰å›¾å±‚çš„è¦ç´ ï¼ŒåŒ…æ‹¬æ·»åŠ ã€ç¼–è¾‘ã€åˆ é™¤ã€æµè§ˆä¸å±æ€§æŸ¥çœ‹";
             // 
             // menuFeatureNew
             // 
@@ -408,8 +408,8 @@ namespace Lab04_4
             this.menuFeatureNew.Image = ((System.Drawing.Image)(resources.GetObject("menuFeatureNew.Image")));
             this.menuFeatureNew.Name = "menuFeatureNew";
             this.menuFeatureNew.Size = new System.Drawing.Size(122, 26);
-            this.menuFeatureNew.Text = "Ìí¼Ó";
-            this.menuFeatureNew.ToolTipText = "Ìí¼ÓĞÂÒªËØ£¬²¢ÉèÖÃÒªËØÊôĞÔ";
+            this.menuFeatureNew.Text = "æ·»åŠ ";
+            this.menuFeatureNew.ToolTipText = "æ·»åŠ æ–°è¦ç´ ï¼Œå¹¶è®¾ç½®è¦ç´ å±æ€§";
             this.menuFeatureNew.Click += new System.EventHandler(this.menuFeatureNew_Click);
             // 
             // menuFeatureEdit
@@ -422,8 +422,8 @@ namespace Lab04_4
             this.menuFeatureEdit.Image = ((System.Drawing.Image)(resources.GetObject("menuFeatureEdit.Image")));
             this.menuFeatureEdit.Name = "menuFeatureEdit";
             this.menuFeatureEdit.Size = new System.Drawing.Size(122, 26);
-            this.menuFeatureEdit.Text = "±à¼­";
-            this.menuFeatureEdit.ToolTipText = "±à¼­µ±Ç°Ñ¡ÖĞÍ¼²ãµÄÒªËØ[¼¸ºÎÓëÊôĞÔ](ÀÏÊ¦Ö»ÒªÇóÊôĞÔ£¿";
+            this.menuFeatureEdit.Text = "ç¼–è¾‘";
+            this.menuFeatureEdit.ToolTipText = "ç¼–è¾‘å½“å‰é€‰ä¸­å›¾å±‚çš„è¦ç´ [å‡ ä½•ä¸å±æ€§](è€å¸ˆåªè¦æ±‚å±æ€§ï¼Ÿ";
             // 
             // menuFeatureEditByLocation
             // 
@@ -431,8 +431,8 @@ namespace Lab04_4
             this.menuFeatureEditByLocation.Image = ((System.Drawing.Image)(resources.GetObject("menuFeatureEditByLocation.Image")));
             this.menuFeatureEditByLocation.Name = "menuFeatureEditByLocation";
             this.menuFeatureEditByLocation.Size = new System.Drawing.Size(197, 26);
-            this.menuFeatureEditByLocation.Text = "µãÑ¡±à¼­";
-            this.menuFeatureEditByLocation.ToolTipText = "Í¨¹ıµã»÷µØÍ¼Ñ¡ÔñÒªËØ²¢½øĞĞ±à¼­";
+            this.menuFeatureEditByLocation.Text = "ç‚¹é€‰ç¼–è¾‘";
+            this.menuFeatureEditByLocation.ToolTipText = "é€šè¿‡ç‚¹å‡»åœ°å›¾é€‰æ‹©è¦ç´ å¹¶è¿›è¡Œç¼–è¾‘";
             this.menuFeatureEditByLocation.Click += new System.EventHandler(this.menuFeatureEditByLocation_Click);
             // 
             // menuFeatureEditByRectangle
@@ -441,8 +441,8 @@ namespace Lab04_4
             this.menuFeatureEditByRectangle.Image = ((System.Drawing.Image)(resources.GetObject("menuFeatureEditByRectangle.Image")));
             this.menuFeatureEditByRectangle.Name = "menuFeatureEditByRectangle";
             this.menuFeatureEditByRectangle.Size = new System.Drawing.Size(197, 26);
-            this.menuFeatureEditByRectangle.Text = "¿òÑ¡±à¼­";
-            this.menuFeatureEditByRectangle.ToolTipText = "Ê¹ÓÃ¾ØĞÎ¿òÑ¡¶à¸öÒªËØ²¢½øĞĞ±à¼­";
+            this.menuFeatureEditByRectangle.Text = "æ¡†é€‰ç¼–è¾‘";
+            this.menuFeatureEditByRectangle.ToolTipText = "ä½¿ç”¨çŸ©å½¢æ¡†é€‰å¤šä¸ªè¦ç´ å¹¶è¿›è¡Œç¼–è¾‘";
             this.menuFeatureEditByRectangle.Click += new System.EventHandler(this.menuFeatureEditByRectangle_Click);
             // 
             // menuFeatureEditByPolygon
@@ -451,8 +451,8 @@ namespace Lab04_4
             this.menuFeatureEditByPolygon.Image = ((System.Drawing.Image)(resources.GetObject("menuFeatureEditByPolygon.Image")));
             this.menuFeatureEditByPolygon.Name = "menuFeatureEditByPolygon";
             this.menuFeatureEditByPolygon.Size = new System.Drawing.Size(197, 26);
-            this.menuFeatureEditByPolygon.Text = "¶à±ßĞÎÑ¡È¡±à¼­";
-            this.menuFeatureEditByPolygon.ToolTipText = "»æÖÆ¶à±ßĞÎÑ¡Ôñ¶à¸öÒªËØ½øĞĞ±à¼­";
+            this.menuFeatureEditByPolygon.Text = "å¤šè¾¹å½¢é€‰å–ç¼–è¾‘";
+            this.menuFeatureEditByPolygon.ToolTipText = "ç»˜åˆ¶å¤šè¾¹å½¢é€‰æ‹©å¤šä¸ªè¦ç´ è¿›è¡Œç¼–è¾‘";
             this.menuFeatureEditByPolygon.Click += new System.EventHandler(this.menuFeatureEditByPolygon_Click);
             // 
             // toolSeparator8
@@ -470,8 +470,8 @@ namespace Lab04_4
             this.menuFeatureDelete.Image = ((System.Drawing.Image)(resources.GetObject("menuFeatureDelete.Image")));
             this.menuFeatureDelete.Name = "menuFeatureDelete";
             this.menuFeatureDelete.Size = new System.Drawing.Size(122, 26);
-            this.menuFeatureDelete.Text = "É¾³ı";
-            this.menuFeatureDelete.ToolTipText = "É¾³ıµ±Ç°Ñ¡ÖĞÍ¼²ãÖĞµÄÒªËØ";
+            this.menuFeatureDelete.Text = "åˆ é™¤";
+            this.menuFeatureDelete.ToolTipText = "åˆ é™¤å½“å‰é€‰ä¸­å›¾å±‚ä¸­çš„è¦ç´ ";
             // 
             // menuFeatureDeleteByLocation
             // 
@@ -479,8 +479,8 @@ namespace Lab04_4
             this.menuFeatureDeleteByLocation.Image = ((System.Drawing.Image)(resources.GetObject("menuFeatureDeleteByLocation.Image")));
             this.menuFeatureDeleteByLocation.Name = "menuFeatureDeleteByLocation";
             this.menuFeatureDeleteByLocation.Size = new System.Drawing.Size(197, 26);
-            this.menuFeatureDeleteByLocation.Text = "µãÑ¡É¾³ı";
-            this.menuFeatureDeleteByLocation.ToolTipText = "Í¨¹ıµã»÷µØÍ¼Ñ¡ÔñÒªËØ²¢½«ÆäÉ¾³ı";
+            this.menuFeatureDeleteByLocation.Text = "ç‚¹é€‰åˆ é™¤";
+            this.menuFeatureDeleteByLocation.ToolTipText = "é€šè¿‡ç‚¹å‡»åœ°å›¾é€‰æ‹©è¦ç´ å¹¶å°†å…¶åˆ é™¤";
             this.menuFeatureDeleteByLocation.Click += new System.EventHandler(this.menuFeatureDeleteByLocation_Click);
             // 
             // menuFeatureDeleteByRectangle
@@ -489,8 +489,8 @@ namespace Lab04_4
             this.menuFeatureDeleteByRectangle.Image = ((System.Drawing.Image)(resources.GetObject("menuFeatureDeleteByRectangle.Image")));
             this.menuFeatureDeleteByRectangle.Name = "menuFeatureDeleteByRectangle";
             this.menuFeatureDeleteByRectangle.Size = new System.Drawing.Size(197, 26);
-            this.menuFeatureDeleteByRectangle.Text = "¿òÑ¡É¾³ı";
-            this.menuFeatureDeleteByRectangle.ToolTipText = "¾ØĞÎ¿òÑ¡¶à¸öÒªËØ²¢ÅúÁ¿É¾³ı";
+            this.menuFeatureDeleteByRectangle.Text = "æ¡†é€‰åˆ é™¤";
+            this.menuFeatureDeleteByRectangle.ToolTipText = "çŸ©å½¢æ¡†é€‰å¤šä¸ªè¦ç´ å¹¶æ‰¹é‡åˆ é™¤";
             this.menuFeatureDeleteByRectangle.Click += new System.EventHandler(this.menuFeatureDeleteByRectangle_Click);
             // 
             // menuFeatureDeleteByPolygon
@@ -499,8 +499,8 @@ namespace Lab04_4
             this.menuFeatureDeleteByPolygon.Image = ((System.Drawing.Image)(resources.GetObject("menuFeatureDeleteByPolygon.Image")));
             this.menuFeatureDeleteByPolygon.Name = "menuFeatureDeleteByPolygon";
             this.menuFeatureDeleteByPolygon.Size = new System.Drawing.Size(197, 26);
-            this.menuFeatureDeleteByPolygon.Text = "¶à±ßĞÎÑ¡È¡É¾³ı";
-            this.menuFeatureDeleteByPolygon.ToolTipText = "»æÖÆ¶à±ßĞÎÑ¡Ôñ¶à¸öÒªËØ½øĞĞÅúÁ¿É¾³ı";
+            this.menuFeatureDeleteByPolygon.Text = "å¤šè¾¹å½¢é€‰å–åˆ é™¤";
+            this.menuFeatureDeleteByPolygon.ToolTipText = "ç»˜åˆ¶å¤šè¾¹å½¢é€‰æ‹©å¤šä¸ªè¦ç´ è¿›è¡Œæ‰¹é‡åˆ é™¤";
             this.menuFeatureDeleteByPolygon.Click += new System.EventHandler(this.menuFeatureDeleteByPolygon_Click);
             // 
             // toolSeparator9
@@ -514,8 +514,8 @@ namespace Lab04_4
             this.menuFeatureBrowse.Image = ((System.Drawing.Image)(resources.GetObject("menuFeatureBrowse.Image")));
             this.menuFeatureBrowse.Name = "menuFeatureBrowse";
             this.menuFeatureBrowse.Size = new System.Drawing.Size(122, 26);
-            this.menuFeatureBrowse.Text = "ä¯ÀÀ";
-            this.menuFeatureBrowse.ToolTipText = "ä¯ÀÀµ±Ç°Ñ¡ÖĞÍ¼²ãµÄÈ«²¿ÒªËØ";
+            this.menuFeatureBrowse.Text = "æµè§ˆ";
+            this.menuFeatureBrowse.ToolTipText = "æµè§ˆå½“å‰é€‰ä¸­å›¾å±‚çš„å…¨éƒ¨è¦ç´ ";
             this.menuFeatureBrowse.Click += new System.EventHandler(this.menuFeatureBrowse_Click);
             // 
             // menuFeatureIdentify
@@ -524,8 +524,8 @@ namespace Lab04_4
             this.menuFeatureIdentify.Image = ((System.Drawing.Image)(resources.GetObject("menuFeatureIdentify.Image")));
             this.menuFeatureIdentify.Name = "menuFeatureIdentify";
             this.menuFeatureIdentify.Size = new System.Drawing.Size(122, 26);
-            this.menuFeatureIdentify.Text = "ÊôĞÔ";
-            this.menuFeatureIdentify.ToolTipText = "²é¿´ËùÑ¡ÒªËØµÄÊôĞÔĞÅÏ¢";
+            this.menuFeatureIdentify.Text = "å±æ€§";
+            this.menuFeatureIdentify.ToolTipText = "æŸ¥çœ‹æ‰€é€‰è¦ç´ çš„å±æ€§ä¿¡æ¯";
             this.menuFeatureIdentify.Click += new System.EventHandler(this.menuFeatureIdentify_Click);
             // 
             // menuSpatialQuery
@@ -538,7 +538,7 @@ namespace Lab04_4
             this.menuSQPolylineBufferAnalysis});
             this.menuSpatialQuery.Name = "menuSpatialQuery";
             this.menuSpatialQuery.Size = new System.Drawing.Size(105, 24);
-            this.menuSpatialQuery.Text = "¿Õ¼ä²éÑ¯(&Q)";
+            this.menuSpatialQuery.Text = "ç©ºé—´æŸ¥è¯¢(&Q)";
             // 
             // menuSQQueryAreaExtremeValue
             // 
@@ -546,8 +546,8 @@ namespace Lab04_4
             this.menuSQQueryAreaExtremeValue.Image = ((System.Drawing.Image)(resources.GetObject("menuSQQueryAreaExtremeValue.Image")));
             this.menuSQQueryAreaExtremeValue.Name = "menuSQQueryAreaExtremeValue";
             this.menuSQQueryAreaExtremeValue.Size = new System.Drawing.Size(224, 26);
-            this.menuSQQueryAreaExtremeValue.Text = "²éÑ¯Ãæ»ı¼«Öµ";
-            this.menuSQQueryAreaExtremeValue.ToolTipText = "²éÑ¯Ñ¡ÖĞÍ¼²ãÃæ»ı×î´óºÍ×îĞ¡µÄ\r\nÃæÒªËØ£¬ÏÔÊ¾¶ÔÓ¦Ãû³ÆºÍIDºÅ";
+            this.menuSQQueryAreaExtremeValue.Text = "æŸ¥è¯¢é¢ç§¯æå€¼";
+            this.menuSQQueryAreaExtremeValue.ToolTipText = "æŸ¥è¯¢é€‰ä¸­å›¾å±‚é¢ç§¯æœ€å¤§å’Œæœ€å°çš„\r\né¢è¦ç´ ï¼Œæ˜¾ç¤ºå¯¹åº”åç§°å’ŒIDå·";
             this.menuSQQueryAreaExtremeValue.Click += new System.EventHandler(this.menuSQQueryAreaExtremeValue_Click);
             // 
             // menuSQElementClickQuery
@@ -556,8 +556,8 @@ namespace Lab04_4
             this.menuSQElementClickQuery.Image = ((System.Drawing.Image)(resources.GetObject("menuSQElementClickQuery.Image")));
             this.menuSQElementClickQuery.Name = "menuSQElementClickQuery";
             this.menuSQElementClickQuery.Size = new System.Drawing.Size(224, 26);
-            this.menuSQElementClickQuery.Text = "²éÑ¯ÒªËØÃû³Æ¼°ID";
-            this.menuSQElementClickQuery.ToolTipText = "µã»÷ÒªËØ£¬ÏÔÊ¾ÆäÃû³ÆºÍID";
+            this.menuSQElementClickQuery.Text = "æŸ¥è¯¢è¦ç´ åç§°åŠID";
+            this.menuSQElementClickQuery.ToolTipText = "ç‚¹å‡»è¦ç´ ï¼Œæ˜¾ç¤ºå…¶åç§°å’ŒID";
             // 
             // toolSeparator10
             // 
@@ -573,8 +573,8 @@ namespace Lab04_4
             this.menuSQPolylineBufferAnalysis.Image = ((System.Drawing.Image)(resources.GetObject("menuSQPolylineBufferAnalysis.Image")));
             this.menuSQPolylineBufferAnalysis.Name = "menuSQPolylineBufferAnalysis";
             this.menuSQPolylineBufferAnalysis.Size = new System.Drawing.Size(224, 26);
-            this.menuSQPolylineBufferAnalysis.Text = "¶àÒåÏß»º³å·ÖÎö";
-            this.menuSQPolylineBufferAnalysis.ToolTipText = "»æÖÆ¶àÒåÏß£¬¼ÆËã»º³åÇø·¶Î§ÄÚ\r\nÏà½»µÄÃæÒªËØ²¢ÏÔÊ¾ÆäÃæ»ı";
+            this.menuSQPolylineBufferAnalysis.Text = "å¤šä¹‰çº¿ç¼“å†²åˆ†æ";
+            this.menuSQPolylineBufferAnalysis.ToolTipText = "ç»˜åˆ¶å¤šä¹‰çº¿ï¼Œè®¡ç®—ç¼“å†²åŒºèŒƒå›´å†…\r\nç›¸äº¤çš„é¢è¦ç´ å¹¶æ˜¾ç¤ºå…¶é¢ç§¯";
             // 
             // menuSQDrawAPolyline
             // 
@@ -582,8 +582,8 @@ namespace Lab04_4
             this.menuSQDrawAPolyline.Image = ((System.Drawing.Image)(resources.GetObject("menuSQDrawAPolyline.Image")));
             this.menuSQDrawAPolyline.Name = "menuSQDrawAPolyline";
             this.menuSQDrawAPolyline.Size = new System.Drawing.Size(212, 26);
-            this.menuSQDrawAPolyline.Text = "»æÖÆ¶àÒåÏß";
-            this.menuSQDrawAPolyline.ToolTipText = "ÔÚµØÍ¼ÉÏ»æÖÆ¶àÒåÏß£¬ÓÃÓÚºóĞø»º³å·ÖÎö";
+            this.menuSQDrawAPolyline.Text = "ç»˜åˆ¶å¤šä¹‰çº¿";
+            this.menuSQDrawAPolyline.ToolTipText = "åœ¨åœ°å›¾ä¸Šç»˜åˆ¶å¤šä¹‰çº¿ï¼Œç”¨äºåç»­ç¼“å†²åˆ†æ";
             // 
             // menuSQBufferAnalysis
             // 
@@ -591,8 +591,8 @@ namespace Lab04_4
             this.menuSQBufferAnalysis.Image = ((System.Drawing.Image)(resources.GetObject("menuSQBufferAnalysis.Image")));
             this.menuSQBufferAnalysis.Name = "menuSQBufferAnalysis";
             this.menuSQBufferAnalysis.Size = new System.Drawing.Size(212, 26);
-            this.menuSQBufferAnalysis.Text = "²éÑ¯»º³åÏà½»ÒªËØ";
-            this.menuSQBufferAnalysis.ToolTipText = "¼ÆËã¶àÒåÏß»º³åÇø²¢²éÑ¯Ïà½»ÒªËØ";
+            this.menuSQBufferAnalysis.Text = "æŸ¥è¯¢ç¼“å†²ç›¸äº¤è¦ç´ ";
+            this.menuSQBufferAnalysis.ToolTipText = "è®¡ç®—å¤šä¹‰çº¿ç¼“å†²åŒºå¹¶æŸ¥è¯¢ç›¸äº¤è¦ç´ ";
             // 
             // menuElevationAnalysis
             // 
@@ -605,8 +605,8 @@ namespace Lab04_4
             this.menuEAQueryElevation});
             this.menuElevationAnalysis.Name = "menuElevationAnalysis";
             this.menuElevationAnalysis.Size = new System.Drawing.Size(101, 24);
-            this.menuElevationAnalysis.Text = "¸ß³Ì·ÖÎö(&E)";
-            this.menuElevationAnalysis.ToolTipText = "Ìá¹©¸ß³ÌµãÊı¾İµÄ¼ÓÔØ¡¢Ñ¡Ôñ¡¢\r\nÂËÔëÓë²åÖµ·ÖÎöµÈ¹¦ÄÜ";
+            this.menuElevationAnalysis.Text = "é«˜ç¨‹åˆ†æ(&E)";
+            this.menuElevationAnalysis.ToolTipText = "æä¾›é«˜ç¨‹ç‚¹æ•°æ®çš„åŠ è½½ã€é€‰æ‹©ã€\r\næ»¤å™ªä¸æ’å€¼åˆ†æç­‰åŠŸèƒ½";
             // 
             // menuEALoadElevationData
             // 
@@ -614,8 +614,8 @@ namespace Lab04_4
             this.menuEALoadElevationData.Image = ((System.Drawing.Image)(resources.GetObject("menuEALoadElevationData.Image")));
             this.menuEALoadElevationData.Name = "menuEALoadElevationData";
             this.menuEALoadElevationData.Size = new System.Drawing.Size(224, 26);
-            this.menuEALoadElevationData.Text = "¼ÓÔØ¸ß³Ìµã";
-            this.menuEALoadElevationData.ToolTipText = "´ÓDAT/TXTÎÄ¼ş¼ÓÔØ¸ß³Ìµã£¬×Ô¶¯Ê¶±ğZ×Ö¶Î\r\n²¢×÷Îª¸ß³ÌÊı¾İÔ´¼ÓÈë£¬Í¬Ê±ÔÚµØÍ¼ÖĞÏÔÊ¾\r\n×¢£º¿ÉÔÚ¡°ÉèÖÃ¸ß³ÌÍ¼²ã¡±ÖĞ¹Ø±ÕÆä¸ß³ÌÔ´×´Ì¬";
+            this.menuEALoadElevationData.Text = "åŠ è½½é«˜ç¨‹ç‚¹";
+            this.menuEALoadElevationData.ToolTipText = "ä»DAT/TXTæ–‡ä»¶åŠ è½½é«˜ç¨‹ç‚¹ï¼Œè‡ªåŠ¨è¯†åˆ«Zå­—æ®µ\r\nå¹¶ä½œä¸ºé«˜ç¨‹æ•°æ®æºåŠ å…¥ï¼ŒåŒæ—¶åœ¨åœ°å›¾ä¸­æ˜¾ç¤º\r\næ³¨ï¼šå¯åœ¨â€œè®¾ç½®é«˜ç¨‹å›¾å±‚â€ä¸­å…³é—­å…¶é«˜ç¨‹æºçŠ¶æ€";
             this.menuEALoadElevationData.Click += new System.EventHandler(this.menuEALoadElevationData_Click);
             // 
             // menuEASetElevationLayer
@@ -624,8 +624,8 @@ namespace Lab04_4
             this.menuEASetElevationLayer.Image = ((System.Drawing.Image)(resources.GetObject("menuEASetElevationLayer.Image")));
             this.menuEASetElevationLayer.Name = "menuEASetElevationLayer";
             this.menuEASetElevationLayer.Size = new System.Drawing.Size(224, 26);
-            this.menuEASetElevationLayer.Text = "ÉèÖÃ¸ß³ÌÍ¼²ã";
-            this.menuEASetElevationLayer.ToolTipText = "´ÓÒÑ¼ÓÔØµÄµãÍ¼²ãÖĞÑ¡Ôñ»òÈ¡ÏûÍ¼²ã×÷Îª\r\n¸ß³ÌÊı¾İÔ´£¬²¢ÎªÃ¿¸öÍ¼²ãÖ¸¶¨¸ß³Ì×Ö¶Î";
+            this.menuEASetElevationLayer.Text = "è®¾ç½®é«˜ç¨‹å›¾å±‚";
+            this.menuEASetElevationLayer.ToolTipText = "ä»å·²åŠ è½½çš„ç‚¹å›¾å±‚ä¸­é€‰æ‹©æˆ–å–æ¶ˆå›¾å±‚ä½œä¸º\r\né«˜ç¨‹æ•°æ®æºï¼Œå¹¶ä¸ºæ¯ä¸ªå›¾å±‚æŒ‡å®šé«˜ç¨‹å­—æ®µ";
             // 
             // toolSeparator11
             // 
@@ -638,8 +638,8 @@ namespace Lab04_4
             this.menuEAElevationPointFiltering.Image = ((System.Drawing.Image)(resources.GetObject("menuEAElevationPointFiltering.Image")));
             this.menuEAElevationPointFiltering.Name = "menuEAElevationPointFiltering";
             this.menuEAElevationPointFiltering.Size = new System.Drawing.Size(224, 26);
-            this.menuEAElevationPointFiltering.Text = "¸ß³ÌµãÂËÔë";
-            this.menuEAElevationPointFiltering.ToolTipText = "Ê¹ÓÃ»¬¶¯´°¿ÚÓëÈı±¶±ê×¼²î·¨¼ì²â\r\n²¢ÒÆ³ıËùÓĞÑ¡¶¨¸ß³ÌÔ´ÖĞµÄÒì³£µã";
+            this.menuEAElevationPointFiltering.Text = "é«˜ç¨‹ç‚¹æ»¤å™ª";
+            this.menuEAElevationPointFiltering.ToolTipText = "ä½¿ç”¨æ»‘åŠ¨çª—å£ä¸ä¸‰å€æ ‡å‡†å·®æ³•æ£€æµ‹\r\nå¹¶ç§»é™¤æ‰€æœ‰é€‰å®šé«˜ç¨‹æºä¸­çš„å¼‚å¸¸ç‚¹";
             // 
             // menuEAQueryElevation
             // 
@@ -647,8 +647,8 @@ namespace Lab04_4
             this.menuEAQueryElevation.Image = ((System.Drawing.Image)(resources.GetObject("menuEAQueryElevation.Image")));
             this.menuEAQueryElevation.Name = "menuEAQueryElevation";
             this.menuEAQueryElevation.Size = new System.Drawing.Size(224, 26);
-            this.menuEAQueryElevation.Text = "²éÑ¯Ö¸¶¨µã¸ß³Ì";
-            this.menuEAQueryElevation.ToolTipText = "µã»÷µØÍ¼ÈÎÒâÎ»ÖÃ£¬Í¨¹ıÁÚ½ü¸ß³Ìµã\r\nµÄ IDW ²åÖµ¼ÆËãÖ¸¶¨Î»ÖÃµÄ¸ß³Ì";
+            this.menuEAQueryElevation.Text = "æŸ¥è¯¢æŒ‡å®šç‚¹é«˜ç¨‹";
+            this.menuEAQueryElevation.ToolTipText = "ç‚¹å‡»åœ°å›¾ä»»æ„ä½ç½®ï¼Œé€šè¿‡é‚»è¿‘é«˜ç¨‹ç‚¹\r\nçš„ IDW æ’å€¼è®¡ç®—æŒ‡å®šä½ç½®çš„é«˜ç¨‹";
             // 
             // tool
             // 
@@ -689,13 +689,13 @@ namespace Lab04_4
             this.tool.Padding = new System.Windows.Forms.Padding(0, 0, 2, 0);
             this.tool.Size = new System.Drawing.Size(1400, 27);
             this.tool.TabIndex = 1;
-            this.tool.Text = "¹¤¾ß";
+            this.tool.Text = "å·¥å…·";
             // 
             // tslLayers
             // 
             this.tslLayers.Name = "tslLayers";
             this.tslLayers.Size = new System.Drawing.Size(39, 24);
-            this.tslLayers.Text = "Í¼²ã";
+            this.tslLayers.Text = "å›¾å±‚";
             // 
             // tlbLayerAllShp
             // 
@@ -704,8 +704,8 @@ namespace Lab04_4
             this.tlbLayerAllShp.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tlbLayerAllShp.Name = "tlbLayerAllShp";
             this.tlbLayerAllShp.Size = new System.Drawing.Size(29, 24);
-            this.tlbLayerAllShp.Text = "´ò¿ªSHPÎÄ¼ş¼Ğ";
-            this.tlbLayerAllShp.ToolTipText = "¼ÓÔØËùÑ¡Ä¿Â¼ÏÂµÄËùÓĞSHPÎÄ¼ş";
+            this.tlbLayerAllShp.Text = "æ‰“å¼€SHPæ–‡ä»¶å¤¹";
+            this.tlbLayerAllShp.ToolTipText = "åŠ è½½æ‰€é€‰ç›®å½•ä¸‹çš„æ‰€æœ‰SHPæ–‡ä»¶";
             this.tlbLayerAllShp.Click += new System.EventHandler(this.tlbLayerAllShp_Click);
             // 
             // tlbLayerAddShp
@@ -715,8 +715,8 @@ namespace Lab04_4
             this.tlbLayerAddShp.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tlbLayerAddShp.Name = "tlbLayerAddShp";
             this.tlbLayerAddShp.Size = new System.Drawing.Size(29, 24);
-            this.tlbLayerAddShp.Text = "¼ÓÔØSHPÎÄ¼ş";
-            this.tlbLayerAddShp.ToolTipText = "¼ÓÔØÑ¡¶¨µÄSHPÎÄ¼ş";
+            this.tlbLayerAddShp.Text = "åŠ è½½SHPæ–‡ä»¶";
+            this.tlbLayerAddShp.ToolTipText = "åŠ è½½é€‰å®šçš„SHPæ–‡ä»¶";
             this.tlbLayerAddShp.Click += new System.EventHandler(this.tlbLayerAddShp_Click);
             // 
             // tlbLayerRemove
@@ -726,8 +726,8 @@ namespace Lab04_4
             this.tlbLayerRemove.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tlbLayerRemove.Name = "tlbLayerRemove";
             this.tlbLayerRemove.Size = new System.Drawing.Size(29, 24);
-            this.tlbLayerRemove.Text = "ÒÆ³ı";
-            this.tlbLayerRemove.ToolTipText = "ÒÆ³ıµ±Ç°Ñ¡ÖĞµÄÍ¼²ã";
+            this.tlbLayerRemove.Text = "ç§»é™¤";
+            this.tlbLayerRemove.ToolTipText = "ç§»é™¤å½“å‰é€‰ä¸­çš„å›¾å±‚";
             this.tlbLayerRemove.Click += new System.EventHandler(this.tlbLayerRemove_Click);
             // 
             // tlbLayerSelectable
@@ -737,8 +737,8 @@ namespace Lab04_4
             this.tlbLayerSelectable.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tlbLayerSelectable.Name = "tlbLayerSelectable";
             this.tlbLayerSelectable.Size = new System.Drawing.Size(29, 24);
-            this.tlbLayerSelectable.Text = "ÉèÖÃÎªÎ¨Ò»¿ÉÑ¡Í¼²ã";
-            this.tlbLayerSelectable.ToolTipText = "½öµ±Ç°Ñ¡ÖĞµÄÍ¼²ã¿ÉÑ¡";
+            this.tlbLayerSelectable.Text = "è®¾ç½®ä¸ºå”¯ä¸€å¯é€‰å›¾å±‚";
+            this.tlbLayerSelectable.ToolTipText = "ä»…å½“å‰é€‰ä¸­çš„å›¾å±‚å¯é€‰";
             this.tlbLayerSelectable.Click += new System.EventHandler(this.tlbLayerSelectable_Click);
             // 
             // tlbLayerVisible
@@ -748,8 +748,8 @@ namespace Lab04_4
             this.tlbLayerVisible.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tlbLayerVisible.Name = "tlbLayerVisible";
             this.tlbLayerVisible.Size = new System.Drawing.Size(29, 24);
-            this.tlbLayerVisible.Text = "ÏÔÊ¾/Òş²Ø";
-            this.tlbLayerVisible.ToolTipText = "ÇĞ»»Í¼²ãÏÔÊ¾/Òş²Ø×´Ì¬";
+            this.tlbLayerVisible.Text = "æ˜¾ç¤º/éšè—";
+            this.tlbLayerVisible.ToolTipText = "åˆ‡æ¢å›¾å±‚æ˜¾ç¤º/éšè—çŠ¶æ€";
             this.tlbLayerVisible.Click += new System.EventHandler(this.tlbLayerVisible_Click);
             // 
             // tlbLayerThum
@@ -759,8 +759,8 @@ namespace Lab04_4
             this.tlbLayerThum.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tlbLayerThum.Name = "tlbLayerThum";
             this.tlbLayerThum.Size = new System.Drawing.Size(29, 24);
-            this.tlbLayerThum.Text = "Ìí¼Óµ½Ó¥ÑÛ";
-            this.tlbLayerThum.ToolTipText = "Ìí¼Óµ±Ç°Ñ¡ÖĞµÄÍ¼²ãÖÁÓ¥ÑÛÍ¼";
+            this.tlbLayerThum.Text = "æ·»åŠ åˆ°é¹°çœ¼";
+            this.tlbLayerThum.ToolTipText = "æ·»åŠ å½“å‰é€‰ä¸­çš„å›¾å±‚è‡³é¹°çœ¼å›¾";
             this.tlbLayerThum.Click += new System.EventHandler(this.tlbLayerThum_Click);
             // 
             // tls1
@@ -772,7 +772,7 @@ namespace Lab04_4
             // 
             this.tslFeatureClass.Name = "tslFeatureClass";
             this.tslFeatureClass.Size = new System.Drawing.Size(54, 24);
-            this.tslFeatureClass.Text = "ÒªËØÀà";
+            this.tslFeatureClass.Text = "è¦ç´ ç±»";
             // 
             // tlbFeatureClassNew
             // 
@@ -781,8 +781,8 @@ namespace Lab04_4
             this.tlbFeatureClassNew.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tlbFeatureClassNew.Name = "tlbFeatureClassNew";
             this.tlbFeatureClassNew.Size = new System.Drawing.Size(29, 24);
-            this.tlbFeatureClassNew.Text = "´´½¨ÒªËØÀà";
-            this.tlbFeatureClassNew.ToolTipText = "´´½¨ĞÂÒªËØÀà²¢ÉèÖÃÃû³ÆÓë×Ö¶Î";
+            this.tlbFeatureClassNew.Text = "åˆ›å»ºè¦ç´ ç±»";
+            this.tlbFeatureClassNew.ToolTipText = "åˆ›å»ºæ–°è¦ç´ ç±»å¹¶è®¾ç½®åç§°ä¸å­—æ®µ";
             this.tlbFeatureClassNew.Click += new System.EventHandler(this.tlbFeatureClassNew_Click);
             // 
             // tlbFeatureClassEdit
@@ -792,8 +792,8 @@ namespace Lab04_4
             this.tlbFeatureClassEdit.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tlbFeatureClassEdit.Name = "tlbFeatureClassEdit";
             this.tlbFeatureClassEdit.Size = new System.Drawing.Size(29, 24);
-            this.tlbFeatureClassEdit.Text = "¹ÜÀí×Ö¶Î";
-            this.tlbFeatureClassEdit.ToolTipText = "±à¼­Ñ¡ÖĞÒªËØÀàµÄ×Ö¶Î";
+            this.tlbFeatureClassEdit.Text = "ç®¡ç†å­—æ®µ";
+            this.tlbFeatureClassEdit.ToolTipText = "ç¼–è¾‘é€‰ä¸­è¦ç´ ç±»çš„å­—æ®µ";
             this.tlbFeatureClassEdit.Click += new System.EventHandler(this.tlbFeatureClassEdit_Click);
             // 
             // tlbFeatureClassDelete
@@ -803,8 +803,8 @@ namespace Lab04_4
             this.tlbFeatureClassDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tlbFeatureClassDelete.Name = "tlbFeatureClassDelete";
             this.tlbFeatureClassDelete.Size = new System.Drawing.Size(29, 24);
-            this.tlbFeatureClassDelete.Text = "É¾³ıÒªËØÀà";
-            this.tlbFeatureClassDelete.ToolTipText = "É¾³ıµ±Ç°Ñ¡ÖĞµÄÒªËØÀà";
+            this.tlbFeatureClassDelete.Text = "åˆ é™¤è¦ç´ ç±»";
+            this.tlbFeatureClassDelete.ToolTipText = "åˆ é™¤å½“å‰é€‰ä¸­çš„è¦ç´ ç±»";
             this.tlbFeatureClassDelete.Click += new System.EventHandler(this.tlbFeatureClassDelete_Click);
             // 
             // tls2
@@ -816,7 +816,7 @@ namespace Lab04_4
             // 
             this.tslFeature.Name = "tslFeature";
             this.tslFeature.Size = new System.Drawing.Size(39, 24);
-            this.tslFeature.Text = "ÒªËØ";
+            this.tslFeature.Text = "è¦ç´ ";
             // 
             // tlbFeatureNew
             // 
@@ -825,8 +825,8 @@ namespace Lab04_4
             this.tlbFeatureNew.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tlbFeatureNew.Name = "tlbFeatureNew";
             this.tlbFeatureNew.Size = new System.Drawing.Size(29, 24);
-            this.tlbFeatureNew.Text = "ÒªËØÌí¼Ó";
-            this.tlbFeatureNew.ToolTipText = "Ìí¼ÓĞÂÒªËØ£¬²¢ÉèÖÃÒªËØÊôĞÔ";
+            this.tlbFeatureNew.Text = "è¦ç´ æ·»åŠ ";
+            this.tlbFeatureNew.ToolTipText = "æ·»åŠ æ–°è¦ç´ ï¼Œå¹¶è®¾ç½®è¦ç´ å±æ€§";
             this.tlbFeatureNew.Click += new System.EventHandler(this.tlbFeatureNew_Click);
             // 
             // tlbFeatureEdit
@@ -840,8 +840,8 @@ namespace Lab04_4
             this.tlbFeatureEdit.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tlbFeatureEdit.Name = "tlbFeatureEdit";
             this.tlbFeatureEdit.Size = new System.Drawing.Size(39, 24);
-            this.tlbFeatureEdit.Text = "ÒªËØ±à¼­";
-            this.tlbFeatureEdit.ToolTipText = "±à¼­µ±Ç°Ñ¡ÖĞÍ¼²ãµÄÒªËØ";
+            this.tlbFeatureEdit.Text = "è¦ç´ ç¼–è¾‘";
+            this.tlbFeatureEdit.ToolTipText = "ç¼–è¾‘å½“å‰é€‰ä¸­å›¾å±‚çš„è¦ç´ ";
             // 
             // tlbFeatureEditByLocation
             // 
@@ -849,8 +849,8 @@ namespace Lab04_4
             this.tlbFeatureEditByLocation.Image = ((System.Drawing.Image)(resources.GetObject("tlbFeatureEditByLocation.Image")));
             this.tlbFeatureEditByLocation.Name = "tlbFeatureEditByLocation";
             this.tlbFeatureEditByLocation.Size = new System.Drawing.Size(197, 26);
-            this.tlbFeatureEditByLocation.Text = "µãÑ¡±à¼­";
-            this.tlbFeatureEditByLocation.ToolTipText = "Í¨¹ıµã»÷µØÍ¼Ñ¡ÔñÒªËØ²¢½øĞĞ±à¼­";
+            this.tlbFeatureEditByLocation.Text = "ç‚¹é€‰ç¼–è¾‘";
+            this.tlbFeatureEditByLocation.ToolTipText = "é€šè¿‡ç‚¹å‡»åœ°å›¾é€‰æ‹©è¦ç´ å¹¶è¿›è¡Œç¼–è¾‘";
             this.tlbFeatureEditByLocation.Click += new System.EventHandler(this.tlbFeatureEditByLocation_Click);
             // 
             // tlbFeatureEditByRectangle
@@ -859,8 +859,8 @@ namespace Lab04_4
             this.tlbFeatureEditByRectangle.Image = ((System.Drawing.Image)(resources.GetObject("tlbFeatureEditByRectangle.Image")));
             this.tlbFeatureEditByRectangle.Name = "tlbFeatureEditByRectangle";
             this.tlbFeatureEditByRectangle.Size = new System.Drawing.Size(197, 26);
-            this.tlbFeatureEditByRectangle.Text = "¿òÑ¡±à¼­";
-            this.tlbFeatureEditByRectangle.ToolTipText = "Ê¹ÓÃ¾ØĞÎ¿òÑ¡¶à¸öÒªËØ²¢½øĞĞ±à¼­";
+            this.tlbFeatureEditByRectangle.Text = "æ¡†é€‰ç¼–è¾‘";
+            this.tlbFeatureEditByRectangle.ToolTipText = "ä½¿ç”¨çŸ©å½¢æ¡†é€‰å¤šä¸ªè¦ç´ å¹¶è¿›è¡Œç¼–è¾‘";
             this.tlbFeatureEditByRectangle.Click += new System.EventHandler(this.tlbFeatureEditByRectangle_Click);
             // 
             // tlbFeatureEditByPolygon
@@ -869,8 +869,8 @@ namespace Lab04_4
             this.tlbFeatureEditByPolygon.Image = ((System.Drawing.Image)(resources.GetObject("tlbFeatureEditByPolygon.Image")));
             this.tlbFeatureEditByPolygon.Name = "tlbFeatureEditByPolygon";
             this.tlbFeatureEditByPolygon.Size = new System.Drawing.Size(197, 26);
-            this.tlbFeatureEditByPolygon.Text = "¶à±ßĞÎÑ¡È¡±à¼­";
-            this.tlbFeatureEditByPolygon.ToolTipText = "»æÖÆ¶à±ßĞÎÑ¡Ôñ¶à¸öÒªËØ½øĞĞ±à¼­";
+            this.tlbFeatureEditByPolygon.Text = "å¤šè¾¹å½¢é€‰å–ç¼–è¾‘";
+            this.tlbFeatureEditByPolygon.ToolTipText = "ç»˜åˆ¶å¤šè¾¹å½¢é€‰æ‹©å¤šä¸ªè¦ç´ è¿›è¡Œç¼–è¾‘";
             this.tlbFeatureEditByPolygon.Click += new System.EventHandler(this.tlbFeatureEditByPolygon_Click);
             // 
             // tlbFeatureDelete
@@ -884,8 +884,8 @@ namespace Lab04_4
             this.tlbFeatureDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tlbFeatureDelete.Name = "tlbFeatureDelete";
             this.tlbFeatureDelete.Size = new System.Drawing.Size(39, 24);
-            this.tlbFeatureDelete.Text = "ÒªËØÉ¾³ı";
-            this.tlbFeatureDelete.ToolTipText = "É¾³ıµ±Ç°Ñ¡ÖĞÍ¼²ãÖĞµÄÒªËØ";
+            this.tlbFeatureDelete.Text = "è¦ç´ åˆ é™¤";
+            this.tlbFeatureDelete.ToolTipText = "åˆ é™¤å½“å‰é€‰ä¸­å›¾å±‚ä¸­çš„è¦ç´ ";
             // 
             // tlbFeatureDeleteByLocation
             // 
@@ -893,8 +893,8 @@ namespace Lab04_4
             this.tlbFeatureDeleteByLocation.Image = ((System.Drawing.Image)(resources.GetObject("tlbFeatureDeleteByLocation.Image")));
             this.tlbFeatureDeleteByLocation.Name = "tlbFeatureDeleteByLocation";
             this.tlbFeatureDeleteByLocation.Size = new System.Drawing.Size(197, 26);
-            this.tlbFeatureDeleteByLocation.Text = "µãÑ¡É¾³ı";
-            this.tlbFeatureDeleteByLocation.ToolTipText = "Í¨¹ıµã»÷µØÍ¼Ñ¡ÔñÒªËØ²¢½«ÆäÉ¾³ı";
+            this.tlbFeatureDeleteByLocation.Text = "ç‚¹é€‰åˆ é™¤";
+            this.tlbFeatureDeleteByLocation.ToolTipText = "é€šè¿‡ç‚¹å‡»åœ°å›¾é€‰æ‹©è¦ç´ å¹¶å°†å…¶åˆ é™¤";
             this.tlbFeatureDeleteByLocation.Click += new System.EventHandler(this.tlbFeatureDeleteByLocation_Click);
             // 
             // tlbFeatureDeleteByRectangle
@@ -903,8 +903,8 @@ namespace Lab04_4
             this.tlbFeatureDeleteByRectangle.Image = ((System.Drawing.Image)(resources.GetObject("tlbFeatureDeleteByRectangle.Image")));
             this.tlbFeatureDeleteByRectangle.Name = "tlbFeatureDeleteByRectangle";
             this.tlbFeatureDeleteByRectangle.Size = new System.Drawing.Size(197, 26);
-            this.tlbFeatureDeleteByRectangle.Text = "¿òÑ¡É¾³ı";
-            this.tlbFeatureDeleteByRectangle.ToolTipText = "¾ØĞÎ¿òÑ¡¶à¸öÒªËØ²¢ÅúÁ¿É¾³ı";
+            this.tlbFeatureDeleteByRectangle.Text = "æ¡†é€‰åˆ é™¤";
+            this.tlbFeatureDeleteByRectangle.ToolTipText = "çŸ©å½¢æ¡†é€‰å¤šä¸ªè¦ç´ å¹¶æ‰¹é‡åˆ é™¤";
             this.tlbFeatureDeleteByRectangle.Click += new System.EventHandler(this.tlbFeatureDeleteByRectangle_Click);
             // 
             // tlbFeatureDeleteByPolygon
@@ -913,8 +913,8 @@ namespace Lab04_4
             this.tlbFeatureDeleteByPolygon.Image = ((System.Drawing.Image)(resources.GetObject("tlbFeatureDeleteByPolygon.Image")));
             this.tlbFeatureDeleteByPolygon.Name = "tlbFeatureDeleteByPolygon";
             this.tlbFeatureDeleteByPolygon.Size = new System.Drawing.Size(197, 26);
-            this.tlbFeatureDeleteByPolygon.Text = "»æÖÆ¶à±ßĞÎÉ¾³ı";
-            this.tlbFeatureDeleteByPolygon.ToolTipText = "»æÖÆ¶à±ßĞÎÑ¡Ôñ¶à¸öÒªËØ½øĞĞÅúÁ¿É¾³ı";
+            this.tlbFeatureDeleteByPolygon.Text = "ç»˜åˆ¶å¤šè¾¹å½¢åˆ é™¤";
+            this.tlbFeatureDeleteByPolygon.ToolTipText = "ç»˜åˆ¶å¤šè¾¹å½¢é€‰æ‹©å¤šä¸ªè¦ç´ è¿›è¡Œæ‰¹é‡åˆ é™¤";
             this.tlbFeatureDeleteByPolygon.Click += new System.EventHandler(this.tlbFeatureDeleteByPolygon_Click);
             // 
             // tlbFeatureBrowse
@@ -924,8 +924,8 @@ namespace Lab04_4
             this.tlbFeatureBrowse.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tlbFeatureBrowse.Name = "tlbFeatureBrowse";
             this.tlbFeatureBrowse.Size = new System.Drawing.Size(29, 24);
-            this.tlbFeatureBrowse.Text = "ÒªËØä¯ÀÀ";
-            this.tlbFeatureBrowse.ToolTipText = "ä¯ÀÀµ±Ç°Ñ¡ÖĞÍ¼²ãµÄÈ«²¿ÒªËØ";
+            this.tlbFeatureBrowse.Text = "è¦ç´ æµè§ˆ";
+            this.tlbFeatureBrowse.ToolTipText = "æµè§ˆå½“å‰é€‰ä¸­å›¾å±‚çš„å…¨éƒ¨è¦ç´ ";
             this.tlbFeatureBrowse.Click += new System.EventHandler(this.tlbFeatureBrowse_Click);
             // 
             // tlbFeatureIdentify
@@ -935,8 +935,8 @@ namespace Lab04_4
             this.tlbFeatureIdentify.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tlbFeatureIdentify.Name = "tlbFeatureIdentify";
             this.tlbFeatureIdentify.Size = new System.Drawing.Size(29, 24);
-            this.tlbFeatureIdentify.Text = "ÒªËØÊôĞÔ";
-            this.tlbFeatureIdentify.ToolTipText = "²é¿´ËùÑ¡ÒªËØµÄÊôĞÔĞÅÏ¢";
+            this.tlbFeatureIdentify.Text = "è¦ç´ å±æ€§";
+            this.tlbFeatureIdentify.ToolTipText = "æŸ¥çœ‹æ‰€é€‰è¦ç´ çš„å±æ€§ä¿¡æ¯";
             this.tlbFeatureIdentify.Click += new System.EventHandler(this.tlbFeatureIdentify_Click);
             // 
             // tls3
@@ -948,7 +948,7 @@ namespace Lab04_4
             // 
             this.tslSQ.Name = "tslSQ";
             this.tslSQ.Size = new System.Drawing.Size(69, 24);
-            this.tslSQ.Text = "¿Õ¼ä²éÑ¯";
+            this.tslSQ.Text = "ç©ºé—´æŸ¥è¯¢";
             // 
             // tlbSQAreaExtremeValue
             // 
@@ -957,8 +957,8 @@ namespace Lab04_4
             this.tlbSQAreaExtremeValue.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tlbSQAreaExtremeValue.Name = "tlbSQAreaExtremeValue";
             this.tlbSQAreaExtremeValue.Size = new System.Drawing.Size(29, 24);
-            this.tlbSQAreaExtremeValue.Text = "²éÑ¯Ãæ»ı¼«Öµ";
-            this.tlbSQAreaExtremeValue.ToolTipText = "²éÑ¯Ñ¡ÖĞÍ¼²ãÃæ»ı×î´óºÍ×îĞ¡µÄ\r\nÃæÒªËØ£¬ÏÔÊ¾¶ÔÓ¦Ãû³ÆºÍIDºÅ";
+            this.tlbSQAreaExtremeValue.Text = "æŸ¥è¯¢é¢ç§¯æå€¼";
+            this.tlbSQAreaExtremeValue.ToolTipText = "æŸ¥è¯¢é€‰ä¸­å›¾å±‚é¢ç§¯æœ€å¤§å’Œæœ€å°çš„\r\né¢è¦ç´ ï¼Œæ˜¾ç¤ºå¯¹åº”åç§°å’ŒIDå·";
             this.tlbSQAreaExtremeValue.Click += new System.EventHandler(this.tlbSQAreaExtremeValue_Click);
             // 
             // tlbSQElementClickQuery
@@ -968,8 +968,8 @@ namespace Lab04_4
             this.tlbSQElementClickQuery.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tlbSQElementClickQuery.Name = "tlbSQElementClickQuery";
             this.tlbSQElementClickQuery.Size = new System.Drawing.Size(29, 24);
-            this.tlbSQElementClickQuery.Text = "²éÑ¯ÒªËØÃû³Æ¼°ID";
-            this.tlbSQElementClickQuery.ToolTipText = "µã»÷ÒªËØ£¬ÏÔÊ¾ÆäÃû³ÆºÍID";
+            this.tlbSQElementClickQuery.Text = "æŸ¥è¯¢è¦ç´ åç§°åŠID";
+            this.tlbSQElementClickQuery.ToolTipText = "ç‚¹å‡»è¦ç´ ï¼Œæ˜¾ç¤ºå…¶åç§°å’ŒID";
             // 
             // tlbSQPolylineBufferAnalysis
             // 
@@ -981,8 +981,8 @@ namespace Lab04_4
             this.tlbSQPolylineBufferAnalysis.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tlbSQPolylineBufferAnalysis.Name = "tlbSQPolylineBufferAnalysis";
             this.tlbSQPolylineBufferAnalysis.Size = new System.Drawing.Size(34, 24);
-            this.tlbSQPolylineBufferAnalysis.Text = "¶àÒåÏß»º³å·ÖÎö";
-            this.tlbSQPolylineBufferAnalysis.ToolTipText = "»æÖÆ¶àÒåÏß£¬¼ÆËã»º³åÇø·¶Î§ÄÚ\r\nÏà½»µÄÃæÒªËØ²¢ÏÔÊ¾ÆäÃæ»ı";
+            this.tlbSQPolylineBufferAnalysis.Text = "å¤šä¹‰çº¿ç¼“å†²åˆ†æ";
+            this.tlbSQPolylineBufferAnalysis.ToolTipText = "ç»˜åˆ¶å¤šä¹‰çº¿ï¼Œè®¡ç®—ç¼“å†²åŒºèŒƒå›´å†…\r\nç›¸äº¤çš„é¢è¦ç´ å¹¶æ˜¾ç¤ºå…¶é¢ç§¯";
             // 
             // tlbSQDrawAPolyline
             // 
@@ -990,8 +990,8 @@ namespace Lab04_4
             this.tlbSQDrawAPolyline.Image = ((System.Drawing.Image)(resources.GetObject("tlbSQDrawAPolyline.Image")));
             this.tlbSQDrawAPolyline.Name = "tlbSQDrawAPolyline";
             this.tlbSQDrawAPolyline.Size = new System.Drawing.Size(212, 26);
-            this.tlbSQDrawAPolyline.Text = "»æÖÆ¶àÒåÏß";
-            this.tlbSQDrawAPolyline.ToolTipText = "ÔÚµØÍ¼ÉÏ»æÖÆ¶àÒåÏß£¬ÓÃÓÚºóĞø»º³å·ÖÎö";
+            this.tlbSQDrawAPolyline.Text = "ç»˜åˆ¶å¤šä¹‰çº¿";
+            this.tlbSQDrawAPolyline.ToolTipText = "åœ¨åœ°å›¾ä¸Šç»˜åˆ¶å¤šä¹‰çº¿ï¼Œç”¨äºåç»­ç¼“å†²åˆ†æ";
             // 
             // tlbSQBufferAnalysis
             // 
@@ -999,8 +999,8 @@ namespace Lab04_4
             this.tlbSQBufferAnalysis.Image = ((System.Drawing.Image)(resources.GetObject("tlbSQBufferAnalysis.Image")));
             this.tlbSQBufferAnalysis.Name = "tlbSQBufferAnalysis";
             this.tlbSQBufferAnalysis.Size = new System.Drawing.Size(212, 26);
-            this.tlbSQBufferAnalysis.Text = "²éÑ¯»º³åÏà½»ÒªËØ";
-            this.tlbSQBufferAnalysis.ToolTipText = "¼ÆËã¶àÒåÏß»º³åÇø²¢²éÑ¯Ïà½»ÒªËØ";
+            this.tlbSQBufferAnalysis.Text = "æŸ¥è¯¢ç¼“å†²ç›¸äº¤è¦ç´ ";
+            this.tlbSQBufferAnalysis.ToolTipText = "è®¡ç®—å¤šä¹‰çº¿ç¼“å†²åŒºå¹¶æŸ¥è¯¢ç›¸äº¤è¦ç´ ";
             // 
             // tls4
             // 
@@ -1011,7 +1011,7 @@ namespace Lab04_4
             // 
             this.tslEA.Name = "tslEA";
             this.tslEA.Size = new System.Drawing.Size(69, 24);
-            this.tslEA.Text = "¸ß³Ì·ÖÎö";
+            this.tslEA.Text = "é«˜ç¨‹åˆ†æ";
             // 
             // tlbEALoadElevationData
             // 
@@ -1020,8 +1020,8 @@ namespace Lab04_4
             this.tlbEALoadElevationData.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tlbEALoadElevationData.Name = "tlbEALoadElevationData";
             this.tlbEALoadElevationData.Size = new System.Drawing.Size(29, 24);
-            this.tlbEALoadElevationData.Text = "¼ÓÔØ¸ß³Ìµã";
-            this.tlbEALoadElevationData.ToolTipText = "´ÓDAT/TXTÎÄ¼ş¼ÓÔØ¸ß³Ìµã£¬×Ô¶¯Ê¶±ğZ×Ö¶Î\r\n²¢×÷Îª¸ß³ÌÊı¾İÔ´¼ÓÈë£¬Í¬Ê±ÔÚµØÍ¼ÖĞÏÔÊ¾\r\n×¢£º¿ÉÔÚ¡°ÉèÖÃ¸ß³ÌÍ¼²ã¡±ÖĞ¹Ø±ÕÆä¸ß³ÌÔ´×´Ì¬";
+            this.tlbEALoadElevationData.Text = "åŠ è½½é«˜ç¨‹ç‚¹";
+            this.tlbEALoadElevationData.ToolTipText = "ä»DAT/TXTæ–‡ä»¶åŠ è½½é«˜ç¨‹ç‚¹ï¼Œè‡ªåŠ¨è¯†åˆ«Zå­—æ®µ\r\nå¹¶ä½œä¸ºé«˜ç¨‹æ•°æ®æºåŠ å…¥ï¼ŒåŒæ—¶åœ¨åœ°å›¾ä¸­æ˜¾ç¤º\r\næ³¨ï¼šå¯åœ¨â€œè®¾ç½®é«˜ç¨‹å›¾å±‚â€ä¸­å…³é—­å…¶é«˜ç¨‹æºçŠ¶æ€";
             this.tlbEALoadElevationData.Click += new System.EventHandler(this.tlbEALoadElevationData_Click);
             // 
             // tlbEASetElevationLayer
@@ -1031,8 +1031,8 @@ namespace Lab04_4
             this.tlbEASetElevationLayer.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tlbEASetElevationLayer.Name = "tlbEASetElevationLayer";
             this.tlbEASetElevationLayer.Size = new System.Drawing.Size(29, 24);
-            this.tlbEASetElevationLayer.Text = "ÉèÖÃ¸ß³ÌÍ¼²ã";
-            this.tlbEASetElevationLayer.ToolTipText = "´ÓÒÑ¼ÓÔØµÄµãÍ¼²ãÖĞÑ¡Ôñ»òÈ¡ÏûÍ¼²ã×÷Îª\r\n¸ß³ÌÊı¾İÔ´£¬²¢ÎªÃ¿¸öÍ¼²ãÖ¸¶¨¸ß³Ì×Ö¶Î";
+            this.tlbEASetElevationLayer.Text = "è®¾ç½®é«˜ç¨‹å›¾å±‚";
+            this.tlbEASetElevationLayer.ToolTipText = "ä»å·²åŠ è½½çš„ç‚¹å›¾å±‚ä¸­é€‰æ‹©æˆ–å–æ¶ˆå›¾å±‚ä½œä¸º\r\né«˜ç¨‹æ•°æ®æºï¼Œå¹¶ä¸ºæ¯ä¸ªå›¾å±‚æŒ‡å®šé«˜ç¨‹å­—æ®µ";
             // 
             // tlbEAElevationPointFiltering
             // 
@@ -1041,8 +1041,8 @@ namespace Lab04_4
             this.tlbEAElevationPointFiltering.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tlbEAElevationPointFiltering.Name = "tlbEAElevationPointFiltering";
             this.tlbEAElevationPointFiltering.Size = new System.Drawing.Size(29, 24);
-            this.tlbEAElevationPointFiltering.Text = "¸ß³ÌµãÂËÔë";
-            this.tlbEAElevationPointFiltering.ToolTipText = "Ê¹ÓÃ»¬¶¯´°¿ÚÓëÈı±¶±ê×¼²î·¨¼ì²â\r\n²¢ÒÆ³ıËùÓĞÑ¡¶¨¸ß³ÌÔ´ÖĞµÄÒì³£µã";
+            this.tlbEAElevationPointFiltering.Text = "é«˜ç¨‹ç‚¹æ»¤å™ª";
+            this.tlbEAElevationPointFiltering.ToolTipText = "ä½¿ç”¨æ»‘åŠ¨çª—å£ä¸ä¸‰å€æ ‡å‡†å·®æ³•æ£€æµ‹\r\nå¹¶ç§»é™¤æ‰€æœ‰é€‰å®šé«˜ç¨‹æºä¸­çš„å¼‚å¸¸ç‚¹";
             // 
             // tlbEAQueryElevation
             // 
@@ -1051,8 +1051,8 @@ namespace Lab04_4
             this.tlbEAQueryElevation.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tlbEAQueryElevation.Name = "tlbEAQueryElevation";
             this.tlbEAQueryElevation.Size = new System.Drawing.Size(29, 24);
-            this.tlbEAQueryElevation.Text = "²éÑ¯Ö¸¶¨µã¸ß³Ì";
-            this.tlbEAQueryElevation.ToolTipText = "µã»÷µØÍ¼ÈÎÒâÎ»ÖÃ£¬Í¨¹ıÁÚ½ü¸ß³Ìµã\r\nµÄ IDW ²åÖµ¼ÆËãÖ¸¶¨Î»ÖÃµÄ¸ß³Ì";
+            this.tlbEAQueryElevation.Text = "æŸ¥è¯¢æŒ‡å®šç‚¹é«˜ç¨‹";
+            this.tlbEAQueryElevation.ToolTipText = "ç‚¹å‡»åœ°å›¾ä»»æ„ä½ç½®ï¼Œé€šè¿‡é‚»è¿‘é«˜ç¨‹ç‚¹\r\nçš„ IDW æ’å€¼è®¡ç®—æŒ‡å®šä½ç½®çš„é«˜ç¨‹";
             // 
             // status
             // 
@@ -1068,7 +1068,7 @@ namespace Lab04_4
             this.status.Name = "status";
             this.status.Size = new System.Drawing.Size(1400, 56);
             this.status.TabIndex = 2;
-            this.status.Text = "×´Ì¬";
+            this.status.Text = "çŠ¶æ€";
             // 
             // tslMain
             // 
@@ -1076,17 +1076,17 @@ namespace Lab04_4
             this.tslMain.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right)));
             this.tslMain.Name = "tslMain";
             this.tslMain.Size = new System.Drawing.Size(280, 50);
-            this.tslMain.Text = "¾ÍĞ÷£¡";
+            this.tslMain.Text = "å°±ç»ªï¼";
             this.tslMain.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.tslMain.ToolTipText = "ÏÔÊ¾²Ù×÷×´Ì¬ĞÅÏ¢";
+            this.tslMain.ToolTipText = "æ˜¾ç¤ºæ“ä½œçŠ¶æ€ä¿¡æ¯";
             // 
             // tslSelectionStatus
             // 
             this.tslSelectionStatus.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right)));
             this.tslSelectionStatus.Name = "tslSelectionStatus";
             this.tslSelectionStatus.Size = new System.Drawing.Size(96, 50);
-            this.tslSelectionStatus.Text = "¿ÉÑ¡Í¼²ã: ÎŞ";
-            this.tslSelectionStatus.ToolTipText = "ÏÔÊ¾µ±Ç°¿ÉÑ¡ÔñµÄÍ¼²ã";
+            this.tslSelectionStatus.Text = "å¯é€‰å›¾å±‚: æ— ";
+            this.tslSelectionStatus.ToolTipText = "æ˜¾ç¤ºå½“å‰å¯é€‰æ‹©çš„å›¾å±‚";
             // 
             // tslCoor
             // 
@@ -1095,7 +1095,7 @@ namespace Lab04_4
             this.tslCoor.Name = "tslCoor";
             this.tslCoor.Size = new System.Drawing.Size(220, 50);
             this.tslCoor.Text = "X:    , Y:    ";
-            this.tslCoor.ToolTipText = "ÏÔÊ¾Êó±êÔÚµØÍ¼ÉÏÒÆ¶¯Ê±ËùÔÚµÄµØÍ¼×ø±êÖµ";
+            this.tslCoor.ToolTipText = "æ˜¾ç¤ºé¼ æ ‡åœ¨åœ°å›¾ä¸Šç§»åŠ¨æ—¶æ‰€åœ¨çš„åœ°å›¾åæ ‡å€¼";
             // 
             // tslBlank1
             // 
@@ -1108,8 +1108,8 @@ namespace Lab04_4
             this.tslCopyright.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right)));
             this.tslCopyright.Name = "tslCopyright";
             this.tslCopyright.Size = new System.Drawing.Size(427, 50);
-            this.tslCopyright.Text = "   ¿ª·¢ÈËÔ±£ºµÚ4×é£¨³Â½­Èñ  ÑîÔÆÔ½  É£ĞËÅô£©£¬2025.11.11   ";
-            this.tslCopyright.ToolTipText = "°æÈ¨ĞÅÏ¢";
+            this.tslCopyright.Text = "   å¼€å‘äººå‘˜ï¼šç¬¬4ç»„ï¼ˆé™ˆæ±Ÿé”  æ¨äº‘è¶Š  æ¡‘å…´é¹ï¼‰ï¼Œ2025.11.11   ";
+            this.tslCopyright.ToolTipText = "ç‰ˆæƒä¿¡æ¯";
             // 
             // tsProgressBar
             // 
@@ -1118,7 +1118,7 @@ namespace Lab04_4
             this.tsProgressBar.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.tsProgressBar.Name = "tsProgressBar";
             this.tsProgressBar.Size = new System.Drawing.Size(180, 48);
-            this.tsProgressBar.ToolTipText = "½ø³Ì";
+            this.tsProgressBar.ToolTipText = "è¿›ç¨‹";
             // 
             // splitContainer
             // 
@@ -1244,8 +1244,8 @@ namespace Lab04_4
             this.tsmUp.Name = "tsmUp";
             this.tsmUp.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Up)));
             this.tsmUp.Size = new System.Drawing.Size(267, 26);
-            this.tsmUp.Text = "ÉÏÒÆ";
-            this.tsmUp.ToolTipText = "½«µ±Ç°Ñ¡ÖĞµÄÍ¼²ãÉÏÒÆÒ»²ã";
+            this.tsmUp.Text = "ä¸Šç§»";
+            this.tsmUp.ToolTipText = "å°†å½“å‰é€‰ä¸­çš„å›¾å±‚ä¸Šç§»ä¸€å±‚";
             this.tsmUp.Click += new System.EventHandler(this.tsmUp_Click);
             // 
             // tsmDown
@@ -1255,8 +1255,8 @@ namespace Lab04_4
             this.tsmDown.Name = "tsmDown";
             this.tsmDown.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Down)));
             this.tsmDown.Size = new System.Drawing.Size(267, 26);
-            this.tsmDown.Text = "ÏÂÒÆ";
-            this.tsmDown.ToolTipText = "½«µ±Ç°Ñ¡ÖĞµÄÍ¼²ãÏÂÒÆÒ»²ã";
+            this.tsmDown.Text = "ä¸‹ç§»";
+            this.tsmDown.ToolTipText = "å°†å½“å‰é€‰ä¸­çš„å›¾å±‚ä¸‹ç§»ä¸€å±‚";
             this.tsmDown.Click += new System.EventHandler(this.tsmDown_Click);
             // 
             // toolSeparator5
@@ -1271,8 +1271,8 @@ namespace Lab04_4
             this.tsmRemove.Name = "tsmRemove";
             this.tsmRemove.ShortcutKeys = System.Windows.Forms.Keys.Delete;
             this.tsmRemove.Size = new System.Drawing.Size(267, 26);
-            this.tsmRemove.Text = "ÒÆ³ı";
-            this.tsmRemove.ToolTipText = "ÒÆ³ıµ±Ç°Ñ¡ÖĞµÄÍ¼²ã";
+            this.tsmRemove.Text = "ç§»é™¤";
+            this.tsmRemove.ToolTipText = "ç§»é™¤å½“å‰é€‰ä¸­çš„å›¾å±‚";
             this.tsmRemove.Click += new System.EventHandler(this.tsmRemove_Click);
             // 
             // toolSeparator6
@@ -1287,8 +1287,8 @@ namespace Lab04_4
             this.tsmSelectable.Name = "tsmSelectable";
             this.tsmSelectable.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.S)));
             this.tsmSelectable.Size = new System.Drawing.Size(267, 26);
-            this.tsmSelectable.Text = "ÉèÖÃÎªÎ¨Ò»¿ÉÑ¡Í¼²ã";
-            this.tsmSelectable.ToolTipText = "½öµ±Ç°Ñ¡ÖĞÍ¼²ã¿ÉÑ¡";
+            this.tsmSelectable.Text = "è®¾ç½®ä¸ºå”¯ä¸€å¯é€‰å›¾å±‚";
+            this.tsmSelectable.ToolTipText = "ä»…å½“å‰é€‰ä¸­å›¾å±‚å¯é€‰";
             this.tsmSelectable.Click += new System.EventHandler(this.tsmSelectable_Click);
             // 
             // tsmVisible
@@ -1297,8 +1297,8 @@ namespace Lab04_4
             this.tsmVisible.Name = "tsmVisible";
             this.tsmVisible.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.H)));
             this.tsmVisible.Size = new System.Drawing.Size(267, 26);
-            this.tsmVisible.Text = "ÏÔÊ¾/Òş²Ø";
-            this.tsmVisible.ToolTipText = "ÇĞ»»Í¼²ãÏÔÊ¾/Òş²Ø×´Ì¬";
+            this.tsmVisible.Text = "æ˜¾ç¤º/éšè—";
+            this.tsmVisible.ToolTipText = "åˆ‡æ¢å›¾å±‚æ˜¾ç¤º/éšè—çŠ¶æ€";
             this.tsmVisible.Click += new System.EventHandler(this.tsmVisible_Click);
             // 
             // tsmThum
@@ -1307,8 +1307,8 @@ namespace Lab04_4
             this.tsmThum.Image = ((System.Drawing.Image)(resources.GetObject("tsmThum.Image")));
             this.tsmThum.Name = "tsmThum";
             this.tsmThum.Size = new System.Drawing.Size(267, 26);
-            this.tsmThum.Text = "Ìí¼Óµ½Ó¥ÑÛ";
-            this.tsmThum.ToolTipText = "Ìí¼Óµ±Ç°Ñ¡ÖĞµÄÍ¼²ãÖÁÓ¥ÑÛÍ¼";
+            this.tsmThum.Text = "æ·»åŠ åˆ°é¹°çœ¼";
+            this.tsmThum.ToolTipText = "æ·»åŠ å½“å‰é€‰ä¸­çš„å›¾å±‚è‡³é¹°çœ¼å›¾";
             this.tsmThum.Click += new System.EventHandler(this.tsmThum_Click);
             // 
             // Form_4
@@ -1323,7 +1323,7 @@ namespace Lab04_4
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menu;
             this.Name = "Form_4";
-            this.Text = "³ÇÊĞ¹«¹²ÉèÊ©·şÎñ¸²¸Ç·ÖÎöÏµÍ³";
+            this.Text = "åŸå¸‚å…¬å…±è®¾æ–½æœåŠ¡è¦†ç›–åˆ†æç³»ç»Ÿ";
             this.Load += new System.EventHandler(this.Form_4_Load);
             this.menu.ResumeLayout(false);
             this.menu.PerformLayout();
@@ -1350,7 +1350,7 @@ namespace Lab04_4
 
         #endregion
         
-        // ²Ëµ¥
+        // èœå•
         private System.Windows.Forms.MenuStrip menu;
         private System.Windows.Forms.ToolStripMenuItem menuFile;
         private System.Windows.Forms.ToolStripMenuItem menuFileNew;
@@ -1369,7 +1369,7 @@ namespace Lab04_4
         private System.Windows.Forms.ToolStripMenuItem menuLayerThum;
         private System.Windows.Forms.ToolStripSeparator toolSeparator3;
         private System.Windows.Forms.ToolStripSeparator toolSeparator4;
-        // ¹¤¾ßÀ¸
+        // å·¥å…·æ 
         private System.Windows.Forms.ToolStrip tool;
         private System.Windows.Forms.ToolStripLabel tslLayers;
         private System.Windows.Forms.ToolStripButton tlbLayerAllShp;
@@ -1379,7 +1379,7 @@ namespace Lab04_4
         private System.Windows.Forms.ToolStripButton tlbLayerVisible;
         private System.Windows.Forms.ToolStripButton tlbLayerThum;
         private System.Windows.Forms.ToolStripSeparator tls1;
-        // ×´Ì¬À¸
+        // çŠ¶æ€æ 
         private System.Windows.Forms.StatusStrip status;
         private System.Windows.Forms.ToolStripStatusLabel tslMain;
         private System.Windows.Forms.ToolStripStatusLabel tslCoor;
@@ -1387,18 +1387,18 @@ namespace Lab04_4
         private System.Windows.Forms.ToolStripProgressBar tsProgressBar;
         private System.Windows.Forms.ToolStripStatusLabel tslBlank1;        
         private System.Windows.Forms.ToolStripStatusLabel tslSelectionStatus;
-        // ²¼¾ÖÈİÆ÷
+        // å¸ƒå±€å®¹å™¨
         private System.Windows.Forms.SplitContainer splitContainer;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Splitter splitter1;
         private System.Windows.Forms.Panel panel1;
-        // ArcEngine¿Ø¼ş
+        // ArcEngineæ§ä»¶
         private ESRI.ArcGIS.Controls.AxTOCControl axTOC;
         private ESRI.ArcGIS.Controls.AxLicenseControl axLicense;
         private ESRI.ArcGIS.Controls.AxMapControl axThum;
         private ESRI.ArcGIS.Controls.AxToolbarControl axToolbar;
         private ESRI.ArcGIS.Controls.AxMapControl axMap;
-        // TOCÓÒ¼ü²Ëµ¥
+        // TOCå³é”®èœå•
         private System.Windows.Forms.ContextMenuStrip cmTOC;
         private System.Windows.Forms.ToolStripMenuItem tsmUp;
         private System.Windows.Forms.ToolStripMenuItem tsmDown;
@@ -1425,6 +1425,7 @@ namespace Lab04_4
         private System.Windows.Forms.ToolStripMenuItem menuFeatureDeleteByLocation;
         private System.Windows.Forms.ToolStripMenuItem menuFeatureDeleteByRectangle;
         private System.Windows.Forms.ToolStripMenuItem menuFeatureDeleteByPolygon;
+        // Lab04_4
         private System.Windows.Forms.ToolStripSeparator toolSeparator7;
         private System.Windows.Forms.ToolStripSeparator toolSeparator8;
         private System.Windows.Forms.ToolStripSeparator toolSeparator9;
