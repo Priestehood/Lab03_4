@@ -111,12 +111,23 @@ namespace Lab04_4
                     // 设置形状
                     SetZValue(feature, geometry);
                     feature.Shape = geometry;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("设置新要素形状失败：" + ex.Message, "添加要素",
+                         MessageBoxButtons.OK,
+                         MessageBoxIcon.Error);
+                    continue;
+                }
+
+                try
+                {
                     // 设置属性
                     frm.SetFeatureFields(feature);
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("[异常] " + ex.Message, "错误",
+                    MessageBox.Show("设置新要素属性失败：" + ex.Message, "添加要素",
                          MessageBoxButtons.OK,
                          MessageBoxIcon.Error);
                     continue;
@@ -324,7 +335,7 @@ namespace Lab04_4
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("[异常] " + ex.Message, "错误",
+                    MessageBox.Show("设置要素属性失败：" + ex.Message, "编辑要素",
                          MessageBoxButtons.OK,
                          MessageBoxIcon.Error);
                     continue;
@@ -433,8 +444,17 @@ namespace Lab04_4
             if (geometryDef.HasZ)
             {
                 zAware.ZAware = true;
-                IZ iz = geometry as IZ;
-                iz.SetConstantZ(0);
+
+                // 关键修复：直接使用点要素操作接口
+                if (geometry is IPoint point)
+                {
+                    point.Z = 0;
+                }
+                else
+                {
+                    IZ iz = geometry as IZ;
+                    iz.SetConstantZ(0);
+                }
             }
             else
             {
