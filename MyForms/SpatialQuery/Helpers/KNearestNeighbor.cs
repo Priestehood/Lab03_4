@@ -7,6 +7,9 @@ namespace Lab04_4.MyForms.SpatialQuery.Helpers
 {
     class KNearestNeighbor
     {
+        /// <summary>
+        /// 要素-距离对
+        /// </summary>
         public class FeatureDistancePair
         {
             public IFeature feature;
@@ -19,6 +22,14 @@ namespace Lab04_4.MyForms.SpatialQuery.Helpers
             }
         }
 
+        /// <summary>
+        /// 搜索指定点的k近邻
+        /// </summary>
+        /// <param name="point">指定点</param>
+        /// <param name="k">搜索最近点的数量k</param>
+        /// <param name="featureClass">待搜索的高程点要素图层</param>
+        /// <param name="excludeOID">若指定，则排除该OID的点要素</param>
+        /// <returns>k近邻点及其到指定点的距离的列表</returns>
         public static List<FeatureDistancePair> FindKNearest(
             IPoint point, int k, IFeatureClass featureClass,
             int excludeOID = -1)
@@ -59,6 +70,14 @@ namespace Lab04_4.MyForms.SpatialQuery.Helpers
             return candidates;
         }
 
+        /// <summary>
+        /// 搜索指定范围内的要素
+        /// </summary>
+        /// <param name="point">指定点</param>
+        /// <param name="distance">搜索范围半径</param>
+        /// <param name="fc">待搜索的要素图层</param>
+        /// <param name="whereClause">WHERE子句，用于排除指定OID的要素</param>
+        /// <returns>在指定范围内的要素的游标</returns>
         static IFeatureCursor SearchFeatureInRange(
             IPoint point, double distance,
             IFeatureClass fc, string whereClause = "")
@@ -80,6 +99,12 @@ namespace Lab04_4.MyForms.SpatialQuery.Helpers
             return cursor;
         }
 
+        /// <summary>
+        /// 更新候选列表，将新搜索到的要素及其距离加入列表
+        /// </summary>
+        /// <param name="source">指定点</param>
+        /// <param name="cursor">在指定范围内的要素游标</param>
+        /// <param name="candidates">当前候选列表</param>
         static void UpdateCandidates(IPoint source, IFeatureCursor cursor,
             List<FeatureDistancePair> candidates)
         {
