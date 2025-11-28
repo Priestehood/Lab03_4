@@ -411,6 +411,30 @@ ID: {minAreaID}
 
         #endregion
 
+        #region 高程分析
+        
+        private void FilterAbnormalElevations()
+        {
+            try
+            {
+                var selectedLayer = GetSelectedLayer();
+                if (!ValidateFeatureLayer(selectedLayer, "高程点滤噪")) return;
 
+                IFeatureLayer featureLayer = selectedLayer as IFeatureLayer;
+                _currentFeatureLayer = featureLayer;
+
+                ElevationAnalysis analysis = new ElevationAnalysis(featureLayer);
+                int deleteCount = analysis.DetectAbnormalElevations(7);
+                UpdateStatus($"已完成高程点滤波，删除了{deleteCount}个高程点。");
+            }
+            catch (Exception ex)
+            {
+                ShowError($"高程点滤噪失败: {ex.Message}");
+                Logger.Error("高程点滤噪失败", ex);
+            }
+        }
+
+
+        #endregion
     }
 }
