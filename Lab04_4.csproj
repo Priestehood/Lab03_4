@@ -365,6 +365,8 @@
     <Compile Include="MyForms\SpatialQuery\Helpers\AreaExtremeResult.cs" />
     <Compile Include="MyForms\SpatialQuery\Helpers\ComObjectWrapper.cs" />
     <Compile Include="MyForms\SpatialQuery\Helpers\CoordinateSystem.cs" />
+    <Compile Include="MyForms\SpatialQuery\Services\ElevationAnalysis.cs" />
+    <Compile Include="MyForms\SpatialQuery\Helpers\KNearestNeighbor.cs" />
     <Compile Include="MyForms\SpatialQuery\Helpers\SQFieldHelper.cs" />
     <Compile Include="MyForms\SpatialQuery\Services\AreaCalculation.cs" />
     <Compile Include="MyForms\SpatialQuery\Services\FeatureHighlight.cs" />
