@@ -413,6 +413,11 @@ namespace Lab04_4
             FilterAbnormalElevations();
         }
 
+        private void menuEAQueryElevation_Click(object sender, EventArgs e)
+        {
+            BeginIntepolateElevation();
+        }
+
         #endregion
 
         #region 工具栏-高程分析
@@ -420,6 +425,11 @@ namespace Lab04_4
         private void tlbEAElevationPointFiltering_Click(object sender, EventArgs e)
         {
             FilterAbnormalElevations();
+        }
+
+        private void tlbEAQueryElevation_Click(object sender, EventArgs e)
+        {
+            BeginIntepolateElevation();
         }
 
         #endregion

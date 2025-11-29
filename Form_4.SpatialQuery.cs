@@ -432,7 +432,8 @@ ID: {minAreaID}
                 kOfKNN = form.Value;
 
                 ElevationAnalysis analysis =
-                    new ElevationAnalysis(featureLayer, UpdateStatus);
+                    new ElevationAnalysis(UpdateStatus);
+                analysis.SetLayer(featureLayer);
                 analysis.DetectAbnormalElevations(kOfKNN,
                     SelectFeatures, DeleteFeatures);
             }
@@ -456,9 +457,9 @@ ID: {minAreaID}
                 if (!ValidateFeatureLayer(selectedLayer, "高程插值")) return;
 
                 IFeatureLayer featureLayer = selectedLayer as IFeatureLayer;
-                _currentFeatureLayer = featureLayer;
 
-                ElevationAnalysis analysis = new ElevationAnalysis(featureLayer, UpdateStatus);
+                ElevationAnalysis analysis = new ElevationAnalysis(UpdateStatus);
+                analysis.SetLayer(featureLayer);
                 double result = analysis.IntepolateElevation(clickPoint, 8);
 
                 MessageBox.Show($"插值高程：{result:F2} 米");
