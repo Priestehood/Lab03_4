@@ -19,6 +19,9 @@ namespace Lab04_4
         IEnvelope ext = null; // 主地图显示范围
         private SpatialQueryTool _spatialQueryTool;// 声明步骤3+4的封装类实例
         private int _lastLayerCount = -1;// 用于检测图层是否变化
+        private ElevationAnalysis _elevationAnalysis;
+
+
 
 
         public Form_4()
@@ -47,12 +50,16 @@ namespace Lab04_4
             // 1) 先创建工具（不进行强制识别）
             _spatialQueryTool = new SpatialQueryTool(axMap);
 
-
             // 订阅地图事件：当地图被替换或添加图层时静默尝试识别（不会弹窗）
             axMap.OnMapReplaced += AxMapControl1_OnMapReplaced;
 
             // 地图刷新后触发，用来检测是否新增图层
             axMap.OnAfterScreenDraw += AxMapControl1_OnAfterScreenDraw;
+            // Form_4_Load 或者合适位置
+            _elevationAnalysis = new ElevationAnalysis(); // 不传图层
+            axMap.OnMouseDown += axMap_OnMouseDown;
+
+
 
 
         }
@@ -405,10 +412,36 @@ namespace Lab04_4
 
         #endregion
 
-        #region 鼠标点击位置的高程
+        #region 
+
+        
         private void axMap_OnMouseDown(object sender, IMapControlEvents2_OnMouseDownEvent e)
         {
-            
+            if (e.button != 1) return;
+
+            // 尝试绑定图层
+            bool layerFound = _elevationAnalysis.elevPointLayer != null
+                              || _elevationAnalysis.AssignLayersAutomatically(axMap);
+
+            if (!layerFound)
+            {
+                // 弹窗只会出现一次，取决于用户实际点击操作
+                MessageBox.Show("⚠ 没有高程点图层，请先加载高程数据！", "提示");
+                return;
+            }
+
+            IPoint clickPoint = new PointClass();
+            clickPoint.PutCoords(e.mapX, e.mapY);
+
+            try
+            {
+                double elevation = _elevationAnalysis.IntepolateElevation(clickPoint, 8);
+                MessageBox.Show($"当前位置高程：{elevation:F2} 米", "插值结果");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "错误");
+            }
         }
 
         #endregion
@@ -428,6 +461,11 @@ namespace Lab04_4
         private void menuSQElementClickQuery_Click(object sender, EventArgs e)
         {
             _spatialQueryTool.MenuClick_ElementQuery();
+        }
+
+        private void menuSpatialQuery_Click(object sender, EventArgs e)
+        {
+
         }
     }
 
