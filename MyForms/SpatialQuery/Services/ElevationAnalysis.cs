@@ -5,6 +5,9 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 using Lab04_4.MyForms.SpatialQuery.Helpers;
+using Lab04_4.MyForms.SpatialQuery.Services;
+using System.Windows.Forms;   // MessageBox
+
 
 namespace Lab04_4.MyForms.SpatialQuery.Services
 {
@@ -104,12 +107,45 @@ namespace Lab04_4.MyForms.SpatialQuery.Services
 
         public double IntepolateElevation(IPoint click, int n)
         {
-            List<KNearestNeighbor.FeatureDistancePair> results =
-                KNearestNeighbor.FindKNearest(click, n, elevPointLayer.FeatureClass);
+            //List<KNearestNeighbor.FeatureDistancePair> results =
+            //KNearestNeighbor.FindKNearest(click, n, elevPointLayer.FeatureClass);
 
             // TODO: 反距离内插法
-            double elevation = 0;
-            return elevation;
+            List<KNearestNeighbor.FeatureDistancePair> results =
+       KNearestNeighbor.FindKNearest(click, n, elevPointLayer.FeatureClass);
+
+            if (results == null || results.Count == 0)
+                throw new Exception("未找到任何邻近的高程点，无法计算插值。");
+
+            double weightSum = 0;
+            double weightedElevationSum = 0;
+
+            int zIndex = elevPointLayer.FeatureClass.Fields.FindField(ZFieldName);
+            if (zIndex < 0) throw new Exception("未找到高程字段" + ZFieldName);
+
+            double p = 2; // IDW的幂指数，一般取2即可。
+
+            foreach (var item in results)
+            {
+                double dist = item.distance;
+
+                // 避免被自身点除以0
+                if (dist == 0)
+                {
+                    return Convert.ToDouble(item.feature.Value[zIndex]);
+                }
+
+                double elevation = Convert.ToDouble(item.feature.Value[zIndex]);
+                double weight = 1 / Math.Pow(dist, p);
+
+                weightedElevationSum += weight * elevation;
+                weightSum += weight;
+            }
+
+            return weightedElevationSum / weightSum;
         }
+
     }
+
+    
 }

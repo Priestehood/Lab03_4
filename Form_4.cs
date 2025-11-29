@@ -4,6 +4,7 @@ using ESRI.ArcGIS.Geometry;
 using System;
 using System.ComponentModel;
 using System.Drawing;
+using Lab04_4.MyForms.SpatialQuery.Services;
 using System.Windows.Forms;
 
 
@@ -358,5 +359,26 @@ namespace Lab04_4
 
         #endregion
 
+        #region 鼠标点击位置的高程
+        private void axMap_OnMouseDown(object sender, IMapControlEvents2_OnMouseDownEvent e)
+        {
+            IPoint clickPoint = new PointClass();
+            clickPoint.PutCoords(e.mapX, e.mapY);
+
+            IFeatureLayer elevationLayer = axMap.get_Layer(0) as IFeatureLayer;
+
+            if (elevationLayer == null)
+            {
+                MessageBox.Show("未找到高程图层!");
+                return;
+            }
+
+            ElevationAnalysis analysis = new ElevationAnalysis(elevationLayer);
+            double result = analysis.IntepolateElevation(clickPoint, 8);
+
+            MessageBox.Show($"插值高程：{result:F2} 米");
+        }
+        # endregion
     }
+
 }
