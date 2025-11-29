@@ -2,39 +2,75 @@
 using ESRI.ArcGIS.Geometry;
 using ESRI.ArcGIS.Geodatabase;
 using System;
-using System.Linq;
+using System.ComponentModel;
 using System.Collections.Generic;
+using System.Linq;
 using Lab04_4.MyForms.SpatialQuery.Helpers;
+using System.Windows.Forms;
 
 namespace Lab04_4.MyForms.SpatialQuery.Services
 {
+    public delegate void UpdateStatusDelegate(string message);
+
     class ElevationAnalysis
     {
         private IFeatureLayer elevPointLayer;
         private string ZFieldName = "Z";
 
-        public ElevationAnalysis(IFeatureLayer layer)
+        private IFeatureCursor updateCursor;
+        private int n; // 搜索最近高程点的数量n
+        private int deleteCount;
+
+        private UpdateStatusDelegate UpdateStatus;
+
+        public ElevationAnalysis(IFeatureLayer layer,
+            UpdateStatusDelegate updateStatus)
         {
             this.elevPointLayer = layer;
+            this.UpdateStatus = updateStatus;
         }
 
-        public int DetectAbnormalElevations(int n)
+        public int DetectAbnormalElevations(int kOfKNN)
         {
-            IFeatureCursor cursor = elevPointLayer.FeatureClass.Update(null, true);
+            // 初始化
+            this.n = kOfKNN;
+            deleteCount = 0;
+            IFeatureClass featureClass = elevPointLayer.FeatureClass;
+            updateCursor = featureClass.Search(null, false);
 
-            int deleteCount = 0;
-            IFeature elevationPoint;
-            while ((elevationPoint = cursor.NextFeature()) != null)
-            {
-                List<IFeature> NN = GetKNN(elevationPoint, n);
-                if (IsOutlier(elevationPoint, NN))
-                {
-                    elevationPoint.Delete();
-                    deleteCount++;
-                }
-            }
+            LongOperation operation =
+                new LongOperation(featureClass.FeatureCount(null),
+                doStep, onCompleted);
+            operation.Start("正在进行高程点滤波");
 
             return deleteCount;
+        }
+
+        private bool doStep()
+        {
+            IFeature elevationPoint = updateCursor.NextFeature();
+            if (elevationPoint is null) return true;
+
+            //if (elevationPoint.OID < 1720) return false;
+
+            List<IFeature> NN = GetKNN(elevationPoint, n);
+            if (IsOutlier(elevationPoint, NN))
+            {
+                elevationPoint.Delete();
+                deleteCount++;
+            }
+
+            return false;
+        }
+
+        private void onCompleted(RunWorkerCompletedEventArgs e)
+        {
+            if (e.Cancelled)
+                UpdateStatus("高程点滤波操作已取消。");
+            else if (e.Error != null)
+                MessageBox.Show($"错误: {e.Error.Message}");
+            else
+                UpdateStatus($"已完成高程点滤波，删除了{deleteCount}个高程点。");
         }
 
         /// <summary>
