@@ -744,13 +744,13 @@
   <data name="tlbFeatureIdentify.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAAFiUAABYlAUlSJPAAAAF+SURBVDhPhZK/alRREIdPCHmDyMU0WZc95/dnK6OVpIiN
-        b2CTKoWIxeIzmKxBTF4lhaBCQBEkIiqYOjamsIqFdexkwibcjBI/GLjMfL9hDtxSEiQb6R3JX2utv6IA
-        H5LeBYDs91kgudN13W/bLwBvALgzq43odd04Zrvh/hWW9FLSkaSbeXgOyRXbR7ZfX1oC4Lntb6PR6Nql
-        RClzs7qgtbYY7uySUobDYY2zSd7qiwGpd5I+5j6A2/EcSbVIemb7VZYCAPcBrOd+EE+Oy+NdX0g+zEJQ
-        KycVeJz7AckHkY2PEwBrWQgAvKf0IfeDyNj+eb7gbhYCwFcsGK9Fttj+JOlRFoKrFkSG5OdYsC1pPwvB
-        fxbsk3xaaq1D26fxx2WpNU5b43buhxuZ1tqNs4btqe1jkteznAGwZPs7yWm/Py9pL5a05tX+oE9rbTWc
-        cCOT5/PSeMsenwJ+Q3IyIu/xrDyx/TbOlvTkX+ELJC1L2iR5QPLHrA4iOBgMlrP/B4Hxc6YS40D/AAAA
+        YQUAAAAJcEhZcwAAFiUAABYlAUlSJPAAAAF+SURBVDhPhZK9apRREIaPhNyBX6FN1mXPeX+28qcKKWLj
+        HdhYpQjBYsk1mKxBTG7FQkgCAUWQiKgQ69hokUoL66STCZvwZZT4wMDHzPMOc+ArJUGykd6WfFRr/R0F
+        +CvpHQDIfp95kttd153Zfg14BcDirFai13XjmO2E+1dY0q6kY0l38/ACkvdsH9vev7IEwEvb30ajUXcl
+        UcqNWV3SWrsZ7uySUobDYY2zSd7viwGpd5I+5j6AB/EcSbVIemF7L0sBgMcAnuR+EE+Oy+NdX0iuZSGo
+        lZMKrOd+QHI1svHxE8ByFgIA7yl9yP0gMrZ/XSx4mIUA8DULxsuRLbY/SXqaheC6BZEh+TkWbEk6yELw
+        nwUHJJ+XWuvQ9mn8cVlqjdPWuJX74UamtXbnvGF7avsHyVtZzgC4bfs7yWm/PyfpVSxpzUv9QZ/W2lI4
+        4UYmz+ek8aY9PgX8huRkRD7ieXli+22cLenZv8KXSFqQtEHykOTJrA4jOBgMFrL/Bz+Pc5Kca5tQAAAA
         AElFTkSuQmCC
 </value>
   </data>
@@ -908,6 +908,15 @@
         AAEAAAAAAAAA//8AAAAAAAAAAAANAAAAAAAAAAAAAAAAAAAAAABJGwAAfCMAAAAAAgAAAAAAAAAAAAAL
 </value>
   </data>
+  <metadata name="colBuildingId.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="colBuildingName.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="colBuildingArea.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <data name="axMap.OcxState" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
@@ -1045,6 +1054,9 @@
         gO3uAReh4yEAAAAASUVORK5CYII=
 </value>
   </data>
+  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>25</value>
+  </metadata>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAABAAMAEBAAAAEAIABoBAAANgAAABgYAAABACAAiAkAAJ4EAAAgIAAAAQAgAKgQAAAmDgAAKAAAABAA

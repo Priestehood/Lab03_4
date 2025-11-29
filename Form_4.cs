@@ -1,4 +1,4 @@
-using ESRI.ArcGIS.Carto;
+ï»¿using ESRI.ArcGIS.Carto;
 using ESRI.ArcGIS.Controls;
 using ESRI.ArcGIS.Geometry;
 using System;
@@ -6,35 +6,81 @@ using System.ComponentModel;
 using System.Drawing;
 using Lab04_4.MyForms.SpatialQuery.Services;
 using System.Windows.Forms;
+using ESRI.ArcGIS.Geodatabase;
+using ESRI.ArcGIS.Display;
+
 
 
 namespace Lab04_4
 {
     public partial class Form_4 : Form
     {
-        private ILayer m_selectedLayer; // µ±Ç°Ñ¡ÖĞµÄÍ¼²ã
-        IEnvelope ext = null; // Ö÷µØÍ¼ÏÔÊ¾·¶Î§
+        private ILayer m_selectedLayer; // å½“å‰é€‰ä¸­çš„å›¾å±‚
+        IEnvelope ext = null; // ä¸»åœ°å›¾æ˜¾ç¤ºèŒƒå›´
+        private SpatialQueryTool _spatialQueryTool;// å£°æ˜æ­¥éª¤3+4çš„å°è£…ç±»å®ä¾‹
+        private int _lastLayerCount = -1;// ç”¨äºæ£€æµ‹å›¾å±‚æ˜¯å¦å˜åŒ–
+
 
         public Form_4()
         {
             InitializeComponent();
             this.Load += Form_4_Load;
             InitializeFeatureClassManagement();
+      
         }
+        // åœ¨åœ°å›¾æ§ä»¶åŠ è½½å®Œæˆåæ‰§è¡Œ
+       
 
-        #region ´°Ìå¼ÓÔØºÍ³õÊ¼»¯
+        #region çª—ä½“åŠ è½½å’Œåˆå§‹åŒ–
         private void Form_4_Load(object sender, EventArgs e)
         {
-            // ¶¯Ì¬ÉèÖÃËõ·Å´óĞ¡
+            
+
+
+            // åŠ¨æ€è®¾ç½®ç¼©æ”¾å¤§å°
             menu.ImageScalingSize = new Size(16, 16);
             tool.ImageScalingSize = new Size(16, 16);
 
-            //¹Ø±Õ¹öÂÖËõ·Å¹¦ÄÜ
+            //å…³é—­æ»šè½®ç¼©æ”¾åŠŸèƒ½
             this.axThum.AutoMouseWheel = false;
+
+            // 1) å…ˆåˆ›å»ºå·¥å…·ï¼ˆä¸è¿›è¡Œå¼ºåˆ¶è¯†åˆ«ï¼‰
+            _spatialQueryTool = new SpatialQueryTool(axMap);
+
+
+            // è®¢é˜…åœ°å›¾äº‹ä»¶ï¼šå½“åœ°å›¾è¢«æ›¿æ¢æˆ–æ·»åŠ å›¾å±‚æ—¶é™é»˜å°è¯•è¯†åˆ«ï¼ˆä¸ä¼šå¼¹çª—ï¼‰
+            axMap.OnMapReplaced += AxMapControl1_OnMapReplaced;
+
+            // åœ°å›¾åˆ·æ–°åè§¦å‘ï¼Œç”¨æ¥æ£€æµ‹æ˜¯å¦æ–°å¢å›¾å±‚
+            axMap.OnAfterScreenDraw += AxMapControl1_OnAfterScreenDraw;
+
+
         }
+
+        private void AxMapControl1_OnMapReplaced(object sender, IMapControlEvents2_OnMapReplacedEvent e)
+        {
+            _spatialQueryTool.EnsureLayersAssigned(true);
+            _lastLayerCount = axMap.LayerCount;
+        }
+
+
+        private void AxMapControl1_OnAfterScreenDraw(object sender, IMapControlEvents2_OnAfterScreenDrawEvent e)
+        {
+            // å¦‚æœå›¾å±‚æ•°é‡å˜åŒ– â†’ è‡ªåŠ¨é‡æ–°è¯†åˆ«
+            if (_lastLayerCount != axMap.LayerCount)
+            {
+                _lastLayerCount = axMap.LayerCount;
+                _spatialQueryTool.EnsureLayersAssigned(true);
+            }
+        }
+
+
+
+
+
         #endregion
 
-        #region ²Ëµ¥-ÎÄ¼ş¹¦ÄÜ
+        #region èœå•-æ–‡ä»¶åŠŸèƒ½
         private void menuFileNew_Click(object sender, EventArgs e)
         {
             CreateNewMap();
@@ -61,7 +107,7 @@ namespace Lab04_4
         }
         #endregion
 
-        #region ²Ëµ¥-Í¼²ã¹¦ÄÜ
+        #region èœå•-å›¾å±‚åŠŸèƒ½
         private void menuLayerAllShp_Click(object sender, EventArgs e)
         {
             LoadAllShapefiles();
@@ -93,14 +139,14 @@ namespace Lab04_4
         }
         #endregion
 
-        #region ²Ëµ¥-°ïÖú¹¦ÄÜ
+        #region èœå•-å¸®åŠ©åŠŸèƒ½
         private void menuHelp_Click(object sender, EventArgs e)
         {
 
         }
         #endregion
 
-        #region ¹¤¾ßÀ¸-Í¼²ã
+        #region å·¥å…·æ -å›¾å±‚
         private void tlbLayerAllShp_Click(object sender, EventArgs e)
         {
             LoadAllShapefiles();
@@ -132,7 +178,7 @@ namespace Lab04_4
         }
         #endregion
 
-        #region TOCÓÒ¼ü²Ëµ¥¹¦ÄÜ
+        #region TOCå³é”®èœå•åŠŸèƒ½
         private void tsmUp_Click(object sender, EventArgs e)
         {
             MoveLayerUp();
@@ -163,20 +209,20 @@ namespace Lab04_4
             AddLayerToThumbnail();
         }
 
-        // TOCÊó±êµã»÷ÊÂ¼ş£¬¼ÇÂ¼Ñ¡ÖĞµÄÍ¼²ã
+        // TOCé¼ æ ‡ç‚¹å‡»äº‹ä»¶ï¼Œè®°å½•é€‰ä¸­çš„å›¾å±‚
         private void axTOC_OnMouseDown(object sender, ESRI.ArcGIS.Controls.ITOCControlEvents_OnMouseDownEvent e)
         {
-            if (e.button == 2) // ÓÒ¼ü
+            if (e.button == 2) // å³é”®
             {
-                // »ñÈ¡Ñ¡ÖĞµÄÍ¼²ã
+                // è·å–é€‰ä¸­çš„å›¾å±‚
                 m_selectedLayer = GetSelectedLayer();
-                // ÏÔÊ¾ÓÒ¼ü²Ëµ¥
+                // æ˜¾ç¤ºå³é”®èœå•
                 if (m_selectedLayer != null)
                 {
                     cmTOC.Show(axTOC, new System.Drawing.Point(e.x, e.y));
                 }
             }
-            else // ×ó¼ü
+            else // å·¦é”®
             {
                 m_selectedLayer = GetSelectedLayer();
                 UpdateMenuStatus();
@@ -184,7 +230,7 @@ namespace Lab04_4
         }
         #endregion
 
-        #region ²Ëµ¥-ÒªËØÀà¹ÜÀí
+        #region èœå•-è¦ç´ ç±»ç®¡ç†
 
         private void menuFeatureClassNew_Click(object sender, EventArgs e)
         {
@@ -203,7 +249,7 @@ namespace Lab04_4
 
         #endregion
 
-        #region ¹¤¾ßÀ¸-ÒªËØÀà¹ÜÀí
+        #region å·¥å…·æ -è¦ç´ ç±»ç®¡ç†
 
         private void tlbFeatureClassNew_Click(object sender, EventArgs e)
         {
@@ -222,7 +268,7 @@ namespace Lab04_4
 
         #endregion
 
-        #region ²Ëµ¥-ÒªËØ¹ÜÀí
+        #region èœå•-è¦ç´ ç®¡ç†
 
         private void menuFeatureNew_Click(object sender, EventArgs e)
         {
@@ -272,7 +318,7 @@ namespace Lab04_4
 
         #endregion
 
-        #region ¹¤¾ßÀ¸-ÒªËØ¹ÜÀí
+        #region å·¥å…·æ -è¦ç´ ç®¡ç†
 
         private void tlbFeatureNew_Click(object sender, EventArgs e)
         {
@@ -323,7 +369,7 @@ namespace Lab04_4
 
         // Lab04_4
 
-        #region ²Ëµ¥-¿Õ¼ä²éÑ¯
+        #region èœå•-ç©ºé—´æŸ¥è¯¢
 
         private void menuSQQueryAreaExtremeValue_Click(object sender, EventArgs e)
         {
@@ -332,7 +378,7 @@ namespace Lab04_4
 
         #endregion
 
-        #region ¹¤¾ßÀ¸-¿Õ¼ä²éÑ¯
+        #region å·¥å…·æ -ç©ºé—´æŸ¥è¯¢
 
         private void tlbSQAreaExtremeValue_Click(object sender, EventArgs e)
         {
@@ -341,7 +387,7 @@ namespace Lab04_4
 
         #endregion
 
-        #region ²Ëµ¥-¸ß³Ì·ÖÎö
+        #region èœå•-é«˜ç¨‹åˆ†æ
 
         private void menuEAElevationPointFiltering_Click(object sender, EventArgs e)
         {
@@ -350,7 +396,7 @@ namespace Lab04_4
 
         #endregion
 
-        #region ¹¤¾ßÀ¸-¸ß³Ì·ÖÎö
+        #region å·¥å…·æ -é«˜ç¨‹åˆ†æ
 
         private void tlbEAElevationPointFiltering_Click(object sender, EventArgs e)
         {
@@ -359,26 +405,30 @@ namespace Lab04_4
 
         #endregion
 
-        #region Êó±êµã»÷Î»ÖÃµÄ¸ß³Ì
+        #region é¼ æ ‡ç‚¹å‡»ä½ç½®çš„é«˜ç¨‹
         private void axMap_OnMouseDown(object sender, IMapControlEvents2_OnMouseDownEvent e)
         {
-            IPoint clickPoint = new PointClass();
-            clickPoint.PutCoords(e.mapX, e.mapY);
-
-            IFeatureLayer elevationLayer = axMap.get_Layer(0) as IFeatureLayer;
-
-            if (elevationLayer == null)
-            {
-                MessageBox.Show("Î´ÕÒµ½¸ß³ÌÍ¼²ã!");
-                return;
-            }
-
-            ElevationAnalysis analysis = new ElevationAnalysis(elevationLayer);
-            double result = analysis.IntepolateElevation(clickPoint, 8);
-
-            MessageBox.Show($"²åÖµ¸ß³Ì£º{result:F2} Ã×");
+            
         }
-        # endregion
+
+        #endregion
+
+        #region èœå•-ç»˜åˆ¶å¤šä¹‰çº¿åŠæŸ¥è¯¢ç¼“å†²è¦ç´ 
+        private void menuSQBufferAnalysis_Click(object sender, EventArgs e)
+        {
+            _spatialQueryTool.MenuClick_BufferAnalysis();
+        }
+
+        private void menuSQDrawAPolyline_Click(object sender, EventArgs e)
+        {
+            _spatialQueryTool.MenuClick_DrawPolyline();
+        }
+        #endregion
+
+        private void menuSQElementClickQuery_Click(object sender, EventArgs e)
+        {
+            _spatialQueryTool.MenuClick_ElementQuery();
+        }
     }
 
 }
