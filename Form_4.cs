@@ -19,6 +19,9 @@ namespace Lab04_4
         IEnvelope ext = null; // 主地图显示范围
         private SpatialQueryTool _spatialQueryTool;// 声明步骤3+4的封装类实例
         private int _lastLayerCount = -1;// 用于检测图层是否变化
+        private ElevationAnalysis _elevationAnalysis;
+        private bool _isElevationQueryMode = false;//检测是否带调用点击显示高程按钮
+
 
 
         public Form_4()
@@ -47,12 +50,16 @@ namespace Lab04_4
             // 1) 先创建工具（不进行强制识别）
             _spatialQueryTool = new SpatialQueryTool(axMap);
 
-
             // 订阅地图事件：当地图被替换或添加图层时静默尝试识别（不会弹窗）
             axMap.OnMapReplaced += AxMapControl1_OnMapReplaced;
 
             // 地图刷新后触发，用来检测是否新增图层
             axMap.OnAfterScreenDraw += AxMapControl1_OnAfterScreenDraw;
+            // Form_4_Load 或者合适位置
+            _elevationAnalysis = new ElevationAnalysis(); // 不传图层
+            axMap.OnMouseDown += axMap_OnMouseDown;
+
+
 
 
         }
@@ -405,10 +412,88 @@ namespace Lab04_4
 
         #endregion
 
-        #region 鼠标点击位置的高程
+        #region 点击地图显示高程
+
+        /// <summary>
+        /// 菜单：menuElevationQuery（步骤6：查询指定点高程）
+        /// 功能：启用/禁用高程查询模式，与其他模式互斥
+        /// </summary>
+        private void menuEAQueryElevation_Click(object sender, EventArgs e)
+        {
+            _isElevationQueryMode = !_isElevationQueryMode;
+            menuEAQueryElevation.Checked = _isElevationQueryMode;
+
+            // 模式互斥：禁用所有空间查询模式
+            if (_isElevationQueryMode)
+            {
+                // 禁用空间查询的3个模式
+                _spatialQueryTool.ToggleElementQueryMode(false);
+                _spatialQueryTool.ToggleDrawPolylineMode(false);
+                _spatialQueryTool.ToggleBufferQueryMode(false);
+                // 取消空间查询控件的勾选状态
+                menuSQElementClickQuery.Checked = false;
+                menuSQDrawAPolyline.Checked = false;
+                menuSQBufferAnalysis.Checked = false;
+                status.Items[0].Text = "当前模式：高程查询（左键点击地图获取高程）";
+            }
+            else
+            {
+                status.Items[0].Text = "当前模式：默认（请选择功能模式）";
+            }
+        }
+
+        /// <summary>
+        /// 高程查询执行逻辑（独立封装）
+        /// </summary>
+        private void ExecuteElevationQuery(IMapControlEvents2_OnMouseDownEvent e)
+        {
+            // 这里放入你原有的高程查询代码（比如绑定图层、插值计算等）
+            bool layerFound = _elevationAnalysis.elevPointLayer != null
+                              || _elevationAnalysis.AssignLayersAutomatically(axMap);
+
+            if (!layerFound)
+            {
+                MessageBox.Show("⚠ 没有高程点图层，请先加载高程数据！", "提示");
+                return;
+            }
+
+            IPoint clickPoint = new PointClass();
+            clickPoint.PutCoords(e.mapX, e.mapY);
+
+            try
+            {
+                double elevation = _elevationAnalysis.IntepolateElevation(clickPoint, 8);
+                MessageBox.Show($"当前位置高程：{elevation:F2} 米", "插值结果");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "错误");
+            }
+        }
+
         private void axMap_OnMouseDown(object sender, IMapControlEvents2_OnMouseDownEvent e)
         {
-            
+            if (e.button != 1) return;
+
+            // 先检查 _spatialQueryTool 是否初始化
+            if (_spatialQueryTool == null)
+            {
+                MessageBox.Show("空间查询工具未初始化！");
+                return;
+            }
+
+            bool isClickQuery = _spatialQueryTool != null && _spatialQueryTool.IsElementQueryActive;
+            bool isDrawPolyline = _spatialQueryTool != null && _spatialQueryTool.IsDrawPolylineActive;
+            // bool isBufferQuery = _spatialQueryTool != null && _spatialQueryTool.IsBufferQueryActive;
+
+            if (isClickQuery || isDrawPolyline)
+            {
+                _spatialQueryTool.OnMapMouseDown(e);
+            }
+            else if (_isElevationQueryMode)
+            {
+                ExecuteElevationQuery(e); // 高程查询逻辑
+            }
         }
 
         #endregion
@@ -423,12 +508,20 @@ namespace Lab04_4
         {
             _spatialQueryTool.MenuClick_DrawPolyline();
         }
-        #endregion
+        
 
         private void menuSQElementClickQuery_Click(object sender, EventArgs e)
         {
             _spatialQueryTool.MenuClick_ElementQuery();
         }
+
+        private void menuSpatialQuery_Click(object sender, EventArgs e)
+        {
+
+        }
+        #endregion
+
+        
     }
 
 }

@@ -134,10 +134,6 @@ namespace Lab04_4
             this.splitter1 = new System.Windows.Forms.Splitter();
             this.panel1 = new System.Windows.Forms.Panel();
             this.axTOC = new ESRI.ArcGIS.Controls.AxTOCControl();
-            this.dgvBuildingResult = new System.Windows.Forms.DataGridView();
-            this.colBuildingId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colBuildingName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colBuildingArea = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.axMap = new ESRI.ArcGIS.Controls.AxMapControl();
             this.axToolbar = new ESRI.ArcGIS.Controls.AxToolbarControl();
             this.cmTOC = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -161,7 +157,6 @@ namespace Lab04_4
             ((System.ComponentModel.ISupportInitialize)(this.axLicense)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.axTOC)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvBuildingResult)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.axMap)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.axToolbar)).BeginInit();
             this.cmTOC.SuspendLayout();
@@ -546,6 +541,7 @@ namespace Lab04_4
             this.menuSpatialQuery.Name = "menuSpatialQuery";
             this.menuSpatialQuery.Size = new System.Drawing.Size(125, 28);
             this.menuSpatialQuery.Text = "空间查询(&Q)";
+            this.menuSpatialQuery.Click += new System.EventHandler(this.menuSpatialQuery_Click);
             // 
             // menuSQQueryAreaExtremeValue
             // 
@@ -662,6 +658,7 @@ namespace Lab04_4
             this.menuEAQueryElevation.Size = new System.Drawing.Size(270, 34);
             this.menuEAQueryElevation.Text = "查询指定点高程";
             this.menuEAQueryElevation.ToolTipText = "点击地图任意位置，通过邻近高程点\r\n的 IDW 插值计算指定位置的高程";
+            this.menuEAQueryElevation.Click += new System.EventHandler(this.menuEAQueryElevation_Click);
             // 
             // tool
             // 
@@ -1149,7 +1146,6 @@ namespace Lab04_4
             // 
             // splitContainer.Panel2
             // 
-            this.splitContainer.Panel2.Controls.Add(this.dgvBuildingResult);
             this.splitContainer.Panel2.Controls.Add(this.axMap);
             this.splitContainer.Panel2.Controls.Add(this.axToolbar);
             this.splitContainer.Size = new System.Drawing.Size(1575, 1072);
@@ -1216,45 +1212,6 @@ namespace Lab04_4
             this.axTOC.Size = new System.Drawing.Size(396, 515);
             this.axTOC.TabIndex = 5;
             this.axTOC.OnMouseDown += new ESRI.ArcGIS.Controls.ITOCControlEvents_Ax_OnMouseDownEventHandler(this.axTOC_OnMouseDown);
-            // 
-            // dgvBuildingResult
-            // 
-            this.dgvBuildingResult.AllowUserToAddRows = false;
-            this.dgvBuildingResult.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.dgvBuildingResult.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvBuildingResult.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.colBuildingId,
-            this.colBuildingName,
-            this.colBuildingArea});
-            this.dgvBuildingResult.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.dgvBuildingResult.Location = new System.Drawing.Point(0, 922);
-            this.dgvBuildingResult.Name = "dgvBuildingResult";
-            this.dgvBuildingResult.RowHeadersVisible = false;
-            this.dgvBuildingResult.RowHeadersWidth = 62;
-            this.dgvBuildingResult.RowTemplate.Height = 30;
-            this.dgvBuildingResult.Size = new System.Drawing.Size(1174, 150);
-            this.dgvBuildingResult.TabIndex = 2;
-            // 
-            // colBuildingId
-            // 
-            this.colBuildingId.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colBuildingId.HeaderText = "建筑ID";
-            this.colBuildingId.MinimumWidth = 8;
-            this.colBuildingId.Name = "colBuildingId";
-            // 
-            // colBuildingName
-            // 
-            this.colBuildingName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colBuildingName.HeaderText = "建筑名称";
-            this.colBuildingName.MinimumWidth = 8;
-            this.colBuildingName.Name = "colBuildingName";
-            // 
-            // colBuildingArea
-            // 
-            this.colBuildingArea.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colBuildingArea.HeaderText = "建筑面积（平方米）";
-            this.colBuildingArea.MinimumWidth = 8;
-            this.colBuildingArea.Name = "colBuildingArea";
             // 
             // axMap
             // 
@@ -1397,7 +1354,6 @@ namespace Lab04_4
             ((System.ComponentModel.ISupportInitialize)(this.axLicense)).EndInit();
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.axTOC)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvBuildingResult)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.axMap)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.axToolbar)).EndInit();
             this.cmTOC.ResumeLayout(false);
@@ -1531,10 +1487,6 @@ namespace Lab04_4
         private System.Windows.Forms.ToolStripButton tlbEAQueryElevation;
         private System.Windows.Forms.ToolStripMenuItem tlbSQDrawAPolyline;
         private System.Windows.Forms.ToolStripMenuItem tlbSQBufferAnalysis;
-        private System.Windows.Forms.DataGridView dgvBuildingResult;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colBuildingId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colBuildingName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colBuildingArea;
     }
 }
 

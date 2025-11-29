@@ -19,6 +19,13 @@ namespace Lab04_4.MyForms.SpatialQuery.Services
         private IFeatureLayer _buildingLayer;
         private IFeatureLayer _roadLayer;
         private IFeatureLayer _elevationLayer;
+        private bool _isBufferQueryActive = false;
+
+     
+        public bool IsBufferQueryActive => _isBufferQueryActive;
+
+        public bool IsElementQueryActive => _isElementQueryActive; // 点击查询模式状态
+        public bool IsDrawPolylineActive => _isDrawPolylineActive; // 绘制多义线模式状态
 
         // 用于多义线绘制
         private List<IPoint> _points = new List<IPoint>();
@@ -91,13 +98,16 @@ namespace Lab04_4.MyForms.SpatialQuery.Services
         // ================================================================
         public void MenuClick_ElementQuery()
         {
+
+            _isElementQueryActive = true; // 激活标记
+            _isDrawPolylineActive = false; // 互斥
+
             MessageBox.Show("🔍 现在请点击地图上的建筑或道路进行查询。\n右键取消。");
-
             _axMap.MousePointer = esriControlsMousePointer.esriPointerCrosshair;
-
-            // 绑定一次鼠标事件（避免重复绑定）
             _axMap.OnMouseDown -= Map_OnClick_Query;
             _axMap.OnMouseDown += Map_OnClick_Query;
+
+           
         }
 
         private void Map_OnClick_Query(object sender, IMapControlEvents2_OnMouseDownEvent e)
@@ -129,6 +139,9 @@ namespace Lab04_4.MyForms.SpatialQuery.Services
             }
 
             MessageBox.Show("⚠ 未点击到任何建筑或道路，请重试。");
+
+            _axMap.OnMouseDown -= Map_OnClick_Query;
+            _isElementQueryActive = false; // 重置标记
         }
 
         private IFeature QueryFeatureByPoint(IFeatureLayer layer, IPoint pt)
@@ -165,13 +178,20 @@ namespace Lab04_4.MyForms.SpatialQuery.Services
         // ================================================================
         public void MenuClick_DrawPolyline()
         {
-            MessageBox.Show("📌 请左键依次点击绘制多义线，右键结束绘制。");
+            _isDrawPolylineActive = true;
+            _isElementQueryActive = false;
 
+            MessageBox.Show("📌 请左键依次点击绘制多义线，右键结束绘制。");
             _points.Clear();
+
             _axMap.MousePointer = esriControlsMousePointer.esriPointerCrosshair;
 
+            // ❗关键：先解绑避免重复绑定
             _axMap.OnMouseDown -= Map_OnDrawPolyline;
+            // ❗再绑定事件
             _axMap.OnMouseDown += Map_OnDrawPolyline;
+
+
         }
 
         private void Map_OnDrawPolyline(object sender, IMapControlEvents2_OnMouseDownEvent e)
@@ -183,8 +203,12 @@ namespace Lab04_4.MyForms.SpatialQuery.Services
             {
                 _points.Add(pt);
             }
-            else if (e.button == 2)  // 右键结束
+            else if (e.button == 2) // 右键结束绘制
             {
+                // 1. 重置绘制模式标记（关键！）
+                _isDrawPolylineActive = false;
+
+                // 2. 原有绘制逻辑
                 if (_points.Count < 2)
                 {
                     MessageBox.Show("⚠ 多义线至少需要两个点！");
@@ -193,26 +217,33 @@ namespace Lab04_4.MyForms.SpatialQuery.Services
 
                 IPolyline line = new PolylineClass();
                 IPointCollection pc = line as IPointCollection;
-
                 foreach (var p in _points) pc.AddPoint(p);
-
                 _drawnPolyline = line;
                 _points.Clear();
 
+                // 3. 恢复鼠标样式
                 _axMap.OnMouseDown -= Map_OnDrawPolyline;
-
-                // 进入缓冲分析步骤
+                _axMap.MousePointer = esriControlsMousePointer.esriPointerDefault;
+                // 4. 执行缓冲分析
                 MenuClick_BufferAnalysis();
+
+                
+              
             }
+          
         }
 
         public void MenuClick_BufferAnalysis()
         {
+            _isBufferQueryActive = true; // 标记缓冲查询激活
+
             if (_drawnPolyline == null)
             {
+                _isBufferQueryActive = false; // 未就绪则标记为未激活
                 MessageBox.Show("⚠ 请先绘制多义线再执行缓冲分析。");
                 return;
             }
+
 
             double bufferDistance = 5.0; // 单位：地图坐标系单位
             IGeometry buffer = ((ITopologicalOperator)_drawnPolyline).Buffer(bufferDistance);
@@ -243,6 +274,89 @@ namespace Lab04_4.MyForms.SpatialQuery.Services
             else
                 MessageBox.Show(string.Join("\n", result), "📌 缓冲区相交建筑列表");
         }
+
+        public void ToggleBufferQueryMode(bool isEnable)
+        {
+            // 逻辑：启用时检查是否已绘制多义线，未绘制则提示；禁用时清空多义线
+            if (isEnable)
+            {
+                if (_drawnPolyline == null)
+                    MessageBox.Show("请先绘制多义线再启用缓冲查询！");
+            }
+            else
+            {
+                _drawnPolyline = null; // 清空已绘制的多义线，避免误触发
+            }
+        }
+
+        // ================================================================
+        // 新增：模式切换方法（供Form4调用，实现互斥）
+        // ================================================================
+        /// <summary>
+        /// 启用/禁用「点击查询建筑/道路」模式（对应实验步骤3）
+        /// </summary>
+        public void ToggleElementQueryMode(bool isEnable)
+        {
+            if (isEnable)
+            {
+                // 启用：执行你原有的点击查询初始化逻辑
+                if (EnsureLayersAssigned(false)) // 检测图层，未就绪则不启用
+                {
+                    MenuClick_ElementQuery();
+                }
+            }
+            else
+            {
+                // 禁用：取消鼠标事件绑定，恢复鼠标样式
+                _axMap.OnMouseDown -= Map_OnClick_Query;
+                _axMap.MousePointer = esriControlsMousePointer.esriPointerDefault;
+            }
+            _isBufferQueryActive = false; // 分析完成后重置状态
+        }
+
+        /// <summary>
+        /// 启用/禁用「绘制多义线」模式（对应实验步骤4）
+        /// </summary>
+        public void ToggleDrawPolylineMode(bool isEnable)
+        {
+            if (isEnable)
+            {
+                // 启用：执行你原有的绘制多义线初始化逻辑
+                if (EnsureLayersAssigned(false)) // 检测图层，未就绪则不启用
+                {
+                    MenuClick_DrawPolyline();
+                }
+            }
+            else
+            {
+                // 禁用：取消鼠标事件绑定，恢复鼠标样式，清空绘制数据
+                _axMap.OnMouseDown -= Map_OnDrawPolyline;
+                _axMap.MousePointer = esriControlsMousePointer.esriPointerDefault;
+                _points.Clear();
+                _drawnPolyline = null;
+            }
+        }
+
+        /// <summary>
+        /// 统一鼠标事件入口（供Form4调用，分发到对应功能）
+        /// </summary>
+        public void OnMapMouseDown(IMapControlEvents2_OnMouseDownEvent e)
+        {
+            // 如果是点击查询模式，执行查询逻辑
+            if (_isElementQueryActive) // 需新增一个标记变量
+            {
+                Map_OnClick_Query(null, e);
+            }
+            // 如果是绘制多义线模式，执行绘制逻辑
+            else if (_isDrawPolylineActive) // 需新增一个标记变量
+            {
+                Map_OnDrawPolyline(null, e);
+            }
+        }
+
+        // 同时在 SpatialQueryTool 类中新增两个模式标记变量（放在类顶部）：
+        private bool _isElementQueryActive = false; // 点击查询激活标记
+        private bool _isDrawPolylineActive = false; // 绘制多义线激活标记
     }
 }
 

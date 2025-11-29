@@ -423,7 +423,7 @@ ID: {minAreaID}
                 IFeatureLayer featureLayer = selectedLayer as IFeatureLayer;
                 _currentFeatureLayer = featureLayer;
 
-                ElevationAnalysis analysis = new ElevationAnalysis(featureLayer);
+                ElevationAnalysis analysis = new ElevationAnalysis();
                 int deleteCount = analysis.DetectAbnormalElevations(7);
                 UpdateStatus($"已完成高程点滤波，删除了{deleteCount}个高程点。");
             }
