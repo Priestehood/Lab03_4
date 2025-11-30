@@ -116,6 +116,8 @@ namespace Lab04_4.MyForms.SpatialQuery.Services
 
         private IFeature QueryFeatureByPoint(IFeatureLayer layer, IPoint pt)
         {
+            if (layer is null) return null;
+
             ISpatialFilter filter = new SpatialFilterClass();
             filter.Geometry = pt;
             filter.GeometryField = layer.FeatureClass.ShapeFieldName;
@@ -126,6 +128,8 @@ namespace Lab04_4.MyForms.SpatialQuery.Services
 
         private IFeature QueryFeatureByGeometry(IFeatureLayer layer, IGeometry geometry)
         {
+            if (layer is null) return null;
+
             ISpatialFilter filter = new SpatialFilterClass();
             filter.Geometry = geometry;
             filter.GeometryField = layer.FeatureClass.ShapeFieldName;

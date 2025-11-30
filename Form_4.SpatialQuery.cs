@@ -457,6 +457,7 @@ ID: {minAreaID}
         {
             MessageBox.Show("🔍 现在请点击地图上的建筑或道路进行查询。\n右键取消。");
             axMap.MousePointer = esriControlsMousePointer.esriPointerCrosshair;
+            sketcher.shape = MyForms.FeatureManagement.Services.Shape.Point;
             mapOperation = MapOperationType.ElementQuery;
         }
 
@@ -464,6 +465,7 @@ ID: {minAreaID}
         {
             MessageBox.Show("📌 请左键依次点击绘制多义线，右键结束绘制。");
             axMap.MousePointer = esriControlsMousePointer.esriPointerCrosshair;
+            sketcher.shape = MyForms.FeatureManagement.Services.Shape.Point;
             SpatialQueryService.ClearPoints();
             mapOperation = MapOperationType.DrawPolyline;
         }
@@ -508,6 +510,7 @@ ID: {minAreaID}
         private void BeginIntepolateElevation()
         {
             mapOperation = MapOperationType.IntepolateElevation;
+            sketcher.shape = MyForms.FeatureManagement.Services.Shape.Point;
         }
 
         private void IntepolateElevation(IPoint clickPoint)

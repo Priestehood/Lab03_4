@@ -121,28 +121,25 @@ namespace Lab04_4
             }
             else if (mapOperation == MapOperationType.IntepolateElevation)
             {
-                IPoint clickPoint = new PointClass();
-                clickPoint.PutCoords(e.mapX, e.mapY);
+                IPoint clickPoint = sketcher.Sketch(axMap, e) as IPoint;
                 IntepolateElevation(clickPoint);
             }
             else if (mapOperation == MapOperationType.ElementQuery)
             {
-                IPoint clickPoint = new PointClass();
-                clickPoint.PutCoords(e.mapX, e.mapY);
+                IPoint clickPoint = sketcher.Sketch(axMap, e) as IPoint;
                 SpatialQueryService.QueryElement(clickPoint);
             }
             else if (mapOperation == MapOperationType.DrawPolyline)
             {
                 if (e.button == 1)
                 {
-                    IPoint pt = new PointClass();
-                    pt.PutCoords(e.mapX, e.mapY);
-                    SpatialQueryService.AddPoint(pt);
+                   IPoint clickPoint = sketcher.Sketch(axMap, e) as IPoint;
+                   SpatialQueryService.AddPoint(clickPoint);
                 }
                 else if (e.button == 2)  // 右键结束
                 {
-                    SpatialQueryService.FinishDrawing();
-                    mapOperation = MapOperationType.Default;
+                   SpatialQueryService.FinishDrawing();
+                   mapOperation = MapOperationType.Default;
                 }
             }
         }
