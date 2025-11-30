@@ -89,30 +89,14 @@ namespace Lab04_4.MyForms.SpatialQuery.Services
         // ================================================================
         // 实验步骤 3：图上点击查询建筑/道路
         // ================================================================
-        public void MenuClick_ElementQuery()
+
+        public void QueryElement(IPoint clickPoint)
         {
-            MessageBox.Show("🔍 现在请点击地图上的建筑或道路进行查询。\n右键取消。");
-
-            _axMap.MousePointer = esriControlsMousePointer.esriPointerCrosshair;
-
-            // 绑定一次鼠标事件（避免重复绑定）
-            _axMap.OnMouseDown -= Map_OnClick_Query;
-            _axMap.OnMouseDown += Map_OnClick_Query;
-        }
-
-        private void Map_OnClick_Query(object sender, IMapControlEvents2_OnMouseDownEvent e)
-        {
-            if (e.button != 1) return; // 左键生效
-
-            IPoint clickPoint = new PointClass();
-            clickPoint.PutCoords(e.mapX, e.mapY);
-
             // 1）点状判断建筑物
             IFeature building = QueryFeatureByPoint(_buildingLayer, clickPoint);
             if (building != null)
             {
                 ShowFeatureInfo(building, "建筑");
-                _axMap.OnMouseDown -= Map_OnClick_Query;
                 return;
             }
 
@@ -124,7 +108,6 @@ namespace Lab04_4.MyForms.SpatialQuery.Services
             if (road != null)
             {
                 ShowFeatureInfo(road, "道路");
-                _axMap.OnMouseDown -= Map_OnClick_Query;
                 return;
             }
 
@@ -160,53 +143,39 @@ namespace Lab04_4.MyForms.SpatialQuery.Services
             MessageBox.Show($"{featureType} 信息：\n\n📌 ID: {feature.OID}\n📌 名称: {name}", "查询结果");
         }
 
-        // ================================================================
-        // 实验步骤 4：绘制多义线 + 缓冲区相交建筑计算
-        // ================================================================
-        public void MenuClick_DrawPolyline()
-        {
-            MessageBox.Show("📌 请左键依次点击绘制多义线，右键结束绘制。");
+        #region 绘制多义线 + 缓冲区相交建筑计算
 
+        public void ClearPoints()
+        {
             _points.Clear();
-            _axMap.MousePointer = esriControlsMousePointer.esriPointerCrosshair;
-
-            _axMap.OnMouseDown -= Map_OnDrawPolyline;
-            _axMap.OnMouseDown += Map_OnDrawPolyline;
         }
 
-        private void Map_OnDrawPolyline(object sender, IMapControlEvents2_OnMouseDownEvent e)
+        public void AddPoint(IPoint pt)
         {
-            IPoint pt = new PointClass();
-            pt.PutCoords(e.mapX, e.mapY);
-
-            if (e.button == 1)
-            {
-                _points.Add(pt);
-            }
-            else if (e.button == 2)  // 右键结束
-            {
-                if (_points.Count < 2)
-                {
-                    MessageBox.Show("⚠ 多义线至少需要两个点！");
-                    return;
-                }
-
-                IPolyline line = new PolylineClass();
-                IPointCollection pc = line as IPointCollection;
-
-                foreach (var p in _points) pc.AddPoint(p);
-
-                _drawnPolyline = line;
-                _points.Clear();
-
-                _axMap.OnMouseDown -= Map_OnDrawPolyline;
-
-                // 进入缓冲分析步骤
-                MenuClick_BufferAnalysis();
-            }
+            _points.Add(pt);
         }
 
-        public void MenuClick_BufferAnalysis()
+        public void FinishDrawing()
+        {
+            if (_points.Count < 2)
+            {
+                MessageBox.Show("⚠ 多义线至少需要两个点！");
+                return;
+            }
+
+            IPolyline line = new PolylineClass();
+            IPointCollection pc = line as IPointCollection;
+
+            foreach (var p in _points) pc.AddPoint(p);
+
+            _drawnPolyline = line;
+            _points.Clear();
+
+            // 进入缓冲分析步骤
+            PerformBufferAnalysis();
+        }
+
+        public void PerformBufferAnalysis()
         {
             if (_drawnPolyline == null)
             {
@@ -243,6 +212,8 @@ namespace Lab04_4.MyForms.SpatialQuery.Services
             else
                 MessageBox.Show(string.Join("\n", result), "📌 缓冲区相交建筑列表");
         }
+
+        #endregion
     }
 }
 

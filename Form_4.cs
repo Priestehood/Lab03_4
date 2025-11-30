@@ -17,7 +17,6 @@ namespace Lab04_4
     {
         private ILayer m_selectedLayer; // 当前选中的图层
         IEnvelope ext = null; // 主地图显示范围
-        private SpatialQueryTool _spatialQueryTool;// 声明步骤3+4的封装类实例
         private int _lastLayerCount = -1;// 用于检测图层是否变化
 
         public Form_4()
@@ -38,35 +37,13 @@ namespace Lab04_4
             //关闭滚轮缩放功能
             this.axThum.AutoMouseWheel = false;
 
-            // 1) 先创建工具（不进行强制识别）
-            _spatialQueryTool = new SpatialQueryTool(axMap);
-
-
             // 订阅地图事件：当地图被替换或添加图层时静默尝试识别（不会弹窗）
             axMap.OnMapReplaced += AxMapControl1_OnMapReplaced;
 
             // 地图刷新后触发，用来检测是否新增图层
             axMap.OnAfterScreenDraw += AxMapControl1_OnAfterScreenDraw;
-
-
         }
 
-        private void AxMapControl1_OnMapReplaced(object sender, IMapControlEvents2_OnMapReplacedEvent e)
-        {
-            _spatialQueryTool.EnsureLayersAssigned(true);
-            _lastLayerCount = axMap.LayerCount;
-        }
-
-
-        private void AxMapControl1_OnAfterScreenDraw(object sender, IMapControlEvents2_OnAfterScreenDrawEvent e)
-        {
-            // 如果图层数量变化 → 自动重新识别
-            if (_lastLayerCount != axMap.LayerCount)
-            {
-                _lastLayerCount = axMap.LayerCount;
-                _spatialQueryTool.EnsureLayersAssigned(true);
-            }
-        }
         #endregion
 
         #region 菜单-文件功能
@@ -367,17 +344,17 @@ namespace Lab04_4
 
         private void menuSQElementClickQuery_Click(object sender, EventArgs e)
         {
-            _spatialQueryTool.MenuClick_ElementQuery();
+            BeginElementQuery();
         }
 
         private void menuSQDrawAPolyline_Click(object sender, EventArgs e)
         {
-            _spatialQueryTool.MenuClick_DrawPolyline();
+            BeginDrawPolyline();
         }
 
         private void menuSQBufferAnalysis_Click(object sender, EventArgs e)
         {
-            _spatialQueryTool.MenuClick_BufferAnalysis();
+            BeginBufferAnalysis();
         }
 
         #endregion
@@ -391,17 +368,17 @@ namespace Lab04_4
 
         private void tlbSQElementClickQuery_Click(object sender, EventArgs e)
         {
-            _spatialQueryTool.MenuClick_ElementQuery();
+            BeginElementQuery();
         }
 
         private void tlbSQDrawAPolyline_Click(object sender, EventArgs e)
         {
-            _spatialQueryTool.MenuClick_DrawPolyline();
+            BeginDrawPolyline();
         }
 
         private void tlbSQBufferAnalysis_Click(object sender, EventArgs e)
         {
-            _spatialQueryTool.MenuClick_BufferAnalysis();
+            BeginBufferAnalysis();
         }
 
         #endregion

@@ -125,6 +125,26 @@ namespace Lab04_4
                 clickPoint.PutCoords(e.mapX, e.mapY);
                 IntepolateElevation(clickPoint);
             }
+            else if (mapOperation == MapOperationType.ElementQuery)
+            {
+                IPoint clickPoint = new PointClass();
+                clickPoint.PutCoords(e.mapX, e.mapY);
+                SpatialQueryService.QueryElement(clickPoint);
+            }
+            else if (mapOperation == MapOperationType.DrawPolyline)
+            {
+                if (e.button == 1)
+                {
+                    IPoint pt = new PointClass();
+                    pt.PutCoords(e.mapX, e.mapY);
+                    SpatialQueryService.AddPoint(pt);
+                }
+                else if (e.button == 2)  // 右键结束
+                {
+                    SpatialQueryService.FinishDrawing();
+                    mapOperation = MapOperationType.Default;
+                }
+            }
         }
 
         /// <summary>

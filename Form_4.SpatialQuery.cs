@@ -1,4 +1,5 @@
 ﻿using ESRI.ArcGIS.Carto;
+using ESRI.ArcGIS.Controls;
 using ESRI.ArcGIS.Geodatabase;
 using ESRI.ArcGIS.Geometry;
 using System;
@@ -19,6 +20,7 @@ namespace Lab04_4
         private FeatureHighlight _featureHighlightService;
         private NavigationService _navigationService;
         private ElevationAnalysis _elevationAnalysisService;
+        private SpatialQueryTool _spatialQueryService;
 
         // 存储当前查询状态
         private int _maxAreaFeatureOID = -1;
@@ -63,6 +65,16 @@ namespace Lab04_4
                 if (_elevationAnalysisService == null)
                     _elevationAnalysisService = new ElevationAnalysis(UpdateStatus);
                 return _elevationAnalysisService;
+            }
+        }
+
+        private SpatialQueryTool SpatialQueryService
+        {
+            get
+            {
+                if (_spatialQueryService == null)
+                    _spatialQueryService = new SpatialQueryTool(axMap);
+                return _spatialQueryService;
             }
         }
 
@@ -420,6 +432,46 @@ ID: {minAreaID}
             MessageBox.Show(message, "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
         #endregion
+
+        #endregion
+
+        #region 空间分析-分析
+        private void AxMapControl1_OnMapReplaced(object sender, IMapControlEvents2_OnMapReplacedEvent e)
+        {
+            SpatialQueryService.EnsureLayersAssigned(true);
+            _lastLayerCount = axMap.LayerCount;
+        }
+
+
+        private void AxMapControl1_OnAfterScreenDraw(object sender, IMapControlEvents2_OnAfterScreenDrawEvent e)
+        {
+            // 如果图层数量变化 → 自动重新识别
+            if (_lastLayerCount != axMap.LayerCount)
+            {
+                _lastLayerCount = axMap.LayerCount;
+                SpatialQueryService.EnsureLayersAssigned(true);
+            }
+        }
+
+        private void BeginElementQuery()
+        {
+            MessageBox.Show("🔍 现在请点击地图上的建筑或道路进行查询。\n右键取消。");
+            axMap.MousePointer = esriControlsMousePointer.esriPointerCrosshair;
+            mapOperation = MapOperationType.ElementQuery;
+        }
+
+        private void BeginDrawPolyline()
+        {
+            MessageBox.Show("📌 请左键依次点击绘制多义线，右键结束绘制。");
+            axMap.MousePointer = esriControlsMousePointer.esriPointerCrosshair;
+            SpatialQueryService.ClearPoints();
+            mapOperation = MapOperationType.DrawPolyline;
+        }
+
+        private void BeginBufferAnalysis()
+        {
+            SpatialQueryService.PerformBufferAnalysis();
+        }
 
         #endregion
 

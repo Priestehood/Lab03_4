@@ -39,6 +39,16 @@ namespace Lab04_4
         IdentifyFeature,
 
         /// <summary>
+        /// 点击查询建筑/道路
+        /// </summary>
+        ElementQuery,
+
+        /// <summary>
+        /// 绘制多义线
+        /// </summary>
+        DrawPolyline,
+
+        /// <summary>
         /// 高程插值
         /// </summary>
         IntepolateElevation,
