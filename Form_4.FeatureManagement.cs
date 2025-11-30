@@ -2,7 +2,6 @@
 using ESRI.ArcGIS.Geodatabase;
 using ESRI.ArcGIS.Geometry;
 using System;
-using System.IO;
 using System.Windows.Forms;
 using Lab04_4.MyForms.FeatureManagement.Services;
 using Lab04_4.MyForms.FeatureManagement.Forms;
@@ -12,47 +11,10 @@ using System.Collections.Generic;
 
 namespace Lab04_4
 {
-    /// <summary>
-    /// 地图操作枚举类型
-    /// </summary>
-    public enum MapOperationType
-    {
-        /// <summary>
-        /// 默认（无操作）
-        /// </summary>
-        Default,
-
-        /// <summary>
-        /// 从地图上创建要素
-        /// </summary>
-        CreateFeature,
-
-        /// <summary>
-        /// 编辑要素
-        /// </summary>
-        EditFeature,
-
-        /// <summary>
-        /// 删除要素
-        /// </summary>
-        DeleteFeature,
-
-        /// <summary>
-        /// 选择要素
-        /// </summary>
-        SelectFeature,
-
-        /// <summary>
-        /// 标识/显示要素信息
-        /// </summary>
-        IdentifyFeature,
-    }
-
     public partial class Form_4 : Form
     {
 
         #region 私有变量
-        private MapOperationType mapOperation = MapOperationType.Default;
         private ShapeSketcher sketcher = new ShapeSketcher();
         #endregion
 

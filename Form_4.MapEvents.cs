@@ -5,7 +5,6 @@ using ESRI.ArcGIS.Geometry;
 using System;
 using System.Linq;
 using System.Windows.Forms;
-using Lab04_4.MyForms.FeatureManagement.Services;
 using ESRI.ArcGIS.Geodatabase;
 
 namespace Lab04_4
@@ -119,6 +118,33 @@ namespace Lab04_4
                 IFeature feature = SelectFirstFeature(geometry);
                 if (feature is null) return;
                 IdentifyFeature(feature);
+            }
+            else if (mapOperation == MapOperationType.IntepolateElevation)
+            {
+                IPoint clickPoint = sketcher.Sketch(axMap, e) as IPoint;
+                IntepolateElevation(clickPoint);
+                mapOperation = MapOperationType.Default;
+            }
+            else if (mapOperation == MapOperationType.ElementQuery)
+            {
+                IPoint clickPoint = sketcher.Sketch(axMap, e) as IPoint;
+                SpatialQueryService.QueryElement(clickPoint);
+            }
+            else if (mapOperation == MapOperationType.DrawPolyline)
+            {
+                // if (e.button == 1)
+                // {
+                //    IPoint clickPoint = sketcher.Sketch(axMap, e) as IPoint;
+                //    SpatialQueryService.AddPoint(clickPoint);
+                // }
+                // else if (e.button == 2)  // 右键结束
+                // {
+                //    SpatialQueryService.FinishDrawing();
+                //    mapOperation = MapOperationType.Default;
+                // }
+                IGeometry geometry = sketcher.Sketch(axMap, e);
+                SpatialQueryService.FinishDrawingLine(geometry as IPolyline);
+                mapOperation = MapOperationType.Default;
             }
         }
 

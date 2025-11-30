@@ -1,4 +1,5 @@
 ﻿using ESRI.ArcGIS.Carto;
+using ESRI.ArcGIS.Controls;
 using ESRI.ArcGIS.Geodatabase;
 using ESRI.ArcGIS.Geometry;
 using System;
@@ -18,6 +19,8 @@ namespace Lab04_4
         private AreaCalculation _areaCalculationService;
         private FeatureHighlight _featureHighlightService;
         private NavigationService _navigationService;
+        private ElevationAnalysis _elevationAnalysisService;
+        private SpatialQueryTool _spatialQueryService;
 
         // 存储当前查询状态
         private int _maxAreaFeatureOID = -1;
@@ -52,6 +55,26 @@ namespace Lab04_4
                 if (_navigationService == null)
                     _navigationService = new NavigationService(axMap);
                 return _navigationService;
+            }
+        }
+
+        private ElevationAnalysis ElevationAnalysisService
+        {
+            get
+            {
+                if (_elevationAnalysisService == null)
+                    _elevationAnalysisService = new ElevationAnalysis(UpdateStatus);
+                return _elevationAnalysisService;
+            }
+        }
+
+        private SpatialQueryTool SpatialQueryService
+        {
+            get
+            {
+                if (_spatialQueryService == null)
+                    _spatialQueryService = new SpatialQueryTool(axMap, CalculateArea);
+                return _spatialQueryService;
             }
         }
 
@@ -99,16 +122,31 @@ namespace Lab04_4
         /// <summary>
         /// 验证面状要素图层
         /// </summary>
-        private bool ValidatePolygonLayer(IFeatureLayer featureLayer)
+        private bool ValidatePolygonLayer(IFeatureLayer featureLayer, string title = "提示")
         {
             if (featureLayer?.FeatureClass?.ShapeType != esriGeometryType.esriGeometryPolygon)
             {
-                MessageBox.Show("请选择一个面状要素图层（建筑图层）", "提示",
+                MessageBox.Show("请选择一个面状要素图层（建筑图层）", title,
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
             return true;
         }
+
+        /// <summary>
+        /// 验证点状要素图层
+        /// </summary>
+        private bool ValidateElevationPointLayer(IFeatureLayer featureLayer, string title = "提示")
+        {
+            if (featureLayer?.FeatureClass?.ShapeType != esriGeometryType.esriGeometryPoint)
+            {
+                MessageBox.Show("请选择一个点状要素图层（高程点图层）", title,
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            return true;
+        }
+
 
         /// <summary>
         /// 查找必要字段索引
@@ -412,28 +450,77 @@ ID: {minAreaID}
 
         #endregion
 
+        #region 空间分析-分析
+        private void AxMapControl1_OnMapReplaced(object sender, IMapControlEvents2_OnMapReplacedEvent e)
+        {
+            SpatialQueryService.EnsureLayersAssigned(true);
+            _lastLayerCount = axMap.LayerCount;
+        }
+
+
+        private void AxMapControl1_OnAfterScreenDraw(object sender, IMapControlEvents2_OnAfterScreenDrawEvent e)
+        {
+            // 如果图层数量变化 → 自动重新识别
+            if (_lastLayerCount != axMap.LayerCount)
+            {
+                _lastLayerCount = axMap.LayerCount;
+                SpatialQueryService.EnsureLayersAssigned(true);
+            }
+        }
+
+        private void BeginElementQuery()
+        {
+            MessageBox.Show("🔍 现在请点击地图上的建筑或道路进行查询。\n右键取消。");
+            axMap.MousePointer = esriControlsMousePointer.esriPointerCrosshair;
+            sketcher.shape = MyForms.FeatureManagement.Services.Shape.Point;
+            mapOperation = MapOperationType.ElementQuery;
+        }
+
+        private void BeginDrawPolyline()
+        {
+            MessageBox.Show("📌 请左键依次点击绘制多义线，右键结束绘制。");
+            axMap.MousePointer = esriControlsMousePointer.esriPointerCrosshair;
+            sketcher.shape = MyForms.FeatureManagement.Services.Shape.Polyline;
+            SpatialQueryService.ClearPoints();
+            mapOperation = MapOperationType.DrawPolyline;
+        }
+
+        private void BeginBufferAnalysis()
+        {
+            SpatialQueryService.PerformBufferAnalysis();
+        }
+
+        private string CalculateArea(IFeature feature, IFeatureClass featureClass)
+        {
+            // 检查坐标系
+            bool isGeographic = CoordinateSystem.IsGeographicCoordinateSystem(featureClass);
+            double? area = AreaCalculationService.CalculateAreaSafely(feature.Shape,
+                GetSpatialReference(featureClass), isGeographic);
+            string areaUnit = isGeographic ? "平方米" : GetAreaUnit(feature);
+
+            return $"{area:F2} {areaUnit}";
+        }
+
+        #endregion
+
         #region 高程分析
 
         private void FilterAbnormalElevations()
         {
             try
             {
-                var selectedLayer = GetSelectedLayer();
-                if (!ValidateFeatureLayer(selectedLayer, "高程点滤噪")) return;
-
-                IFeatureLayer featureLayer = selectedLayer as IFeatureLayer;
-                _currentFeatureLayer = featureLayer;
+                var selectedLayer = GetSelectedLayer() as IFeatureLayer;
+                if (!ValidateElevationPointLayer(selectedLayer, "高程点滤噪")) return;
 
                 int kOfKNN = 10;
                 InputIntegerForm form = new InputIntegerForm(
-                    "请输入N近邻的点数n：", kOfKNN.ToString(), "高程点滤波");
+                    "请输入N近邻的点数n：", kOfKNN.ToString(), "高程点滤噪");
                 DialogResult result = form.ShowDialog();
                 if (result != DialogResult.OK) return;
                 kOfKNN = form.Value;
 
-                ElevationAnalysis analysis =
-                    new ElevationAnalysis(featureLayer, UpdateStatus);
-                analysis.DetectAbnormalElevations(kOfKNN,
+                ElevationAnalysisService.SetLayer(selectedLayer);
+                ElevationAnalysisService.DetectAbnormalElevations(kOfKNN,
                     SelectFeatures, DeleteFeatures);
             }
             catch (Exception ex)
@@ -443,6 +530,30 @@ ID: {minAreaID}
             }
         }
 
+        private void BeginIntepolateElevation()
+        {
+            mapOperation = MapOperationType.IntepolateElevation;
+            sketcher.shape = MyForms.FeatureManagement.Services.Shape.Point;
+        }
+
+        private void IntepolateElevation(IPoint clickPoint)
+        {
+            try
+            {
+                var selectedLayer = GetSelectedLayer() as IFeatureLayer;
+                if (!ValidateElevationPointLayer(selectedLayer, "高程插值")) return;
+
+                ElevationAnalysisService.SetLayer(selectedLayer);
+                double result = ElevationAnalysisService.IntepolateElevation(clickPoint, 8);
+
+                MessageBox.Show($"点击位置的插值高程：{result:F2} 米", "高程插值");
+            }
+            catch (Exception ex)
+            {
+                ShowError($"高程插值失败: {ex.Message}");
+                Logger.Error("高程插值失败", ex);
+            }
+        }
 
         #endregion
     }

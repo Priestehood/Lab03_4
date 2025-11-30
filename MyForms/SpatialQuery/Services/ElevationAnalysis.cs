@@ -31,18 +31,24 @@ namespace Lab04_4.MyForms.SpatialQuery.Services
         private SelectFeaturesDelegate SelectFeatures;
         private DeleteFeaturesDelegate DeleteFeatures;
 
-        public ElevationAnalysis(IFeatureLayer layer,
-            UpdateStatusDelegate updateStatus)
+        public ElevationAnalysis(UpdateStatusDelegate updateStatus)
         {
-            this.elevPointLayer = layer;
             this.UpdateStatus = updateStatus;
             this.deletedOIDs = new List<int>();
+        }
+
+        public void SetLayer(IFeatureLayer elevPointLayer)
+        {
+            this.elevPointLayer = elevPointLayer;
         }
 
         public void DetectAbnormalElevations(int kOfKNN,
             SelectFeaturesDelegate selectFeatures,
             DeleteFeaturesDelegate deleteFeatures)
         {
+            if (elevPointLayer == null)
+                throw new Exception("⚠ 高程图层未绑定，无法计算插值！");
+
             // 初始化
             this.n = kOfKNN;
             this.SelectFeatures = selectFeatures;
@@ -82,7 +88,7 @@ namespace Lab04_4.MyForms.SpatialQuery.Services
                 MessageBox.Show($"错误: {e.Error.Message}");
             else
             {
-                if(deletedOIDs.Count <= 0)
+                if (deletedOIDs.Count <= 0)
                 {
                     UpdateStatus($"已完成高程点滤波，未发现异常高程点。");
                     return;
@@ -107,7 +113,7 @@ namespace Lab04_4.MyForms.SpatialQuery.Services
         /// </summary>
         /// <param name="target">目标高程点</param>
         /// <param name="n">搜索最近高程点的数量n</param>
-        /// <returns></returns>
+        /// <returns>最近的n个高程点的要素列表</returns>
         private List<IFeature> GetKNN(IFeature target, int n)
         {
             if (!(target.Shape is IPoint)) throw new Exception("指定要素非点要素");
@@ -115,10 +121,8 @@ namespace Lab04_4.MyForms.SpatialQuery.Services
             List<KNearestNeighbor.FeatureDistancePair> results =
                 KNearestNeighbor.FindKNearest(target.Shape as IPoint, n, elevPointLayer.FeatureClass,
                 target.OID);
-            if (results is null) return null;
-
-            List<IFeature> features = new List<IFeature>();
-            return results.ConvertAll((pair) => pair.feature);
+            if (results is null) return new List<IFeature>();
+            return results.ConvertAll(pair => pair.feature);
         }
 
         /// <summary>
@@ -126,7 +130,7 @@ namespace Lab04_4.MyForms.SpatialQuery.Services
         /// </summary>
         /// <param name="target">目标高程点</param>
         /// <param name="NN">目标高程点的N近邻</param>
-        /// <returns></returns>
+        /// <returns>目标高程点是离群点时为true，否则为false</returns>
         private bool IsOutlier(IFeature target, List<IFeature> NN)
         {
             NN.Add(target);
@@ -161,20 +165,49 @@ namespace Lab04_4.MyForms.SpatialQuery.Services
             List<double> elevations = new List<double>();
             foreach (IFeature feature in features)
             {
-                double elevation = (double)feature.Value[ZFieldIndex];
-                elevations.Add(elevation);
+                elevations.Add(Convert.ToDouble(feature.Value[ZFieldIndex]));
             }
             return elevations;
         }
 
+        /// <summary>
+        /// 反距离权重插值得到高程
+        /// </summary>
+        /// <param name="click">点击位置的点</param>
+        /// <param name="n">搜索最近高程点的数量n</param>
+        /// <returns></returns>
         public double IntepolateElevation(IPoint click, int n)
         {
+            if (elevPointLayer == null)
+                throw new Exception("⚠ 高程图层未绑定，无法计算插值！");
+
             List<KNearestNeighbor.FeatureDistancePair> results =
                 KNearestNeighbor.FindKNearest(click, n, elevPointLayer.FeatureClass);
 
-            // TODO: 反距离内插法
-            double elevation = 0;
-            return elevation;
+            if (results == null || results.Count == 0)
+                throw new Exception("未找到任何邻近的高程点，无法计算插值。");
+
+            int zIndex = elevPointLayer.FeatureClass.Fields.FindField(ZFieldName);
+            if (zIndex < 0)
+                throw new Exception("未找到高程字段：" + ZFieldName);
+
+            double weightedSum = 0;
+            double weightTotal = 0;
+            double p = 2; // IDW指数
+
+            foreach (var item in results)
+            {
+                double dist = item.distance;
+                double elevation = Convert.ToDouble(item.feature.Value[zIndex]);
+
+                if (dist == 0) return elevation;
+
+                double weight = 1 / Math.Pow(dist, p);
+                weightedSum += weight * elevation;
+                weightTotal += weight;
+            }
+
+            return weightedSum / weightTotal;
         }
     }
 }
