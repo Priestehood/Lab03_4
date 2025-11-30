@@ -123,6 +123,7 @@ namespace Lab04_4
             {
                 IPoint clickPoint = sketcher.Sketch(axMap, e) as IPoint;
                 IntepolateElevation(clickPoint);
+                mapOperation = MapOperationType.Default;
             }
             else if (mapOperation == MapOperationType.ElementQuery)
             {

@@ -122,16 +122,31 @@ namespace Lab04_4
         /// <summary>
         /// 验证面状要素图层
         /// </summary>
-        private bool ValidatePolygonLayer(IFeatureLayer featureLayer)
+        private bool ValidatePolygonLayer(IFeatureLayer featureLayer, string title = "提示")
         {
             if (featureLayer?.FeatureClass?.ShapeType != esriGeometryType.esriGeometryPolygon)
             {
-                MessageBox.Show("请选择一个面状要素图层（建筑图层）", "提示",
+                MessageBox.Show("请选择一个面状要素图层（建筑图层）", title,
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
             return true;
         }
+
+        /// <summary>
+        /// 验证点状要素图层
+        /// </summary>
+        private bool ValidateElevationPointLayer(IFeatureLayer featureLayer, string title = "提示")
+        {
+            if (featureLayer?.FeatureClass?.ShapeType != esriGeometryType.esriGeometryPoint)
+            {
+                MessageBox.Show("请选择一个点状要素图层（高程点图层）", title,
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            return true;
+        }
+
 
         /// <summary>
         /// 查找必要字段索引
@@ -483,20 +498,17 @@ ID: {minAreaID}
         {
             try
             {
-                var selectedLayer = GetSelectedLayer();
-                if (!ValidateFeatureLayer(selectedLayer, "高程点滤噪")) return;
-
-                IFeatureLayer featureLayer = selectedLayer as IFeatureLayer;
-                _currentFeatureLayer = featureLayer;
+                var selectedLayer = GetSelectedLayer() as IFeatureLayer;
+                if (!ValidateElevationPointLayer(selectedLayer, "高程点滤噪")) return;
 
                 int kOfKNN = 10;
                 InputIntegerForm form = new InputIntegerForm(
-                    "请输入N近邻的点数n：", kOfKNN.ToString(), "高程点滤波");
+                    "请输入N近邻的点数n：", kOfKNN.ToString(), "高程点滤噪");
                 DialogResult result = form.ShowDialog();
                 if (result != DialogResult.OK) return;
                 kOfKNN = form.Value;
 
-                ElevationAnalysisService.SetLayer(featureLayer);
+                ElevationAnalysisService.SetLayer(selectedLayer);
                 ElevationAnalysisService.DetectAbnormalElevations(kOfKNN,
                     SelectFeatures, DeleteFeatures);
             }
@@ -517,12 +529,10 @@ ID: {minAreaID}
         {
             try
             {
-                var selectedLayer = GetSelectedLayer();
-                if (!ValidateFeatureLayer(selectedLayer, "高程插值")) return;
+                var selectedLayer = GetSelectedLayer() as IFeatureLayer;
+                if (!ValidateElevationPointLayer(selectedLayer, "高程插值")) return;
 
-                IFeatureLayer featureLayer = selectedLayer as IFeatureLayer;
-
-                ElevationAnalysisService.SetLayer(featureLayer);
+                ElevationAnalysisService.SetLayer(selectedLayer);
                 double result = ElevationAnalysisService.IntepolateElevation(clickPoint, 8);
 
                 MessageBox.Show($"点击位置的插值高程：{result:F2} 米", "高程插值");
