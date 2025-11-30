@@ -131,16 +131,19 @@ namespace Lab04_4
             }
             else if (mapOperation == MapOperationType.DrawPolyline)
             {
-                if (e.button == 1)
-                {
-                   IPoint clickPoint = sketcher.Sketch(axMap, e) as IPoint;
-                   SpatialQueryService.AddPoint(clickPoint);
-                }
-                else if (e.button == 2)  // 右键结束
-                {
-                   SpatialQueryService.FinishDrawing();
-                   mapOperation = MapOperationType.Default;
-                }
+                // if (e.button == 1)
+                // {
+                //    IPoint clickPoint = sketcher.Sketch(axMap, e) as IPoint;
+                //    SpatialQueryService.AddPoint(clickPoint);
+                // }
+                // else if (e.button == 2)  // 右键结束
+                // {
+                //    SpatialQueryService.FinishDrawing();
+                //    mapOperation = MapOperationType.Default;
+                // }
+                IGeometry geometry = sketcher.Sketch(axMap, e);
+                SpatialQueryService.FinishDrawingLine(geometry as IPolyline);
+                mapOperation = MapOperationType.Default;
             }
         }
 

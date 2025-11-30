@@ -34,9 +34,6 @@ namespace Lab04_4.MyForms.SpatialQuery.Services
         /// </summary>
         public bool EnsureLayersAssigned(bool silent = true)
         {
-            // 如果已经找到则直接返回 true
-            if (_buildingLayer != null && _roadLayer != null) return true;
-
             IFeatureLayer foundBuilding = null;
             IFeatureLayer foundRoad = null;
             IFeatureLayer foundElev = null;
@@ -86,9 +83,7 @@ namespace Lab04_4.MyForms.SpatialQuery.Services
             _roadLayer = roadLayer;
         }
 
-        // ================================================================
-        // 实验步骤 3：图上点击查询建筑/道路
-        // ================================================================
+        #region 图上点击查询建筑/道路
 
         public void QueryElement(IPoint clickPoint)
         {
@@ -147,6 +142,8 @@ namespace Lab04_4.MyForms.SpatialQuery.Services
             MessageBox.Show($"{featureType} 信息：\n\n📌 ID: {feature.OID}\n📌 名称: {name}", "查询结果");
         }
 
+        #endregion
+
         #region 绘制多义线 + 缓冲区相交建筑计算
 
         public void ClearPoints()
@@ -159,7 +156,7 @@ namespace Lab04_4.MyForms.SpatialQuery.Services
             _points.Add(pt);
         }
 
-        public void FinishDrawing()
+        public void FinishAddingPoints()
         {
             if (_points.Count < 2)
             {
@@ -179,6 +176,15 @@ namespace Lab04_4.MyForms.SpatialQuery.Services
             PerformBufferAnalysis();
         }
 
+        public void FinishDrawingLine(IPolyline polyline)
+        {
+            _drawnPolyline = polyline;
+            _points.Clear();
+
+            // 进入缓冲分析步骤
+            PerformBufferAnalysis();
+        }
+
         public void PerformBufferAnalysis()
         {
             if (_drawnPolyline == null)
@@ -192,23 +198,29 @@ namespace Lab04_4.MyForms.SpatialQuery.Services
 
             List<string> result = new List<string>();
 
-            IFeatureCursor cursor = _buildingLayer.FeatureClass.Search(null, false);
+            IFeatureCursor cursor =
+                _buildingLayer.FeatureClass.Search(new SpatialFilter
+                {
+                    Geometry = buffer,
+                    SpatialRel = esriSpatialRelEnum.esriSpatialRelIntersects
+                }, false);
+            //IFeatureCursor cursor = _buildingLayer.FeatureClass.Search(null, false);
             IFeature feature;
 
             while ((feature = cursor.NextFeature()) != null)
             {
-                IRelationalOperator rel = feature.Shape as IRelationalOperator;
+                //IRelationalOperator rel = feature.Shape as IRelationalOperator;
 
-                // ArcEngine 判断相交方式：!Disjoint()
-                if (rel != null && !rel.Disjoint(buffer))
-                {
+                ////ArcEngine 判断相交方式：!Disjoint()
+                //if (rel != null && !rel.Disjoint(buffer))
+                //{
                     string name = feature.Fields.FindField("Name") >= 0
                         ? feature.get_Value(feature.Fields.FindField("Name")).ToString()
                         : "无名称";
 
                     double area = ((IArea)feature.Shape).Area;
                     result.Add($"ID:{feature.OID} | 名称:{name} | 面积:{area:F2}");
-                }
+                //}
             }
 
             if (result.Count == 0)

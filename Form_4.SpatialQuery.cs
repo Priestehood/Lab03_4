@@ -465,7 +465,7 @@ ID: {minAreaID}
         {
             MessageBox.Show("📌 请左键依次点击绘制多义线，右键结束绘制。");
             axMap.MousePointer = esriControlsMousePointer.esriPointerCrosshair;
-            sketcher.shape = MyForms.FeatureManagement.Services.Shape.Point;
+            sketcher.shape = MyForms.FeatureManagement.Services.Shape.Polyline;
             SpatialQueryService.ClearPoints();
             mapOperation = MapOperationType.DrawPolyline;
         }
