@@ -5,7 +5,6 @@ using ESRI.ArcGIS.Geometry;
 using System;
 using System.Linq;
 using System.Windows.Forms;
-using Lab04_4.MyForms.FeatureManagement.Services;
 using ESRI.ArcGIS.Geodatabase;
 
 namespace Lab04_4
@@ -119,6 +118,12 @@ namespace Lab04_4
                 IFeature feature = SelectFirstFeature(geometry);
                 if (feature is null) return;
                 IdentifyFeature(feature);
+            }
+            else if (mapOperation == MapOperationType.IntepolateElevation)
+            {
+                IPoint clickPoint = new PointClass();
+                clickPoint.PutCoords(e.mapX, e.mapY);
+                IntepolateElevation(clickPoint);
             }
         }
 

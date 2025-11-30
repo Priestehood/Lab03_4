@@ -443,6 +443,32 @@ ID: {minAreaID}
             }
         }
 
+        private void BeginIntepolateElevation()
+        {
+            mapOperation = MapOperationType.IntepolateElevation;
+        }
+
+        private void IntepolateElevation(IPoint clickPoint)
+        {
+            try
+            {
+                var selectedLayer = GetSelectedLayer();
+                if (!ValidateFeatureLayer(selectedLayer, "高程插值")) return;
+
+                IFeatureLayer featureLayer = selectedLayer as IFeatureLayer;
+                _currentFeatureLayer = featureLayer;
+
+                ElevationAnalysis analysis = new ElevationAnalysis(featureLayer, UpdateStatus);
+                double result = analysis.IntepolateElevation(clickPoint, 8);
+
+                MessageBox.Show($"插值高程：{result:F2} 米");
+            }
+            catch (Exception ex)
+            {
+                ShowError($"高程插值失败: {ex.Message}");
+                Logger.Error("高程插值失败", ex);
+            }
+        }
 
         #endregion
     }

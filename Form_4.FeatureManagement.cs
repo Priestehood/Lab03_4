@@ -46,6 +46,11 @@ namespace Lab04_4
         /// 标识/显示要素信息
         /// </summary>
         IdentifyFeature,
+
+        /// <summary>
+        /// 高程插值
+        /// </summary>
+        IntepolateElevation,
     }
 
     public partial class Form_4 : Form
