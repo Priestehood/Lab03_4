@@ -3,7 +3,7 @@ using ESRI.ArcGIS.Controls;
 using System;
 using System.Windows.Forms;
 
-namespace Lab03_4
+namespace Lab04_4
 {
     public partial class Form_4 : Form
     {

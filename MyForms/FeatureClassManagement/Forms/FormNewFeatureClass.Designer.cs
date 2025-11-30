@@ -1,5 +1,5 @@
 ﻿
-namespace Lab03_4.MyForms.FeatureClassManagement.Forms
+namespace Lab04_4.MyForms.FeatureClassManagement.Forms
 {
     partial class FormNewFeatureClass
     {

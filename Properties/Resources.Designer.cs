@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Lab03_4.Properties {
+namespace Lab04_4.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Lab03_4.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Lab03_4.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Lab04_4.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -266,6 +266,96 @@ namespace Lab03_4.Properties {
         internal static System.Drawing.Bitmap Lab03_newFClass {
             get {
                 object obj = ResourceManager.GetObject("Lab03_newFClass", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap Lab04_EAFiltering {
+            get {
+                object obj = ResourceManager.GetObject("Lab04_EAFiltering", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap Lab04_EALoadE {
+            get {
+                object obj = ResourceManager.GetObject("Lab04_EALoadE", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap Lab04_EAQueryElevation {
+            get {
+                object obj = ResourceManager.GetObject("Lab04_EAQueryElevation", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap Lab04_EASetElevationLayer {
+            get {
+                object obj = ResourceManager.GetObject("Lab04_EASetElevationLayer", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap Lab04_SQAreaExtreme {
+            get {
+                object obj = ResourceManager.GetObject("Lab04_SQAreaExtreme", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap Lab04_SQBufferAnalysis {
+            get {
+                object obj = ResourceManager.GetObject("Lab04_SQBufferAnalysis", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap Lab04_SQDrawAPolyline {
+            get {
+                object obj = ResourceManager.GetObject("Lab04_SQDrawAPolyline", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap Lab04_SQFeature {
+            get {
+                object obj = ResourceManager.GetObject("Lab04_SQFeature", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap Lab04_SQPolylineBufferAnalysis {
+            get {
+                object obj = ResourceManager.GetObject("Lab04_SQPolylineBufferAnalysis", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

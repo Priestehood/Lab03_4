@@ -1,7 +1,7 @@
 ﻿using ESRI.ArcGIS.Geodatabase;
 using ESRI.ArcGIS.Geometry;
 using ESRI.ArcGIS.DataSourcesFile;
-using Lab03_4.MyForms.FeatureClassManagement.Helpers;
+using Lab04_4.MyForms.FeatureClassManagement.Helpers;
 using System;
 using System.IO;
 using System.Collections.Generic;
@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lab03_4.MyForms.FeatureClassManagement.Services
+namespace Lab04_4.MyForms.FeatureClassManagement.Services
 {
     /// <summary>
     /// Shapefile文件操作 | 服务类

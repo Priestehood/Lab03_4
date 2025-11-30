@@ -2,13 +2,13 @@
 using ESRI.ArcGIS.Geodatabase;
 using ESRI.ArcGIS.Geometry;
 using ESRI.ArcGIS.DataSourcesFile;
-using Lab03_4.MyForms.FeatureClassManagement.Helpers;
-using Lab03_4.MyForms.FeatureClassManagement.Services;
+using Lab04_4.MyForms.FeatureClassManagement.Helpers;
+using Lab04_4.MyForms.FeatureClassManagement.Services;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace Lab03_4.MyForms.FeatureClassManagement.Forms
+namespace Lab04_4.MyForms.FeatureClassManagement.Forms
 {
     public partial class FormNewFeatureClass : FormFeatureClassBase
     {

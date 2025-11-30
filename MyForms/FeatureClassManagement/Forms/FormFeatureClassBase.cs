@@ -1,13 +1,13 @@
 ﻿using ESRI.ArcGIS.Carto;
 using ESRI.ArcGIS.Geodatabase;
 using ESRI.ArcGIS.Geometry;
-using Lab03_4.MyForms.FeatureClassManagement.Helpers;
+using Lab04_4.MyForms.FeatureClassManagement.Helpers;
 using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace Lab03_4.MyForms.FeatureClassManagement.Forms
+namespace Lab04_4.MyForms.FeatureClassManagement.Forms
 {
     /// <summary>
     /// 要素类窗体基类，包含共享的功能和UI元素
