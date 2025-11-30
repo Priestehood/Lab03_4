@@ -11,39 +11,50 @@ using System.Windows.Forms;
 namespace Lab04_4.MyForms.SpatialQuery.Services
 {
     public delegate void UpdateStatusDelegate(string message);
+    public delegate void SelectFeaturesDelegate(object features, IFeatureLayer featureLayer);
+    public delegate void DeleteFeaturesDelegate(object features, IFeatureLayer featureLayer);
 
     class ElevationAnalysis
     {
         private IFeatureLayer elevPointLayer;
+        private IFeatureClass featureClass
+        {
+            get => elevPointLayer.FeatureClass;
+        }
         private string ZFieldName = "Z";
 
         private IFeatureCursor updateCursor;
         private int n; // 搜索最近高程点的数量n
-        private int deleteCount;
+        private List<int> deletedOIDs;
 
         private UpdateStatusDelegate UpdateStatus;
+        private SelectFeaturesDelegate SelectFeatures;
+        private DeleteFeaturesDelegate DeleteFeatures;
 
         public ElevationAnalysis(IFeatureLayer layer,
             UpdateStatusDelegate updateStatus)
         {
             this.elevPointLayer = layer;
             this.UpdateStatus = updateStatus;
+            this.deletedOIDs = new List<int>();
         }
 
-        public int DetectAbnormalElevations(int kOfKNN)
+        public void DetectAbnormalElevations(int kOfKNN,
+            SelectFeaturesDelegate selectFeatures,
+            DeleteFeaturesDelegate deleteFeatures)
         {
             // 初始化
             this.n = kOfKNN;
-            deleteCount = 0;
-            IFeatureClass featureClass = elevPointLayer.FeatureClass;
-            updateCursor = featureClass.Search(null, false);
+            this.SelectFeatures = selectFeatures;
+            this.DeleteFeatures = deleteFeatures;
+            updateCursor = featureClass.Update(null, false);
 
             LongOperation operation =
                 new LongOperation(featureClass.FeatureCount(null),
                 doStep, onCompleted);
             operation.Start("正在进行高程点滤波");
 
-            return deleteCount;
+            return;
         }
 
         private bool doStep()
@@ -56,8 +67,8 @@ namespace Lab04_4.MyForms.SpatialQuery.Services
             List<IFeature> NN = GetKNN(elevationPoint, n);
             if (IsOutlier(elevationPoint, NN))
             {
-                elevationPoint.Delete();
-                deleteCount++;
+                //elevationPoint.Delete();
+                deletedOIDs.Add(elevationPoint.OID);
             }
 
             return false;
@@ -70,7 +81,19 @@ namespace Lab04_4.MyForms.SpatialQuery.Services
             else if (e.Error != null)
                 MessageBox.Show($"错误: {e.Error.Message}");
             else
-                UpdateStatus($"已完成高程点滤波，删除了{deleteCount}个高程点。");
+            {
+                // 选中所有要素
+                SelectFeatures(deletedOIDs, elevPointLayer);
+
+                // 等待用户确认删除                
+                DialogResult result = MessageBox.Show("是否删除所选的异常高程点？",
+                    "高程点滤波", MessageBoxButtons.YesNoCancel);
+                if (result != DialogResult.Yes) return;
+
+                // 删除要素
+                DeleteFeatures(deletedOIDs, elevPointLayer);
+                UpdateStatus($"已完成高程点滤波，删除了{deletedOIDs.Count()}个高程点。");
+            }
         }
 
         /// <summary>

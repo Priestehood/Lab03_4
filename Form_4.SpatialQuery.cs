@@ -412,7 +412,7 @@ ID: {minAreaID}
         #endregion
 
         #region 高程分析
-        
+
         private void FilterAbnormalElevations()
         {
             try
@@ -423,9 +423,10 @@ ID: {minAreaID}
                 IFeatureLayer featureLayer = selectedLayer as IFeatureLayer;
                 _currentFeatureLayer = featureLayer;
 
-                ElevationAnalysis analysis = new ElevationAnalysis(featureLayer);
-                int deleteCount = analysis.DetectAbnormalElevations(7);
-                UpdateStatus($"已完成高程点滤波，删除了{deleteCount}个高程点。");
+                ElevationAnalysis analysis =
+                    new ElevationAnalysis(featureLayer, UpdateStatus);
+                analysis.DetectAbnormalElevations(10,
+                    SelectFeatures, DeleteFeatures);
             }
             catch (Exception ex)
             {
