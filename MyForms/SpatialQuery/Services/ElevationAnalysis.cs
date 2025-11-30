@@ -82,6 +82,12 @@ namespace Lab04_4.MyForms.SpatialQuery.Services
                 MessageBox.Show($"错误: {e.Error.Message}");
             else
             {
+                if(deletedOIDs.Count <= 0)
+                {
+                    UpdateStatus($"已完成高程点滤波，未发现异常高程点。");
+                    return;
+                }
+
                 // 选中所有要素
                 SelectFeatures(deletedOIDs, elevPointLayer);
 
