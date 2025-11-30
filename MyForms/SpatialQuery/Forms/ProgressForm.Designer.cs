@@ -64,11 +64,10 @@ namespace Lab04_4.MyForms.SpatialQuery.Forms
             // 
             // lblStatus
             // 
-            this.lblStatus.AutoSize = true;
             this.lblStatus.Font = new System.Drawing.Font("宋体", 11.14286F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lblStatus.Location = new System.Drawing.Point(221, 25);
+            this.lblStatus.Location = new System.Drawing.Point(21, 25);
             this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(135, 27);
+            this.lblStatus.Size = new System.Drawing.Size(532, 27);
             this.lblStatus.TabIndex = 3;
             this.lblStatus.Text = "处理中...";
             this.lblStatus.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -83,6 +82,8 @@ namespace Lab04_4.MyForms.SpatialQuery.Forms
             this.Controls.Add(this.lblProgress);
             this.Controls.Add(this.progressBar1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "ProgressForm";
             this.Text = "进度";
             this.ResumeLayout(false);
