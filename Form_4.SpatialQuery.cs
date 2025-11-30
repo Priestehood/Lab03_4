@@ -18,6 +18,7 @@ namespace Lab04_4
         private AreaCalculation _areaCalculationService;
         private FeatureHighlight _featureHighlightService;
         private NavigationService _navigationService;
+        private ElevationAnalysis _elevationAnalysisService;
 
         // 存储当前查询状态
         private int _maxAreaFeatureOID = -1;
@@ -52,6 +53,16 @@ namespace Lab04_4
                 if (_navigationService == null)
                     _navigationService = new NavigationService(axMap);
                 return _navigationService;
+            }
+        }
+
+        private ElevationAnalysis ElevationAnalysisService
+        {
+            get
+            {
+                if (_elevationAnalysisService == null)
+                    _elevationAnalysisService = new ElevationAnalysis(UpdateStatus);
+                return _elevationAnalysisService;
             }
         }
 
@@ -431,10 +442,8 @@ ID: {minAreaID}
                 if (result != DialogResult.OK) return;
                 kOfKNN = form.Value;
 
-                ElevationAnalysis analysis =
-                    new ElevationAnalysis(UpdateStatus);
-                analysis.SetLayer(featureLayer);
-                analysis.DetectAbnormalElevations(kOfKNN,
+                ElevationAnalysisService.SetLayer(featureLayer);
+                ElevationAnalysisService.DetectAbnormalElevations(kOfKNN,
                     SelectFeatures, DeleteFeatures);
             }
             catch (Exception ex)
@@ -458,11 +467,10 @@ ID: {minAreaID}
 
                 IFeatureLayer featureLayer = selectedLayer as IFeatureLayer;
 
-                ElevationAnalysis analysis = new ElevationAnalysis(UpdateStatus);
-                analysis.SetLayer(featureLayer);
-                double result = analysis.IntepolateElevation(clickPoint, 8);
+                ElevationAnalysisService.SetLayer(featureLayer);
+                double result = ElevationAnalysisService.IntepolateElevation(clickPoint, 8);
 
-                MessageBox.Show($"插值高程：{result:F2} 米");
+                MessageBox.Show($"点击位置的插值高程：{result:F2} 米", "高程插值");
             }
             catch (Exception ex)
             {
