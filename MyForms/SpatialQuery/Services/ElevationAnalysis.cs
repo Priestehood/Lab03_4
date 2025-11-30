@@ -132,7 +132,7 @@ namespace Lab04_4.MyForms.SpatialQuery.Services
             double sumOfSquares = elevations
                 .Select(e => Math.Pow(e - avg, 2))
                 .Sum();
-            double variance = sumOfSquares / (NN.Count - 1);
+            double variance = sumOfSquares / (NN.Count);
             double std = Math.Sqrt(variance);
 
             // 计算容差范围

@@ -39,8 +39,16 @@ namespace Lab04_4.MyForms.SpatialQuery.Helpers
             // 初始化 要素-距离 列表
             List<FeatureDistancePair> candidates = new List<FeatureDistancePair>();
             // 初始的搜索范围半径
-            double range = 2.5;
+            double range = 20;
             int loop = 0;
+            // 如果需要排除目标点，根据传入的OID构建where表达式
+            string whereClause = "";
+            if (excludeOID != -1)
+            {
+                whereClause =
+                    string.Format("{0} <> {1}",
+                    featureClass.OIDFieldName, excludeOID.ToString());
+            }
             // 在搜索结果不足k个时
             while (candidates.Count < k)
             {
@@ -49,14 +57,6 @@ namespace Lab04_4.MyForms.SpatialQuery.Helpers
 
                 // 扩大搜索范围
                 range *= 2;
-                // 如果需要排除目标点，根据传入的OID构建where表达式
-                string whereClause = "";
-                if (excludeOID != -1)
-                {
-                    whereClause =
-                        string.Format("{0} <> {1}",
-                        featureClass.OIDFieldName, excludeOID.ToString());
-                }
                 // 建立缓冲区，进行搜索
                 IFeatureCursor cursor =
                     SearchFeatureInRange(point, range, featureClass, whereClause);
@@ -64,6 +64,8 @@ namespace Lab04_4.MyForms.SpatialQuery.Helpers
                 UpdateCandidates(point, cursor, candidates);
             }
 
+            // 对搜索结果排序
+            candidates.Sort((a, b) => a.distance.CompareTo(b.distance));
             // 抛弃多余的结果
             candidates.RemoveRange(k, candidates.Count - k);
 
@@ -85,6 +87,7 @@ namespace Lab04_4.MyForms.SpatialQuery.Helpers
             // 创建缓冲区
             ITopologicalOperator topoOperator = point as ITopologicalOperator;
             IGeometry searchArea = topoOperator.Buffer(distance);
+            if (searchArea is null) return null;
 
             // 设置空间过滤器
             ISpatialFilter filter = new SpatialFilter
@@ -119,10 +122,17 @@ namespace Lab04_4.MyForms.SpatialQuery.Helpers
                 // 计算每个点要素到目标点的距离
                 IPoint point = feature.Shape as IPoint;
 
-
-                double distance = (source as IProximityOperator).ReturnDistance(point);
+                double distance = -1;
+                try
+                {
+                    IProximityOperator proximityOperator = source as IProximityOperator;
+                    distance = proximityOperator.ReturnDistance(point);
+                }
+                catch (Exception ex)
+                {
+                    continue;   
+                }
                 candidates.Add(new FeatureDistancePair(feature, distance));
-                candidates.Sort((a, b) => a.distance.CompareTo(b.distance));
             }
         }
     }
