@@ -8,6 +8,7 @@ using Lab04_4.MyForms.FeatureManagement.Services;
 using Lab04_4.MyForms.FeatureManagement.Forms;
 using System.Data;
 using ESRI.ArcGIS.esriSystem;
+using System.Collections.Generic;
 
 namespace Lab04_4
 {
@@ -54,6 +55,108 @@ namespace Lab04_4
         private MapOperationType mapOperation = MapOperationType.Default;
         private ShapeSketcher sketcher = new ShapeSketcher();
         #endregion
+
+        #region 辅助方法
+
+        /// <summary>
+        /// 选择地图上的要素
+        /// </summary>
+        /// <param name="features"> 要选择的（多个）要素，
+        /// 可接受IFeatureCursor、List<int>类型的oid列表或IFeature </param>
+        public void SelectFeatures(object features, IFeatureLayer featureLayer = null)
+        {
+            IFeatureLayer layer = featureLayer;
+            if (layer is null)
+            {
+                var selectedLayer = GetSelectedLayer();
+                if (!(selectedLayer is IFeatureLayer)) return;
+                layer = selectedLayer as IFeatureLayer;
+            }
+
+            try
+            {
+                if (features is IFeatureCursor cursor)
+                {
+                    IFeature feature;
+                    while ((feature = cursor.NextFeature()) != null)
+                    {
+                        axMap.Map.SelectFeature(layer, feature);
+                    }
+                }
+                else if (features is List<int> oids)
+                {
+                    foreach (var oid in oids)
+                    {
+                        IFeature feature = layer.FeatureClass.GetFeature(oid);
+                        axMap.Map.SelectFeature(layer, feature);
+                    }
+                }
+                else if (features is IFeature feature)
+                {
+                    axMap.Map.SelectFeature(layer, feature);
+                }
+
+                // 刷新地图
+                UpdateMap();
+            }
+            catch (Exception ex)
+            {
+                return;
+            }
+        }
+
+        /// <summary>
+        /// 删除要素
+        /// </summary>
+        /// <param name="features">要删除的（多个）要素，
+        /// 可接受IFeatureCursor、List<int>类型的oid列表或IFeature</param>
+        public void DeleteFeatures(object features, IFeatureLayer featureLayer = null)
+        {
+            try
+            {
+                if (features is IFeatureCursor cursor)
+                {
+                    while (cursor.NextFeature() != null)
+                    {
+                        cursor.DeleteFeature();
+                    }
+                }
+                else if (features is IFeature featureToBeDeleted)
+                {
+                    featureToBeDeleted.Delete();
+                }
+                else if (features is List<int> deletedOIDs)
+                {
+                    IFeatureLayer layer = featureLayer;
+                    if (layer is null)
+                    {
+                        var selectedLayer = GetSelectedLayer();
+                        if (!(selectedLayer is IFeatureLayer)) return;
+                        layer = selectedLayer as IFeatureLayer;
+                    }
+
+                    foreach (var oid in deletedOIDs)
+                    {
+                        IQueryFilter queryFilter = new QueryFilter
+                        { WhereClause = $"{layer.FeatureClass.OIDFieldName} = {oid}" };
+
+                        IFeatureCursor updateCursor = layer.FeatureClass.Update(queryFilter, false);
+                        if (updateCursor.NextFeature() != null)
+                            updateCursor.DeleteFeature();
+                    }
+                }
+
+                // 刷新地图
+                UpdateMap();
+            }
+            catch (Exception ex)
+            {
+                return;
+            }
+        }
+
+        #endregion
+
 
         /// <summary>
         /// 开始创建新要素
@@ -111,12 +214,23 @@ namespace Lab04_4
                     // 设置形状
                     SetZValue(feature, geometry);
                     feature.Shape = geometry;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("设置新要素形状失败：" + ex.Message, "添加要素",
+                         MessageBoxButtons.OK,
+                         MessageBoxIcon.Error);
+                    continue;
+                }
+
+                try
+                {
                     // 设置属性
                     frm.SetFeatureFields(feature);
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("[异常] " + ex.Message, "错误",
+                    MessageBox.Show("设置新要素属性失败：" + ex.Message, "添加要素",
                          MessageBoxButtons.OK,
                          MessageBoxIcon.Error);
                     continue;
@@ -324,7 +438,7 @@ namespace Lab04_4
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("[异常] " + ex.Message, "错误",
+                    MessageBox.Show("设置要素属性失败：" + ex.Message, "编辑要素",
                          MessageBoxButtons.OK,
                          MessageBoxIcon.Error);
                     continue;
@@ -350,34 +464,6 @@ namespace Lab04_4
 
             BeginSelectFeature(by);
             mapOperation = MapOperationType.DeleteFeature;
-        }
-
-        /// <summary>
-        /// 弹出提示，确认后删除要素
-        /// </summary>
-        /// <param name="features">待删除的要素或更新游标</param>
-        private void DeleteFeatures(object features)
-        {
-            DialogResult dialogResult =
-                MessageBox.Show("是否要删除选中要素？该操作不可撤回", "删除要素", MessageBoxButtons.OKCancel);
-            if (dialogResult != DialogResult.OK) return;
-
-            if (features is IFeatureCursor)
-            {
-                IFeatureCursor cursor = features as IFeatureCursor;
-                while (cursor.NextFeature() != null)
-                {
-                    cursor.DeleteFeature();
-                }
-            }
-            else if (features is IFeature)
-            {
-                IFeature feature = features as IFeature;
-                feature.Delete();
-            }
-
-            // 刷新地图
-            UpdateMap();
         }
 
         /// <summary>
@@ -433,8 +519,17 @@ namespace Lab04_4
             if (geometryDef.HasZ)
             {
                 zAware.ZAware = true;
-                IZ iz = geometry as IZ;
-                iz.SetConstantZ(0);
+
+                // 关键修复：直接使用点要素操作接口
+                if (geometry is IPoint point)
+                {
+                    point.Z = 0;
+                }
+                else
+                {
+                    IZ iz = geometry as IZ;
+                    iz.SetConstantZ(0);
+                }
             }
             else
             {

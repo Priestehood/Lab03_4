@@ -342,20 +342,21 @@ namespace Lab04_4
 
         #region 菜单-高程分析
 
-        private void menuEALoadElevationData_Click(object sender, EventArgs e)
+        private void menuEAElevationPointFiltering_Click(object sender, EventArgs e)
         {
-
+            FilterAbnormalElevations();
         }
 
         #endregion
 
         #region 工具栏-高程分析
 
-        private void tlbEALoadElevationData_Click(object sender, EventArgs e)
+        private void tlbEAElevationPointFiltering_Click(object sender, EventArgs e)
         {
-
+            FilterAbnormalElevations();
         }
 
         #endregion
+
     }
 }

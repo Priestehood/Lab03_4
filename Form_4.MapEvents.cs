@@ -102,6 +102,12 @@ namespace Lab04_4
                     features = SelectAllFeatures(geometry);
                 }
                 if (features is null) return;
+
+                // 弹出提示确认
+                DialogResult dialogResult =
+                MessageBox.Show("是否要删除选中要素？该操作不可撤回", "删除要素", MessageBoxButtons.OKCancel);
+                if (dialogResult != DialogResult.OK) return;
+
                 DeleteFeatures(features);
                 axMap.Map.ClearSelection();
             }

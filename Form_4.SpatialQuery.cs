@@ -4,6 +4,7 @@ using ESRI.ArcGIS.Geometry;
 using System;
 using System.Windows.Forms;
 using Lab04_4.MyForms.FeatureClassManagement.Helpers;
+using Lab04_4.MyForms.SpatialQuery.Forms;
 using Lab04_4.MyForms.SpatialQuery.Services;
 using Lab04_4.MyForms.SpatialQuery.Helpers;
 
@@ -411,6 +412,38 @@ ID: {minAreaID}
 
         #endregion
 
+        #region 高程分析
 
+        private void FilterAbnormalElevations()
+        {
+            try
+            {
+                var selectedLayer = GetSelectedLayer();
+                if (!ValidateFeatureLayer(selectedLayer, "高程点滤噪")) return;
+
+                IFeatureLayer featureLayer = selectedLayer as IFeatureLayer;
+                _currentFeatureLayer = featureLayer;
+
+                int kOfKNN = 10;
+                InputIntegerForm form = new InputIntegerForm(
+                    "请输入N近邻的点数n：", kOfKNN.ToString(), "高程点滤波");
+                DialogResult result = form.ShowDialog();
+                if (result != DialogResult.OK) return;
+                kOfKNN = form.Value;
+
+                ElevationAnalysis analysis =
+                    new ElevationAnalysis(featureLayer, UpdateStatus);
+                analysis.DetectAbnormalElevations(kOfKNN,
+                    SelectFeatures, DeleteFeatures);
+            }
+            catch (Exception ex)
+            {
+                ShowError($"高程点滤噪失败: {ex.Message}");
+                Logger.Error("高程点滤噪失败", ex);
+            }
+        }
+
+
+        #endregion
     }
 }
