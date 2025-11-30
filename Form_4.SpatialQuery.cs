@@ -73,7 +73,7 @@ namespace Lab04_4
             get
             {
                 if (_spatialQueryService == null)
-                    _spatialQueryService = new SpatialQueryTool(axMap);
+                    _spatialQueryService = new SpatialQueryTool(axMap, CalculateArea);
                 return _spatialQueryService;
             }
         }
@@ -488,6 +488,17 @@ ID: {minAreaID}
         private void BeginBufferAnalysis()
         {
             SpatialQueryService.PerformBufferAnalysis();
+        }
+
+        private string CalculateArea(IFeature feature, IFeatureClass featureClass)
+        {
+            // 检查坐标系
+            bool isGeographic = CoordinateSystem.IsGeographicCoordinateSystem(featureClass);
+            double? area = AreaCalculationService.CalculateAreaSafely(feature.Shape,
+                GetSpatialReference(featureClass), isGeographic);
+            string areaUnit = isGeographic ? "平方米" : GetAreaUnit(feature);
+
+            return $"{area:F2} {areaUnit}";
         }
 
         #endregion

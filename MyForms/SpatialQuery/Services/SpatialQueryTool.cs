@@ -24,9 +24,14 @@ namespace Lab04_4.MyForms.SpatialQuery.Services
         private List<IPoint> _points = new List<IPoint>();
         private IPolyline _drawnPolyline;
 
-        public SpatialQueryTool(AxMapControl mapControl)
+        public delegate string CalculateAreaDelegate(IFeature feature, IFeatureClass featureClass);
+
+        public CalculateAreaDelegate CalculateArea;
+
+        public SpatialQueryTool(AxMapControl mapControl, CalculateAreaDelegate calculateArea)
         {
             _axMap = mapControl ?? throw new ArgumentNullException(nameof(mapControl));
+            this.CalculateArea = calculateArea;
         }
 
         /// <summary>
@@ -214,12 +219,13 @@ namespace Lab04_4.MyForms.SpatialQuery.Services
                 ////ArcEngine 判断相交方式：!Disjoint()
                 //if (rel != null && !rel.Disjoint(buffer))
                 //{
-                    string name = feature.Fields.FindField("Name") >= 0
-                        ? feature.get_Value(feature.Fields.FindField("Name")).ToString()
-                        : "无名称";
+                string name = feature.Fields.FindField("Name") >= 0
+                    ? feature.get_Value(feature.Fields.FindField("Name")).ToString()
+                    : "无名称";
 
-                    double area = ((IArea)feature.Shape).Area;
-                    result.Add($"ID:{feature.OID} | 名称:{name} | 面积:{area:F2}");
+                //double area = ((IArea)feature.Shape).Area;
+                string areaString = CalculateArea(feature, _buildingLayer.FeatureClass);
+                result.Add($"ID:{feature.OID} | 名称:{name} | 面积:{areaString}");
                 //}
             }
 
