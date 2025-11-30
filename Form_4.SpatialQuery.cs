@@ -4,6 +4,7 @@ using ESRI.ArcGIS.Geometry;
 using System;
 using System.Windows.Forms;
 using Lab04_4.MyForms.FeatureClassManagement.Helpers;
+using Lab04_4.MyForms.SpatialQuery.Forms;
 using Lab04_4.MyForms.SpatialQuery.Services;
 using Lab04_4.MyForms.SpatialQuery.Helpers;
 
@@ -423,9 +424,16 @@ ID: {minAreaID}
                 IFeatureLayer featureLayer = selectedLayer as IFeatureLayer;
                 _currentFeatureLayer = featureLayer;
 
+                int kOfKNN = 10;
+                InputIntegerForm form = new InputIntegerForm(
+                    "请输入N近邻的点数n：", kOfKNN.ToString(), "高程点滤波");
+                DialogResult result = form.ShowDialog();
+                if (result != DialogResult.OK) return;
+                kOfKNN = form.Value;
+
                 ElevationAnalysis analysis =
                     new ElevationAnalysis(featureLayer, UpdateStatus);
-                analysis.DetectAbnormalElevations(10,
+                analysis.DetectAbnormalElevations(kOfKNN,
                     SelectFeatures, DeleteFeatures);
             }
             catch (Exception ex)
